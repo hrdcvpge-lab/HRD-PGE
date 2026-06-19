@@ -1098,6 +1098,249 @@ main{max-width:1280px;padding:0 24px 90px}
 .universal-swimlane-flow .ops-lane-label strong{font-size:10.5px}
 .universal-swimlane-flow .ops-lane-label span{font-size:9.5px}
 .universal-swimlane-flow .ops-stage{margin-bottom:0}
+
+
+/* RELATED WI TAGS INSIDE SOP DRAWER */
+.drawer-wi-block{
+  margin:0 20px 16px;
+  padding:12px 14px;
+  border:1px solid rgba(var(--wine-rgb),.16);
+  background:rgba(255,250,246,.86);
+}
+.drawer-wi-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+  color:var(--wine);
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.drawer-wi-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.wi-tag-btn{
+  border:1px solid rgba(var(--wine-rgb),.22);
+  background:rgba(255,252,249,.95);
+  color:var(--wine);
+  padding:7px 9px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.05em;
+  cursor:pointer;
+}
+.wi-tag-btn:hover{
+  background:rgba(var(--wine-rgb),.08);
+  border-color:var(--wine);
+}
+
+/* LEFT EXTENDED WORK INSTRUCTION PANEL */
+.wi-panel{
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:420px;
+  width:560px;
+  max-width:calc(100vw - 420px);
+  background:rgba(255,252,249,.98);
+  border-left:1px solid rgba(var(--wine-rgb),.18);
+  border-right:1px solid rgba(var(--wine-rgb),.18);
+  z-index:202;
+  overflow-y:auto;
+  transform:translateX(18px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+  box-shadow:-24px 0 45px rgba(60,9,11,.12);
+}
+.wi-panel.open{
+  transform:translateX(0);
+  opacity:1;
+  pointer-events:auto;
+}
+.wi-panel-header{
+  position:sticky;
+  top:0;
+  z-index:2;
+  background:rgba(255,252,249,.98);
+  border-bottom:1px solid rgba(var(--wine-rgb),.16);
+  padding:18px 20px 16px;
+}
+.wi-close{
+  float:right;
+  border:1px solid rgba(var(--wine-rgb),.18);
+  background:rgba(255,250,246,.92);
+  color:var(--muted);
+  padding:5px 10px;
+  cursor:pointer;
+  font-size:12px;
+}
+.wi-close:hover{color:var(--wine);border-color:var(--wine)}
+.wi-code{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:900;
+  color:var(--wine);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.wi-title{
+  margin-top:5px;
+  font-family:'Playfair Display',serif;
+  font-size:1.45rem;
+  font-weight:800;
+  color:var(--ink);
+  padding-right:95px;
+}
+.wi-body{padding:18px 20px 24px}
+.wi-meta-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:14px;
+}
+.wi-meta-grid div{
+  border:1px solid rgba(var(--wine-rgb),.14);
+  background:rgba(255,250,246,.72);
+  padding:10px 12px;
+}
+.wi-meta-grid strong{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  color:var(--wine);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.wi-meta-grid span{
+  color:var(--muted);
+  font-size:.88rem;
+  line-height:1.3;
+}
+.wi-purpose{
+  padding:13px 14px;
+  border-left:3px solid var(--wine);
+  background:rgba(var(--wine-rgb),.055);
+  color:var(--muted);
+  font-size:.92rem;
+  line-height:1.45;
+  margin-bottom:16px;
+}
+.wi-section-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--wine);
+  margin-bottom:10px;
+}
+.wi-step{
+  display:grid;
+  grid-template-columns:28px 1fr;
+  gap:10px;
+  padding:10px 0;
+  border-bottom:1px solid rgba(var(--wine-rgb),.10);
+}
+.wi-step-num{
+  width:24px;
+  height:24px;
+  border:1px solid rgba(var(--wine-rgb),.22);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:900;
+  color:var(--wine);
+  background:rgba(255,250,246,.82);
+}
+.wi-step-text{
+  font-size:.92rem;
+  color:var(--text);
+  line-height:1.42;
+}
+@media(max-width:980px){
+  .wi-panel{
+    right:0;
+    width:100vw;
+    max-width:100vw;
+    z-index:203;
+  }
+  .wi-meta-grid{grid-template-columns:1fr}
+}
+
+
+/* COLLAPSIBLE END-TO-END OVERVIEW DETAIL */
+.overview-toggle-block{
+  margin-top:18px;
+  border:1px solid rgba(var(--wine-rgb),.18);
+  background:rgba(255,250,246,.72);
+}
+.overview-toggle-head{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:16px 18px;
+  background:linear-gradient(135deg,rgba(var(--wine-rgb),.06),rgba(var(--complement-rgb),.045));
+  border:0;
+  color:var(--ink);
+  cursor:pointer;
+  text-align:left;
+}
+.overview-toggle-head span{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.overview-toggle-head strong{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--wine);
+}
+.overview-toggle-head small{
+  font-size:.88rem;
+  color:var(--muted);
+}
+.overview-toggle-head b{
+  flex-shrink:0;
+  border:1px solid rgba(var(--wine-rgb),.20);
+  background:rgba(255,252,249,.92);
+  padding:8px 10px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.06em;
+  color:var(--wine);
+  text-transform:uppercase;
+}
+.overview-toggle-head:hover b{
+  border-color:var(--wine);
+  background:rgba(var(--wine-rgb),.07);
+}
+.overview-toggle-content{
+  display:block;
+  padding:18px;
+  border-top:1px solid rgba(var(--wine-rgb),.14);
+}
+.overview-toggle-block.is-collapsed .overview-toggle-content{
+  display:none;
+}
+.overview-toggle-block.is-collapsed{
+  margin-bottom:4px;
+}
+@media(max-width:700px){
+  .overview-toggle-head{align-items:flex-start;flex-direction:column}
+}
 </style>
 </head>
 <body>
@@ -1230,7 +1473,17 @@ main{max-width:1280px;padding:0 24px 90px}
 <div class="e2e-node-r">HRD</div>
 </div>
 </div>
-<div aria-label="Divisional flow overview" class="e2e-grid">
+
+
+<div class="overview-toggle-block is-collapsed" id="overview-detail-toggle">
+<button class="overview-toggle-head" onclick="toggleOverviewDetail()" type="button">
+<span>
+<strong>Department Detail Breakdown</strong>
+<small>Sales, R&amp;D, Admin Ops, Operations, FAT, HRD GA</small>
+</span>
+<b id="overview-toggle-label">Buka Detail</b>
+</button>
+<div class="overview-toggle-content" id="overview-detail-content"><div aria-label="Divisional flow overview" class="e2e-grid">
 <div class="e2e-col sm">
 <div class="e2e-col-head"><span>Sales &amp; Marketing</span><span class="e2e-col-num">Dept Owner</span></div>
 <div class="e2e-steps">
@@ -1290,8 +1543,7 @@ main{max-width:1280px;padding:0 24px 90px}
 <div class="e2e-step hrd" onclick="openDrawer('hrd-kpi')"><div class="e2e-step-no">05</div><div class="e2e-step-title">Evaluasi &amp; Development</div><div class="e2e-step-sub">KPI, konflik, compliance</div><div class="e2e-step-r">HRD</div></div>
 </div>
 </div>
-</div>
-<div class="e2e-legend">
+</div><div class="e2e-legend">
 <div class="e2e-legend-item"><div class="e2e-legend-swatch" style="background:rgba(135,23,25,.16);border-color:#a55754"></div><div class="e2e-legend-text"><strong>Sales &amp; Marketing</strong>Department owner · Responsible role: Marketing, Sales, Head S&amp;M</div></div>
 <div class="e2e-legend-item"><div class="e2e-legend-swatch" style="background:rgba(120,232,230,.22);border-color:#2d908e"></div><div class="e2e-legend-text"><strong>R&amp;D</strong>Department owner · Responsible role: Designer, Technical / Blueprint, Head R&amp;D</div></div>
 <div class="e2e-legend-item"><div class="e2e-legend-swatch" style="background:rgba(126,110,173,.18);border-color:#7d68aa"></div><div class="e2e-legend-text"><strong>Admin Operations</strong>Role owner · Responsible role: Admin Operations</div></div>
@@ -1300,8 +1552,7 @@ main{max-width:1280px;padding:0 24px 90px}
 <div class="e2e-legend-item"><div class="e2e-legend-swatch" style="background:rgba(207,139,54,.18);border-color:#c18b3f"></div><div class="e2e-legend-text"><strong>FAT</strong>Department owner · Responsible role: Finance, Accounting, Tax</div></div>
 <div class="e2e-legend-item"><div class="e2e-legend-swatch" style="background:rgba(178,75,98,.18);border-color:#b24b62"></div><div class="e2e-legend-text"><strong>HRD GA</strong>Department owner · Responsible role: HRD / General Affairs</div></div>
 <div class="e2e-legend-item"><div class="e2e-legend-swatch" style="background:linear-gradient(135deg,rgba(135,23,25,.18),rgba(120,232,230,.18));border-color:rgba(135,23,25,.35)"></div><div class="e2e-legend-text"><strong>RACI cue</strong>Warna box = owner proses. Label “R” = siapa yang paling bertanggung jawab pada step tersebut.</div></div>
-</div>
-</div>
+</div></div></div></div>
 </div>
 </section>
 <!-- ══════════════════════════════════════════════════════ -->
@@ -2350,6 +2601,22 @@ main{max-width:1280px;padding:0 24px 90px}
 </main>
 <!-- DETAIL DRAWER -->
 <div class="detail-overlay" id="detail-overlay" onclick="closeDrawer(event)">
+<aside aria-label="Work Instruction detail" class="wi-panel" id="wi-panel">
+<div class="wi-panel-header">
+<button class="wi-close" onclick="closeWiPanel(event)">✕ Tutup WI</button>
+<div class="wi-code" id="wi-code"></div>
+<div class="wi-title" id="wi-title"></div>
+</div>
+<div class="wi-body">
+<div class="wi-meta-grid">
+<div><strong>PIC</strong><span id="wi-pic"></span></div>
+<div><strong>Output</strong><span id="wi-output"></span></div>
+</div>
+<div class="wi-purpose" id="wi-purpose"></div>
+<div class="wi-section-title">Langkah Kerja</div>
+<div class="wi-steps" id="wi-steps"></div>
+</div>
+</aside>
 <div class="detail-drawer" id="detail-drawer">
 <div class="drawer-header">
 <button class="drawer-close" onclick="closeDrawerBtn()">✕ Tutup</button>
@@ -2357,6 +2624,10 @@ main{max-width:1280px;padding:0 24px 90px}
 <div class="drawer-title" id="d-title"></div>
 </div>
 <div class="drawer-purpose" id="d-purpose"></div>
+<div class="drawer-wi-block" id="d-wi-block" style="display:none">
+<div class="drawer-wi-title">Related Work Instruction</div>
+<div class="drawer-wi-tags" id="d-wi-tags"></div>
+</div>
 <div class="drawer-steps">
 <div class="drawer-steps-title">Langkah-langkah</div>
 <div id="d-steps"></div>
@@ -2365,6 +2636,15 @@ main{max-width:1280px;padding:0 24px 90px}
 </div>
 </div>
 <script>
+function toggleOverviewDetail(){
+  const block=document.getElementById('overview-detail-toggle');
+  const label=document.getElementById('overview-toggle-label');
+  if(!block)return;
+  const collapsed=block.classList.toggle('is-collapsed');
+  if(label)label.textContent=collapsed?'Buka Detail':'Tutup Detail';
+}
+
+
 function setActiveSection(id){
   const map={overview:0,ops:1,sm:2,rnd:3,fin:4,hrd:5};
   const index=map[id];
@@ -2474,13 +2754,2066 @@ const SOP={
 };
 
 let currentSopKey=null;
+
+const WI_LIBRARY = {
+  "WI-OPS-001": {
+    "title": "Verifikasi Data Order",
+    "pic": "Admin Operations",
+    "output": "Checklist order lengkap / daftar revisi data",
+    "purpose": "Memastikan data order dari Sales sudah lengkap sebelum diterbitkan menjadi Work Order.",
+    "steps": [
+      "Terima detail order dari Sales & Marketing.",
+      "Cek nama customer dan nomor kontak.",
+      "Cek jenis produk, jumlah pesanan, ukuran, bahan, warna, motif, dan desain.",
+      "Pastikan desain sudah final atau sudah ACC customer.",
+      "Cek deadline produksi dan deadline pengiriman.",
+      "Cek catatan khusus, alamat kirim, metode pengiriman, serta status pembayaran/DP jika diperlukan.",
+      "Beri status Lengkap jika semua data tersedia dan jelas.",
+      "Beri status Belum Lengkap jika ada data yang belum jelas.",
+      "Jika belum lengkap, kembalikan ke Sales dengan daftar data yang harus dilengkapi.",
+      "Jangan menerbitkan WO sebelum data lengkap."
+    ]
+  },
+  "WI-OPS-002": {
+    "title": "Pembuatan Work Order",
+    "pic": "Admin Operations",
+    "output": "Work Order resmi",
+    "purpose": "Mengubah detail order menjadi instruksi kerja resmi untuk produksi.",
+    "steps": [
+      "Pastikan order sudah berstatus Data Lengkap.",
+      "Buat nomor Work Order dengan format yang konsisten.",
+      "Masukkan nama customer, tanggal order, deadline produksi, dan deadline pengiriman.",
+      "Tulis nama produk, jumlah produk, ukuran, dan bahan yang digunakan.",
+      "Cantumkan file desain atau link desain.",
+      "Cantumkan status desain: ACC / belum ACC / template.",
+      "Tulis instruksi khusus produksi dan kebutuhan packing khusus jika ada.",
+      "Cek ulang WO sebelum dikirim.",
+      "Kirim WO kepada Kepala Produksi.",
+      "Simpan salinan WO di folder atau sistem kerja.",
+      "Update status order menjadi WO Terbit."
+    ]
+  },
+  "WI-OPS-003": {
+    "title": "Rencana Produksi Harian/Mingguan",
+    "pic": "Kepala Produksi",
+    "output": "Jadwal produksi dan target harian",
+    "purpose": "Menyusun jadwal produksi agar order selesai tepat waktu dan tidak overload.",
+    "steps": [
+      "Terima WO dari Admin Operations.",
+      "Baca detail produk, jumlah, bahan, dan deadline.",
+      "Urutkan order berdasarkan deadline terdekat.",
+      "Tandai order urgent jika deadline sangat dekat.",
+      "Kelompokkan order berdasarkan jenis produk atau proses yang sama.",
+      "Cek daftar order yang sedang berjalan.",
+      "Cek kapasitas mesin dan jumlah operator/helper yang masuk kerja.",
+      "Tentukan target produksi harian dan batch produksi.",
+      "Tentukan urutan proses: cutting, print, jahit/rakit, trimming, QC.",
+      "Tentukan PIC untuk setiap proses.",
+      "Bagikan jadwal ke Operator, Helper, Gudang, QC, dan Logistik jika diperlukan.",
+      "Update jadwal jika ada kendala mesin, bahan, atau order urgent.",
+      "Informasikan perubahan jadwal kepada Admin Ops."
+    ]
+  },
+  "WI-OPS-004": {
+    "title": "Mapping Kapasitas Produksi",
+    "pic": "Kepala Produksi",
+    "output": "PIC harian, kapasitas harian, dan potensi bottleneck",
+    "purpose": "Menentukan kemampuan produksi harian berdasarkan mesin, tenaga kerja, dan beban order.",
+    "steps": [
+      "Catat jumlah mesin yang aktif.",
+      "Catat mesin yang sedang rusak atau maintenance.",
+      "Catat jumlah operator dan helper yang hadir.",
+      "Tentukan kapasitas per proses: cutting, printing, jahit/rakit, trimming, QC, dan packing.",
+      "Bandingkan kapasitas dengan jumlah order.",
+      "Identifikasi proses yang paling berisiko menjadi bottleneck.",
+      "Jika kapasitas cukup, lanjutkan jadwal normal.",
+      "Jika kapasitas tidak cukup, ubah prioritas order, pecah batch, tambah jam kerja, atau pindah PIC.",
+      "Informasikan potensi keterlambatan ke Admin Ops jika berdampak pada customer.",
+      "Catat hasil mapping kapasitas di jadwal produksi."
+    ]
+  },
+  "WI-OPS-005": {
+    "title": "Cek Kesiapan Bahan",
+    "pic": "Gudang & Sourcing",
+    "output": "Status bahan siap / kurang / tidak sesuai",
+    "purpose": "Memastikan bahan tersedia dan sesuai standar sebelum produksi dimulai.",
+    "steps": [
+      "Terima kebutuhan bahan dari WO atau jadwal produksi.",
+      "Cek jenis dan jumlah bahan yang dibutuhkan.",
+      "Cek stok fisik di gudang.",
+      "Cek stok di catatan atau sistem.",
+      "Cocokkan stok fisik dengan stok sistem.",
+      "Cek kualitas bahan: tidak rusak, tidak kotor, warna sesuai, ukuran sesuai, dan bahan sesuai standar.",
+      "Jika bahan cukup dan sesuai, beri status Bahan Siap.",
+      "Jika bahan kurang, beri status Bahan Kurang.",
+      "Jika bahan ada tetapi tidak sesuai standar, beri status Bahan Tidak Sesuai.",
+      "Informasikan status bahan kepada Kepala Produksi.",
+      "Catat bahan yang keluar untuk produksi."
+    ]
+  },
+  "WI-OPS-006": {
+    "title": "Sourcing & Pembelian Bahan",
+    "pic": "Gudang & Sourcing",
+    "output": "Bahan masuk, stok ter-update, bahan siap produksi",
+    "purpose": "Memenuhi kebutuhan bahan produksi dengan bahan yang sesuai standar.",
+    "steps": [
+      "Terima informasi bahan kurang dari hasil cek stok.",
+      "Cek spesifikasi bahan yang dibutuhkan.",
+      "Cek supplier yang biasa digunakan.",
+      "Bandingkan harga, kualitas, dan estimasi kedatangan.",
+      "Pilih supplier yang paling sesuai.",
+      "Buat daftar pembelian bahan.",
+      "Ajukan pembelian kepada Kepala Produksi atau pihak yang berwenang.",
+      "Lakukan pemesanan ke supplier.",
+      "Saat bahan datang, cek jumlah dan kualitas bahan.",
+      "Cocokkan bahan datang dengan pesanan.",
+      "Jika bahan sesuai, masukkan ke stok.",
+      "Jika bahan tidak sesuai, pisahkan dan laporkan ke Kepala Produksi.",
+      "Update stok gudang dan informasikan bahan siap."
+    ]
+  },
+  "WI-OPS-007": {
+    "title": "Pre-Production Check",
+    "pic": "Operator Produksi",
+    "output": "Pre-check selesai dan produksi siap dimulai",
+    "purpose": "Memastikan operator siap produksi sesuai WO dan tidak terjadi kesalahan di awal.",
+    "steps": [
+      "Terima WO dari Kepala Produksi atau Admin Ops.",
+      "Baca nama produk, jumlah order, ukuran, bahan, desain/blueprint, dan instruksi khusus.",
+      "Ambil bahan dari area yang ditentukan.",
+      "Cek bahan sudah sesuai WO.",
+      "Cek alat kerja yang dibutuhkan.",
+      "Cek kondisi mesin sebelum digunakan.",
+      "Bersihkan mesin dari sisa produksi sebelumnya.",
+      "Lakukan warming-up mesin jika diperlukan.",
+      "Jika mesin bermasalah, jangan mulai produksi.",
+      "Laporkan masalah mesin kepada Kepala Produksi.",
+      "Jika semua siap, mulai proses produksi sesuai jadwal."
+    ]
+  },
+  "WI-OPS-008": {
+    "title": "Eksekusi Produksi Inti",
+    "pic": "Operator Produksi",
+    "output": "Produk WIP / barang hasil produksi",
+    "purpose": "Menjalankan proses produksi sesuai WO, blueprint, dan SOP.",
+    "steps": [
+      "Pastikan WO sudah dibaca dan dipahami.",
+      "Pastikan bahan sudah sesuai.",
+      "Jalankan proses sesuai urutan kerja yang ditentukan.",
+      "Untuk cutting: ikuti ukuran/pola, pastikan potongan presisi, dan pisahkan potongan cacat.",
+      "Untuk print: pastikan file desain benar, posisi cetak benar, warna tajam, dan motif tidak blur/bergeser.",
+      "Untuk jahit/rakit: ikuti pola, pastikan sambungan rapi, dan pastikan kekuatan jahitan cukup.",
+      "Jangan mengubah metode kerja tanpa izin Kepala Produksi.",
+      "Jika ada kendala teknis, hentikan proses sementara dan laporkan.",
+      "Pisahkan barang cacat dari barang OK.",
+      "Catat jumlah produk selesai dan jumlah produk bermasalah.",
+      "Serahkan hasil kerja ke Helper atau QC sesuai alur."
+    ]
+  },
+  "WI-OPS-009": {
+    "title": "Support Produksi, Trimming, dan 5S",
+    "pic": "Helper Produksi",
+    "output": "Produk rapi, area kerja bersih, alur produksi lancar",
+    "purpose": "Membantu operator agar alur produksi tidak macet dan area kerja tetap rapi.",
+    "steps": [
+      "Terima arahan dari Operator atau Kepala Produksi.",
+      "Siapkan bahan bantu yang dibutuhkan operator.",
+      "Pindahkan barang dari satu stasiun kerja ke stasiun berikutnya.",
+      "Untuk hasil print, lakukan pemotongan sesuai garis pola.",
+      "Susun hasil potong berdasarkan ukuran atau kode produksi.",
+      "Untuk hasil jahit, bersihkan sisa benang.",
+      "Cek cepat apakah ada jahitan loncat, robek, atau tidak rapi.",
+      "Pisahkan barang yang terlihat cacat ke area revisi.",
+      "Serahkan barang OK ke proses berikutnya.",
+      "Bersihkan sisa potongan kain, benang, debu, atau sisa print.",
+      "Kembalikan alat kerja ke tempat semula.",
+      "Buang limbah sesuai kategori."
+    ]
+  },
+  "WI-OPS-010": {
+    "title": "First-Line QC",
+    "pic": "Operator Produksi / Helper Produksi",
+    "output": "Barang OK menuju Final QC, barang cacat masuk area revisi",
+    "purpose": "Menangkap cacat sejak awal sebelum masuk Final QC.",
+    "steps": [
+      "Cek hasil kerja sendiri sebelum diserahkan ke tahap berikutnya.",
+      "Untuk hasil cutting, cek ukuran dan kerapian potongan.",
+      "Untuk hasil print, cek warna, ketajaman motif, posisi cetak, dan kebersihan.",
+      "Untuk hasil jahit/rakit, cek sambungan, kekuatan, dan kerapian.",
+      "Cek apakah ada noda, robek, salah ukuran, atau bagian kurang lengkap.",
+      "Pisahkan barang OK dan barang bermasalah.",
+      "Barang OK diserahkan ke QC.",
+      "Barang bermasalah diletakkan di area revisi.",
+      "Laporkan jumlah barang OK dan barang bermasalah kepada Kepala Produksi.",
+      "Jangan mencampur barang reject dengan barang OK."
+    ]
+  },
+  "WI-OPS-011": {
+    "title": "Final QC dan Keputusan Lolos QC",
+    "pic": "Staff QC & Assurance",
+    "output": "QC Form, barang lolos QC, barang reject/rework",
+    "purpose": "Memastikan hanya barang sesuai standar yang boleh masuk proses kirim.",
+    "steps": [
+      "Terima batch produk dari Produksi atau Helper.",
+      "Cocokkan produk dengan WO.",
+      "Cocokkan produk dengan blueprint atau sampel ACC.",
+      "Cek jumlah, ukuran, kebersihan, hasil cetak/motif, warna, jahitan/rakitan, dan kelengkapan aksesoris.",
+      "Cek fungsi produk jika ada bagian yang harus berfungsi.",
+      "Beri status Lolos QC jika semua standar terpenuhi.",
+      "Beri status Tidak Lolos QC jika ada cacat.",
+      "Tempelkan label atau tanda Lolos QC pada barang OK.",
+      "Pisahkan barang tidak lolos QC ke area defect/rework.",
+      "Informasikan jumlah lolos dan reject kepada Admin Ops."
+    ]
+  },
+  "WI-OPS-012": {
+    "title": "Pencatatan Defect dan Rework",
+    "pic": "Staff QC & Assurance + Operator Produksi",
+    "output": "Defect Log, instruksi rework, status akhir barang",
+    "purpose": "Mencatat cacat produksi dan memastikan perbaikan dilakukan dengan jelas.",
+    "steps": [
+      "Ambil barang yang tidak lolos QC.",
+      "Identifikasi jenis cacat.",
+      "Kategorikan cacat: salah ukuran, hasil print blur, warna tidak sesuai, jahitan tidak rapi, bahan rusak, atau aksesoris kurang.",
+      "Catat jumlah barang cacat.",
+      "Catat penyebab sementara jika diketahui.",
+      "Tentukan status barang: bisa diperbaiki, harus produksi ulang, atau reject total.",
+      "Jika bisa diperbaiki, tulis instruksi rework dengan jelas.",
+      "Serahkan barang rework ke Operator atau Helper.",
+      "Operator melakukan perbaikan sesuai instruksi.",
+      "Setelah diperbaiki, barang dikembalikan ke QC.",
+      "QC melakukan pengecekan ulang dan update status akhir.",
+      "Laporkan defect berulang kepada Kepala Produksi."
+    ]
+  },
+  "WI-OPS-013": {
+    "title": "Barang Jadi Siap Kirim",
+    "pic": "Gudang & Sourcing",
+    "output": "Barang siap kirim di staging area",
+    "purpose": "Menata barang lolos QC agar tidak tertukar sebelum dikirim.",
+    "steps": [
+      "Terima barang yang sudah berstatus Lolos QC.",
+      "Cek jumlah barang sesuai informasi dari QC.",
+      "Cek nama customer atau nomor order.",
+      "Kelompokkan barang berdasarkan nama pemesan, tanggal kirim, nomor resi, atau jenis pengiriman.",
+      "Letakkan barang di area Siap Kirim.",
+      "Pastikan barang tidak tercampur dengan barang WIP atau reject.",
+      "Beri label pada barang atau area penyimpanan.",
+      "Informasikan kepada Admin Ops bahwa barang siap dibuatkan dokumen kirim.",
+      "Serahkan barang ke Logistik sesuai daftar pengiriman."
+    ]
+  },
+  "WI-OPS-014": {
+    "title": "Dokumen Pengiriman",
+    "pic": "Admin Operations",
+    "output": "Resi, Surat Jalan, Packing List",
+    "purpose": "Menyiapkan resi, surat jalan, dan packing list yang benar.",
+    "steps": [
+      "Terima informasi barang lolos QC dari QC/Gudang.",
+      "Cek nama customer, alamat pengiriman, dan nomor telepon customer.",
+      "Cek jumlah barang, jenis produk, dan metode pengiriman.",
+      "Untuk pesanan eceran, cetak resi dari sistem marketplace/ekspedisi.",
+      "Untuk pesanan grosir, buat surat jalan.",
+      "Buat packing list jika diperlukan.",
+      "Cek ulang alamat, nama, dan jumlah barang.",
+      "Serahkan dokumen kepada Logistik.",
+      "Simpan salinan dokumen pengiriman.",
+      "Update status order menjadi Siap Packing / Siap Kirim."
+    ]
+  },
+  "WI-OPS-015": {
+    "title": "Packing, Pickup, dan Tracking",
+    "pic": "Staff Logistik & Pengemasan",
+    "output": "Paket terkirim, manifest, status tracking",
+    "purpose": "Memastikan barang dikemas aman dan terkirim tepat waktu.",
+    "steps": [
+      "Ambil barang dari area Siap Kirim.",
+      "Ambil resi, surat jalan, atau packing list dari Admin Ops.",
+      "Cocokkan barang dengan dokumen kirim.",
+      "Pastikan jumlah dan jenis barang sesuai.",
+      "Pilih material packing sesuai produk: bubble wrap, box kardus, polymailer, atau pelindung tambahan jika fragile.",
+      "Kemas barang dengan rapi dan aman.",
+      "Tempel resi dengan posisi jelas.",
+      "Tambahkan label fragile jika diperlukan.",
+      "Pisahkan paket berdasarkan jenis kurir.",
+      "Lakukan booking pickup atau koordinasi dengan kurir.",
+      "Saat kurir mengambil barang, pastikan paket dipindai atau dicatat.",
+      "Simpan bukti pickup atau manifest.",
+      "Pantau status pengiriman minimal 2 kali sehari.",
+      "Jika status tidak bergerak, laporkan ke Admin Ops.",
+      "Jika paket bermasalah, hubungi CS ekspedisi.",
+      "Update status ketika paket sudah delivered."
+    ]
+  },
+  "WI-OPS-016": {
+    "title": "Rekap Operasional",
+    "pic": "Admin Operations",
+    "output": "Laporan produksi, laporan reject, laporan bahan, data HPP",
+    "purpose": "Mencatat hasil produksi, reject, dan penggunaan bahan agar data operasional akurat.",
+    "steps": [
+      "Terima laporan hasil produksi dari Kepala Produksi.",
+      "Terima data barang lolos QC dari QC.",
+      "Terima data reject/rework dari QC.",
+      "Terima data penggunaan bahan dari Gudang.",
+      "Input jumlah produksi selesai, jumlah reject, jumlah rework, bahan keluar, dan sisa bahan jika ada.",
+      "Cocokkan bahan keluar dengan output produksi.",
+      "Tandai jika ada selisih tidak wajar.",
+      "Buat rekap mingguan.",
+      "Serahkan rekap kepada Finance/Accounting untuk perhitungan HPP.",
+      "Informasikan keterlambatan atau kendala produksi kepada Sales jika berdampak ke customer."
+    ]
+  },
+  "WI-OPS-017": {
+    "title": "Evaluasi Produksi dan CAPA",
+    "pic": "Kepala Produksi",
+    "output": "CAPA, action plan, update SOP/WI bila diperlukan",
+    "purpose": "Mengurangi defect, bottleneck, downtime, dan pemborosan biaya produksi.",
+    "steps": [
+      "Kumpulkan data produksi mingguan.",
+      "Kumpulkan data reject, rework, downtime mesin, dan keterlambatan order.",
+      "Identifikasi defect yang paling sering terjadi.",
+      "Identifikasi proses yang paling sering menjadi bottleneck.",
+      "Analisis penyebab masalah.",
+      "Tentukan tindakan koreksi untuk masalah yang sudah terjadi.",
+      "Tentukan tindakan pencegahan agar masalah tidak berulang.",
+      "Tunjuk PIC pelaksana perbaikan.",
+      "Tentukan deadline perbaikan.",
+      "Uji coba perbaikan pada skala kecil.",
+      "Jika berhasil, masukkan ke SOP atau WI standar.",
+      "Jika belum berhasil, lakukan evaluasi ulang.",
+      "Laporkan hasil evaluasi kepada Manajer/Owner."
+    ]
+  },
+  "WI-SM-001": {
+    "title": "Riset Pasar & Analisis Tren",
+    "pic": "Marketing / Kepala Sales & Marketing",
+    "output": "Laporan insight pasar, tren motif/produk, dan masukan untuk R&D",
+    "purpose": "Mengumpulkan dan merapikan data kebutuhan pasar agar strategi konten, campaign, sales, dan pengembangan produk lebih tepat sasaran.",
+    "steps": [
+      "Tentukan tujuan riset, misalnya mencari tren produk, motif, harga, kebutuhan B2B, atau alasan pelanggan membeli.",
+      "Tentukan sumber data: marketplace, media sosial, website kompetitor, chat customer, hasil penjualan, dan feedback Sales.",
+      "Kumpulkan minimal 5–10 contoh produk, desain, campaign, atau kebutuhan customer yang sedang sering muncul.",
+      "Catat pola yang berulang, seperti motif yang sering dicari, produk yang banyak ditanya, kisaran harga, dan kebutuhan acara.",
+      "Bandingkan temuan dengan produk PGE yang sudah ada.",
+      "Tandai peluang produk atau konten yang bisa dikembangkan.",
+      "Pisahkan insight menjadi kategori: produk, motif, harga, target customer, channel, dan masalah pelanggan.",
+      "Buat ringkasan temuan dalam format laporan singkat.",
+      "Serahkan insight yang berhubungan dengan produk/desain kepada R&D.",
+      "Gunakan insight yang berhubungan dengan demand untuk ide konten, campaign, dan materi penjualan.",
+      "Review hasil riset minimal satu kali setiap bulan atau saat ada momentum besar."
+    ]
+  },
+  "WI-SM-002": {
+    "title": "Perencanaan Campaign & Promo Musiman",
+    "pic": "Kepala Sales & Marketing / Marketing",
+    "output": "Campaign brief, timeline promo, target, budget, dan materi promosi",
+    "purpose": "Membuat campaign yang terencana, sesuai momentum pasar, dan memiliki target yang jelas.",
+    "steps": [
+      "Tentukan momentum campaign, misalnya Lebaran, Natal, Imlek, tahun ajaran baru, event perusahaan, atau promo akhir tahun.",
+      "Tentukan target campaign: awareness, leads, closing, repeat order, atau menghabiskan stok tertentu.",
+      "Tentukan target audience, misalnya perusahaan, rumah sakit, sekolah, komunitas, reseller, atau customer eceran.",
+      "Tentukan produk utama yang akan dipromosikan.",
+      "Tentukan pesan utama atau value yang ingin dikomunikasikan.",
+      "Tentukan bentuk promo: diskon, bundling, bonus desain, gratis sampel, atau harga grosir.",
+      "Tentukan periode campaign dan deadline produksi yang masih aman.",
+      "Koordinasikan dengan Operations jika campaign berpotensi menghasilkan order besar.",
+      "Tentukan channel promosi: marketplace, Instagram, WhatsApp, website, email, atau ads.",
+      "Buat daftar materi yang dibutuhkan: poster, caption, katalog, landing page, form leads, dan script chat.",
+      "Ajukan konsep campaign kepada Kepala Sales & Marketing untuk approval.",
+      "Jalankan campaign sesuai timeline.",
+      "Evaluasi hasil campaign menggunakan leads masuk, closing, omzet, Cost per Lead, dan feedback pelanggan."
+    ]
+  },
+  "WI-SM-003": {
+    "title": "Content Calendar, Publikasi Konten & SEO",
+    "pic": "Marketing",
+    "output": "Content calendar, konten terpublikasi, keyword/SEO update, dan laporan engagement",
+    "purpose": "Menjaga etalase digital tetap aktif, konsisten, edukatif, dan mudah ditemukan calon customer.",
+    "steps": [
+      "Tentukan produk atau tema konten mingguan.",
+      "Buat content calendar berisi tanggal posting, channel, format konten, tujuan konten, dan PIC.",
+      "Tentukan jenis konten: edukasi produk, katalog, testimoni, behind the scene, promo, FAQ, atau case study.",
+      "Siapkan aset visual berupa foto, video, desain, atau mockup.",
+      "Tulis caption yang menjelaskan value produk, kegunaan, target pengguna, dan ajakan bertindak.",
+      "Masukkan keyword produk yang relevan untuk website atau marketplace.",
+      "Cek kesesuaian konten dengan brand identity PGE.",
+      "Publikasikan konten sesuai jadwal.",
+      "Pantau komentar, DM, share, klik, dan engagement.",
+      "Catat konten dengan performa terbaik.",
+      "Gunakan hasil evaluasi untuk perbaikan konten berikutnya.",
+      "Laporkan insight konten secara mingguan atau bulanan kepada Kepala Sales & Marketing."
+    ]
+  },
+  "WI-SM-004": {
+    "title": "Setup, Monitoring & Evaluasi Paid Ads",
+    "pic": "Marketing",
+    "output": "Campaign ads aktif, data CPL/ROAS, dan laporan performa iklan",
+    "purpose": "Menjalankan iklan berbayar dengan target yang jelas dan performa yang terukur.",
+    "steps": [
+      "Tentukan tujuan iklan: traffic, leads, chat WhatsApp, marketplace visit, atau penjualan.",
+      "Tentukan produk atau campaign yang akan diiklankan.",
+      "Tentukan target audience berdasarkan lokasi, usia, minat, profesi, jenis customer, atau kebutuhan acara.",
+      "Siapkan materi iklan: visual, copywriting, headline, CTA, dan landing destination.",
+      "Tentukan budget harian atau total budget campaign.",
+      "Pastikan link tujuan sudah benar, misalnya WhatsApp, landing page, marketplace, atau form leads.",
+      "Jalankan iklan sesuai periode yang ditentukan.",
+      "Pantau performa minimal satu kali sehari pada masa campaign aktif.",
+      "Catat metrik utama: reach, klik, leads, Cost per Lead, conversion rate, ROAS jika tersedia.",
+      "Hentikan atau revisi iklan jika performa jauh di bawah target.",
+      "Simpan iklan yang performanya bagus sebagai referensi campaign berikutnya.",
+      "Buat laporan singkat setelah campaign selesai."
+    ]
+  },
+  "WI-SM-005": {
+    "title": "Lead Capture, Verifikasi & Hand-off ke Sales",
+    "pic": "Marketing",
+    "output": "Daftar leads terverifikasi dan sudah diteruskan ke Sales",
+    "purpose": "Memastikan setiap leads dari aktivitas marketing tidak hilang dan segera dieksekusi oleh tim Sales.",
+    "steps": [
+      "Cek sumber leads setiap hari: form, WhatsApp, marketplace, DM, comment, event, atau landing page.",
+      "Masukkan leads ke database atau CRM yang digunakan.",
+      "Cek nama, nomor kontak, perusahaan jika ada, kebutuhan produk, jumlah, dan sumber leads.",
+      "Tandai leads yang datanya belum lengkap.",
+      "Prioritaskan leads yang menunjukkan niat beli tinggi, seperti minta harga, deadline, katalog, atau sampel.",
+      "Kelompokkan leads menjadi hot, warm, atau cold.",
+      "Teruskan leads kepada Sales dengan format yang jelas.",
+      "Pastikan Sales menerima leads dan mengetahui prioritas follow-up.",
+      "Minta update status leads dari Sales secara berkala.",
+      "Catat leads yang berhasil closing, belum respons, atau gagal closing.",
+      "Gunakan feedback Sales untuk memperbaiki targeting iklan dan konten."
+    ]
+  },
+  "WI-SM-006": {
+    "title": "Prospecting B2B, Proposal & Distribusi Sampel",
+    "pic": "Sales",
+    "output": "Daftar prospek, proposal terkirim, sample logbook, dan status follow-up",
+    "purpose": "Meningkatkan efektivitas penawaran kepada klien korporat dan calon mitra B2B.",
+    "steps": [
+      "Tentukan target perusahaan atau instansi yang sesuai dengan produk PGE.",
+      "Cari kontak PIC yang relevan, misalnya HRD, Purchasing, Marketing, GA, atau Procurement.",
+      "Pelajari profil perusahaan dan kemungkinan kebutuhan souvenir mereka.",
+      "Siapkan katalog produk dan simulasi harga grosir terbaru.",
+      "Hubungi prospek melalui WhatsApp, email, telepon, kunjungan, atau kanal lain yang sesuai.",
+      "Sampaikan penawaran dengan bahasa yang profesional dan jelas.",
+      "Jika prospek tertarik, kirim proposal berisi spesifikasi produk, opsi custom, lead time, dan penawaran harga.",
+      "Jika mengirim sampel, catat nama penerima, tanggal keluar sampel, jenis sampel, dan status pengembalian jika dipinjamkan.",
+      "Lakukan follow-up setelah proposal atau sampel diterima.",
+      "Update status prospek: baru, follow-up, negosiasi, closing, pending, atau gagal.",
+      "Laporkan prospek potensial kepada Kepala Sales & Marketing."
+    ]
+  },
+  "WI-SM-007": {
+    "title": "Klarifikasi Spesifikasi Pesanan",
+    "pic": "Sales",
+    "output": "Data spesifikasi pesanan yang lengkap dan bebas salah tafsir",
+    "purpose": "Mencegah kesalahan order sebelum closing dan sebelum data diteruskan ke Admin Operations.",
+    "steps": [
+      "Tanyakan jenis produk yang dipesan.",
+      "Konfirmasi jumlah pesanan.",
+      "Konfirmasi ukuran produk.",
+      "Konfirmasi bahan yang diminta.",
+      "Konfirmasi warna, motif, atau desain.",
+      "Pastikan desain sudah final atau masih perlu bantuan desain.",
+      "Tanyakan apakah customer memilih template yang sudah ada atau custom baru.",
+      "Konfirmasi deadline kebutuhan customer.",
+      "Konfirmasi alamat dan metode pengiriman.",
+      "Konfirmasi kebutuhan packing khusus jika ada.",
+      "Konfirmasi harga, biaya tambahan, dan syarat pembayaran.",
+      "Ulangi kembali ringkasan pesanan kepada customer secara tertulis.",
+      "Minta customer menyetujui ringkasan pesanan sebelum closing.",
+      "Jangan meneruskan order ke Admin Ops jika spesifikasi masih belum jelas."
+    ]
+  },
+  "WI-SM-008": {
+    "title": "Closing, DP Check & Form Order",
+    "pic": "Sales",
+    "output": "Form Spesifikasi Pesanan lengkap dan status pembayaran jelas",
+    "purpose": "Mengubah kesepakatan penjualan menjadi data order yang siap diproses Admin Operations.",
+    "steps": [
+      "Pastikan customer sudah menyetujui harga, spesifikasi, jumlah, dan deadline.",
+      "Konfirmasi syarat pembayaran atau DP sesuai ketentuan.",
+      "Cek apakah pembayaran atau DP sudah diterima jika diwajibkan.",
+      "Isi Form Spesifikasi Pesanan secara lengkap.",
+      "Masukkan data customer, kontak, jenis produk, jumlah, ukuran, bahan, desain, deadline, dan alamat kirim.",
+      "Lampirkan file desain atau link desain yang sudah disetujui.",
+      "Masukkan catatan khusus dari customer.",
+      "Cek ulang seluruh isi form sebelum dikirim.",
+      "Kirim ringkasan order kepada customer sebagai konfirmasi tertulis.",
+      "Jika customer sudah setuju, lanjutkan hand-off ke Admin Operations.",
+      "Simpan bukti chat, bukti pembayaran, dan form order."
+    ]
+  },
+  "WI-SM-009": {
+    "title": "Sinkronisasi Order ke Admin Operations",
+    "pic": "Sales / Kepala Sales & Marketing",
+    "output": "Form order diterima Admin Ops sebagai dasar pembuatan WO",
+    "purpose": "Memastikan order hasil closing diteruskan ke jalur resmi dan tidak langsung diinstruksikan ke Produksi.",
+    "steps": [
+      "Pastikan Form Spesifikasi Pesanan sudah lengkap.",
+      "Pastikan file desain, bukti ACC customer, dan bukti pembayaran/DP sudah tersedia jika diperlukan.",
+      "Kirim form order kepada Admin Operations melalui kanal resmi yang disepakati.",
+      "Sampaikan prioritas order jika deadline dekat atau order bernilai besar.",
+      "Jangan memberikan instruksi langsung kepada Operator atau Produksi.",
+      "Tunggu konfirmasi Admin Ops bahwa data order sudah diterima.",
+      "Jika Admin Ops meminta revisi data, segera lengkapi informasi yang kurang.",
+      "Update status order di catatan Sales menjadi Diserahkan ke Admin Ops.",
+      "Koordinasikan dengan Kepala Sales & Marketing jika order besar membutuhkan pengecekan kapasitas produksi.",
+      "Simpan bukti hand-off order."
+    ]
+  },
+  "WI-SM-010": {
+    "title": "Monitoring Status Order ke Customer",
+    "pic": "Sales / Customer Care",
+    "output": "Update status order yang jelas dan terdokumentasi untuk customer",
+    "purpose": "Menjaga customer tetap mendapat informasi tanpa mengganggu alur produksi.",
+    "steps": [
+      "Catat order yang sedang berjalan dan tanggal estimasi selesai.",
+      "Minta update status kepada Admin Ops, bukan langsung ke Operator, kecuali diarahkan oleh Kepala Produksi.",
+      "Gunakan update dari Admin Ops sebagai informasi resmi ke customer.",
+      "Sampaikan progres kepada customer secara singkat dan jelas.",
+      "Jika ada potensi keterlambatan, informasikan dengan bahasa yang solutif.",
+      "Jangan menjanjikan tanggal baru tanpa konfirmasi Admin Ops atau Kepala Produksi.",
+      "Catat setiap update penting di riwayat komunikasi customer.",
+      "Jika customer meminta perubahan spesifikasi, minta persetujuan internal sebelum menerima perubahan.",
+      "Jika perubahan berdampak pada deadline atau biaya, komunikasikan ulang kepada customer.",
+      "Pastikan customer menerima informasi pengiriman setelah barang dikirim."
+    ]
+  },
+  "WI-SM-011": {
+    "title": "Penanganan Komplain & After Sales",
+    "pic": "Sales",
+    "output": "Data komplain, bukti pendukung, status solusi, dan peluang repeat order",
+    "purpose": "Menjaga kepuasan customer dan memastikan komplain ditangani secara cepat, tertulis, dan terarah.",
+    "steps": [
+      "Terima komplain customer dengan bahasa yang tenang dan profesional.",
+      "Minta bukti komplain berupa foto, video, nomor order, dan deskripsi masalah.",
+      "Catat tanggal komplain dan jenis masalah.",
+      "Klasifikasikan komplain: produk rusak, salah desain, salah jumlah, keterlambatan, pengiriman, atau pelayanan.",
+      "Jika berkaitan dengan kualitas produk, koordinasikan dengan QC atau Kepala Produksi.",
+      "Jika berkaitan dengan pengiriman, koordinasikan dengan Logistik atau ekspedisi.",
+      "Sampaikan estimasi waktu penanganan kepada customer.",
+      "Jangan menyalahkan customer atau divisi lain dalam komunikasi eksternal.",
+      "Simpan bukti dan keputusan solusi.",
+      "Follow-up customer setelah solusi diberikan.",
+      "Catat peluang repeat order atau rekomendasi perbaikan layanan.",
+      "Hubungi customer lama secara berkala untuk menawarkan produk baru atau promo."
+    ]
+  },
+  "WI-SM-012": {
+    "title": "Evaluasi Penjualan, Feedback Customer & Input ke R&D",
+    "pic": "Sales / Marketing",
+    "output": "Laporan evaluasi penjualan, alasan gagal closing, feedback customer, dan input R&D",
+    "purpose": "Mengubah data penjualan dan feedback customer menjadi insight untuk perbaikan produk, campaign, dan layanan.",
+    "steps": [
+      "Kumpulkan data transaksi penjualan harian atau mingguan.",
+      "Catat produk yang paling sering ditanya customer.",
+      "Catat produk yang paling sering closing.",
+      "Catat alasan customer tidak jadi membeli, misalnya harga, desain, bahan, deadline, MOQ, atau kurang cocok.",
+      "Kumpulkan feedback customer tentang kualitas produk dan layanan.",
+      "Kumpulkan insight dari chat, DM, marketplace, event, dan Sales call.",
+      "Pisahkan insight untuk Sales, Marketing, R&D, dan Operations.",
+      "Buat laporan mingguan atau bulanan.",
+      "Serahkan insight produk/desain kepada R&D.",
+      "Serahkan insight campaign kepada Marketing.",
+      "Serahkan insight kendala produksi atau pengiriman kepada divisi terkait.",
+      "Bahas poin penting dalam rapat evaluasi Sales & Marketing."
+    ]
+  },
+  "WI-SM-013": {
+    "title": "Pameran/Event, Lead Capture & Follow-up",
+    "pic": "Sales / Marketing",
+    "output": "Daftar leads event, catatan negosiasi, dan status follow-up maksimal 2x24 jam",
+    "purpose": "Mengubah pengunjung pameran atau event menjadi leads dan peluang penjualan.",
+    "steps": [
+      "Tentukan tujuan event: awareness, leads, closing, networking, atau riset pasar.",
+      "Siapkan stok brosur, kartu nama, katalog, dan sampel produk display.",
+      "Pastikan booth atau area display tertata rapi dan mudah dipahami pengunjung.",
+      "Siapkan form digital atau buku tamu untuk lead capture.",
+      "Catat nama pengunjung, perusahaan, kontak, kebutuhan produk, jumlah perkiraan, dan deadline.",
+      "Berikan penjelasan produk secara singkat dan relevan dengan kebutuhan pengunjung.",
+      "Jika ada negosiasi atau kesepakatan lisan, tuliskan dalam nota atau catatan sementara.",
+      "Foto booth dan aktivitas event untuk dokumentasi konten.",
+      "Setelah event selesai, rapikan daftar leads.",
+      "Follow-up seluruh leads maksimal 2x24 jam setelah event.",
+      "Update status leads ke database Sales.",
+      "Evaluasi hasil event: jumlah leads, leads potensial, closing, dan insight pasar."
+    ]
+  },
+  "WI-SM-014": {
+    "title": "Monitoring KPI Sales & Marketing",
+    "pic": "Kepala Sales & Marketing",
+    "output": "Laporan KPI tim, evaluasi performa, dan action plan",
+    "purpose": "Memastikan target leads, closing, campaign, dan akurasi data order berjalan sesuai sasaran.",
+    "steps": [
+      "Tentukan KPI yang akan dipantau: leads masuk, follow-up rate, closing rate, omzet, akurasi data order, CPL, ROAS, dan repeat order.",
+      "Tetapkan target KPI per periode.",
+      "Kumpulkan data dari Marketing, Sales, marketplace, website, ads, dan laporan transaksi.",
+      "Bandingkan realisasi dengan target.",
+      "Identifikasi KPI yang berada di bawah target.",
+      "Cari penyebab masalah, misalnya leads kurang, follow-up lambat, harga kurang cocok, campaign tidak tepat, atau data order tidak akurat.",
+      "Diskusikan hasil evaluasi dengan tim.",
+      "Tentukan action plan yang spesifik dan PIC pelaksananya.",
+      "Tentukan deadline perbaikan.",
+      "Pantau hasil action plan di periode berikutnya.",
+      "Laporkan hasil KPI kepada Manajer/Owner."
+    ]
+  },
+  "WI-RND-001": {
+    "title": "Analisis Input Tren & Creative Brief",
+    "pic": "Kepala R&D",
+    "output": "Creative brief R&D, arahan konsep produk, target motif/desain",
+    "purpose": "Memastikan proses pengembangan produk atau motif baru dimulai dari data tren pasar yang jelas dan dapat diterjemahkan menjadi arahan desain.",
+    "steps": [
+      "Terima laporan tren pasar dari Sales & Marketing.",
+      "Baca data utama seperti tren produk, tren motif, kebutuhan customer, produk paling laris, dan feedback pelanggan.",
+      "Identifikasi peluang pengembangan produk baru atau motif baru.",
+      "Tentukan kategori produk yang akan dikembangkan, misalnya souvenir umum, pouch, tas medis, organizer, atau produk custom lainnya.",
+      "Tentukan target customer dari konsep produk tersebut.",
+      "Tentukan arah visual desain, seperti modern, premium, playful, corporate, etnik, seasonal, atau custom.",
+      "Tentukan batasan teknis awal, seperti bahan, ukuran umum, metode cetak, bentuk produk, dan kemungkinan produksi.",
+      "Susun creative brief berisi latar belakang kebutuhan pasar, target customer, konsep produk, arah motif/desain, referensi visual, batasan teknis awal, dan output yang diharapkan.",
+      "Sampaikan creative brief kepada Product Development / Designer & Pattern Specialist.",
+      "Pastikan designer memahami tujuan desain sebelum mulai eksplorasi.",
+      "Simpan creative brief di folder atau platform kerja R&D.",
+      "Gunakan creative brief sebagai acuan saat review desain."
+    ]
+  },
+  "WI-RND-002": {
+    "title": "Pengembangan Desain Motif Autentik & Produk Versatile",
+    "pic": "Product Development / Designer & Pattern Specialist",
+    "output": "Draft desain motif, konsep produk, file desain awal",
+    "purpose": "Menghasilkan desain motif dan konsep produk yang autentik, eksklusif, dan dapat diaplikasikan pada kebutuhan eceran maupun grosir.",
+    "steps": [
+      "Terima creative brief dari Kepala R&D.",
+      "Baca target customer dan arah visual yang diminta.",
+      "Kumpulkan referensi visual yang relevan dengan tema desain.",
+      "Pastikan referensi hanya digunakan sebagai inspirasi, bukan untuk ditiru langsung.",
+      "Buat beberapa alternatif konsep motif atau bentuk produk.",
+      "Pastikan desain memiliki ciri khas yang dapat menjadi identitas visual PGE.",
+      "Pastikan desain dapat digunakan untuk beberapa kebutuhan, seperti custom nama, logo perusahaan, tema event, atau variasi warna.",
+      "Untuk produk versatile, cek apakah konsep produk dapat digunakan oleh customer satuan maupun partai besar.",
+      "Buat draft visual dalam format kerja yang rapi.",
+      "Gunakan ukuran kanvas dan format file yang sesuai standar internal.",
+      "Beri nama file dengan format yang mudah dicari.",
+      "Buat minimal beberapa opsi desain jika dibutuhkan.",
+      "Tandai versi desain, misalnya V1, V2, V3.",
+      "Ajukan draft desain kepada Kepala R&D untuk direview.",
+      "Jangan menyerahkan desain ke Technical Specialist sebelum status desain mendapat persetujuan atau arahan review."
+    ]
+  },
+  "WI-RND-003": {
+    "title": "Eksperimen AI Generatif & Mockup Digital",
+    "pic": "Product Development / Designer & Pattern Specialist",
+    "output": "Alternatif desain AI, mockup digital, file referensi visual",
+    "purpose": "Menggunakan teknologi AI generatif secara terarah untuk mempercepat eksplorasi ide visual, mockup, dan variasi desain tanpa mengorbankan konsistensi brand dan kelayakan produksi.",
+    "steps": [
+      "Tentukan tujuan penggunaan AI, misalnya ide motif, variasi warna, mockup produk, visual katalog, atau visualisasi pemakaian produk.",
+      "Pastikan prompt AI sesuai dengan creative brief.",
+      "Masukkan batasan penting ke dalam prompt, seperti gaya visual, warna, target customer, bentuk produk, dan detail yang tidak boleh berubah.",
+      "Buat beberapa alternatif hasil AI untuk dibandingkan.",
+      "Pilih hasil AI yang paling sesuai dengan brand PGE dan kebutuhan produk.",
+      "Jangan langsung menggunakan hasil AI tanpa review manual.",
+      "Periksa apakah hasil AI memiliki bagian yang aneh, tidak proporsional, atau sulit diproduksi.",
+      "Jika menggunakan mockup model atau produk, pastikan bentuk produk tetap masuk akal dan tidak menipu customer.",
+      "Edit ulang hasil AI jika diperlukan agar sesuai standar desain perusahaan.",
+      "Simpan hasil AI terbaik sebagai referensi, bukan sebagai final production file.",
+      "Buat file final menggunakan software desain yang dapat menghasilkan file bersih dan siap produksi.",
+      "Ajukan hasil eksplorasi AI kepada Kepala R&D untuk validasi.",
+      "Jika disetujui, lanjutkan ke proses review desain.",
+      "Jika tidak disetujui, lakukan eksplorasi ulang sesuai catatan revisi."
+    ]
+  },
+  "WI-RND-004": {
+    "title": "Review, Iterasi, dan ACC Design",
+    "pic": "Kepala R&D + Product Development",
+    "output": "Status ACC Design / Revisi Design, catatan review desain",
+    "purpose": "Memastikan desain yang dibuat tidak hanya menarik secara visual, tetapi juga feasible untuk diproduksi.",
+    "steps": [
+      "Product Development mengajukan draft desain kepada Kepala R&D.",
+      "Kepala R&D memeriksa kesesuaian desain dengan creative brief.",
+      "Cek apakah desain sesuai target customer dan kebutuhan pasar.",
+      "Cek apakah desain memiliki identitas visual yang kuat dan tidak generik.",
+      "Cek apakah desain berpotensi menarik secara komersial.",
+      "Cek apakah desain dapat diaplikasikan pada produk yang direncanakan.",
+      "Jika desain berkaitan dengan produksi teknis, libatkan Technical & Blueprint Specialist.",
+      "Technical Specialist memeriksa kemungkinan produksi desain, termasuk ukuran, warna, detail kecil, bahan, metode cetak, dan keterbatasan mesin.",
+      "Jika desain tidak feasible, berikan status TIDAK / Revisi.",
+      "Tulis catatan revisi secara jelas, seperti detail terlalu kecil, warna sulit dicetak, ukuran tidak proporsional, bentuk sulit dipotong, jahitan/rakitan terlalu rumit, atau biaya produksi terlalu tinggi.",
+      "Product Development melakukan revisi berdasarkan catatan tersebut.",
+      "Ajukan ulang desain yang telah direvisi.",
+      "Jika desain sudah sesuai secara visual dan teknis, berikan status ACC Design.",
+      "Simpan file desain ACC di folder khusus.",
+      "Jangan lanjut ke penyusunan Tech Pack sebelum status desain menjadi ACC Design."
+    ]
+  },
+  "WI-RND-005": {
+    "title": "Penyusunan Katalog Visual & Asset Sales",
+    "pic": "Product Development / Designer & Pattern Specialist",
+    "output": "Katalog visual, foto produk, video produk, mockup, asset promosi",
+    "purpose": "Menyediakan aset visual produk yang rapi, menarik, dan siap digunakan oleh Sales & Marketing untuk kegiatan promosi dan penjualan.",
+    "steps": [
+      "Kumpulkan desain atau produk yang sudah mendapat status ACC.",
+      "Tentukan produk yang akan dimasukkan ke katalog visual.",
+      "Pastikan nama produk, variasi, ukuran, bahan, dan fitur utama sudah jelas.",
+      "Siapkan foto produk, video produk, atau mockup digital.",
+      "Pastikan visual produk terlihat jelas, tidak blur, warna tidak melenceng, dan detail produk terbaca.",
+      "Buat layout katalog yang rapi dan mudah dibaca.",
+      "Pastikan setiap produk memiliki informasi minimum: nama produk, fungsi produk, bahan, ukuran, pilihan custom, dan contoh penggunaan.",
+      "Gunakan gaya desain yang konsisten dengan brand identity PGE.",
+      "Pastikan katalog tidak memuat produk yang belum siap dijual atau belum jelas spesifikasinya.",
+      "Jika katalog digunakan untuk Sales, pastikan format mudah dibagikan melalui WhatsApp, PDF, marketplace, atau website.",
+      "Ajukan katalog kepada Kepala R&D atau Sales & Marketing untuk review.",
+      "Revisi katalog jika terdapat kesalahan informasi atau visual.",
+      "Serahkan katalog final kepada Sales & Marketing.",
+      "Simpan file katalog final dan file mentah di folder yang rapi.",
+      "Update katalog secara berkala jika ada produk baru, revisi desain, atau perubahan spesifikasi."
+    ]
+  },
+  "WI-RND-006": {
+    "title": "Penyiapan File Mentah untuk Technical Specialist",
+    "pic": "Product Development / Designer & Pattern Specialist",
+    "output": "File desain mentah siap teknis, link folder desain, catatan desain",
+    "purpose": "Memastikan file desain yang diserahkan kepada Technical Specialist bersih, lengkap, dan siap diolah menjadi Tech Pack.",
+    "steps": [
+      "Pastikan desain sudah berstatus ACC Design.",
+      "Buka file desain final.",
+      "Cek apakah file memiliki resolusi yang cukup.",
+      "Cek apakah ukuran desain sudah sesuai dengan produk yang dituju.",
+      "Cek apakah warna sudah sesuai standar yang digunakan.",
+      "Cek apakah font sudah di-outline jika diperlukan.",
+      "Cek apakah elemen desain sudah rapi dan tidak ada layer yang tidak digunakan.",
+      "Simpan file dalam format yang dibutuhkan, misalnya AI, PSD, PDF, PNG high-res, SVG, atau format lain sesuai kebutuhan teknis.",
+      "Beri nama file dengan format yang konsisten, mencakup nama produk, nama motif, ukuran, versi, dan tanggal.",
+      "Buat folder khusus untuk setiap produk atau proyek.",
+      "Sertakan preview desain dalam format gambar agar mudah dilihat.",
+      "Sertakan catatan penting, seperti area cetak, bagian yang tidak boleh dipotong, warna khusus, atau permintaan custom.",
+      "Kirim link folder kepada Technical & Blueprint Specialist.",
+      "Pastikan Technical Specialist sudah menerima dan dapat membuka file.",
+      "Jika ada file yang tidak terbaca, segera perbaiki dan kirim ulang."
+    ]
+  },
+  "WI-RND-007": {
+    "title": "Uji Karakteristik Material",
+    "pic": "Technical & Blueprint Specialist",
+    "output": "Form Uji Kelayakan Bahan, status bahan layak/tidak layak",
+    "purpose": "Menguji apakah bahan baru cocok dengan mesin, tinta, alat potong, teknik jahit/rakit, dan standar kualitas produk.",
+    "steps": [
+      "Terima sampel bahan dari Gudang & Sourcing atau supplier.",
+      "Catat nama bahan, supplier, tanggal diterima, harga, dan spesifikasi awal.",
+      "Periksa kondisi fisik bahan: ketebalan, tekstur, warna, kelenturan, permukaan, dan cacat fisik.",
+      "Tentukan produk atau proses yang akan menggunakan bahan tersebut.",
+      "Lakukan uji cetak jika bahan digunakan untuk printing.",
+      "Cek hasil cetak: penyerapan tinta, ketajaman warna, bleeding, dan ketahanan permukaan.",
+      "Lakukan uji cutting jika bahan dipotong mesin atau manual.",
+      "Cek hasil cutting: presisi potong, kebersihan tepi bahan, dan potensi bahan bergeser.",
+      "Lakukan uji jahit/rakit jika bahan digunakan untuk produk jahit atau rakit.",
+      "Cek apakah bahan mudah sobek, bergeser, terlalu tebal, terlalu licin, atau sulit dirakit.",
+      "Bandingkan hasil uji dengan bahan standar yang biasa digunakan.",
+      "Catat kelebihan dan kekurangan bahan.",
+      "Beri status Layak, Layak dengan Catatan, atau Tidak Layak.",
+      "Jika tidak layak, beri alasan tertulis.",
+      "Simpan hasil uji dan dokumentasi foto.",
+      "Laporkan hasil kepada Kepala R&D.",
+      "Jika bahan layak, lanjutkan ke uji durability atau HPP jika diperlukan."
+    ]
+  },
+  "WI-RND-008": {
+    "title": "Durability Test Produk Purwarupa",
+    "pic": "Technical & Blueprint Specialist",
+    "output": "Laporan durability test, status produk layak/tidak layak",
+    "purpose": "Memastikan produk purwarupa memiliki ketahanan yang cukup sebelum dilepas ke pasar atau masuk produksi massal.",
+    "steps": [
+      "Terima produk sampel atau prototype yang akan diuji.",
+      "Catat nama produk, versi desain, bahan, tanggal uji, dan PIC pembuat prototype.",
+      "Tentukan jenis uji yang relevan dengan produk.",
+      "Untuk produk kain, lakukan uji luntur sederhana sesuai standar internal.",
+      "Cek apakah warna berubah, luntur, atau menodai bagian lain.",
+      "Untuk media keras seperti tumbler atau produk sejenis, lakukan uji gores dan uji kelupas.",
+      "Cek apakah desain mudah terkelupas, tergores, atau pudar.",
+      "Untuk produk jahit, lakukan uji kekuatan jahitan.",
+      "Cek apakah jahitan mudah lepas, tidak rapi, atau tidak kuat saat digunakan.",
+      "Cek kelengkapan aksesoris seperti resleting, tali, ring, kancing, atau bagian tambahan lain.",
+      "Lakukan pengecekan tampilan akhir produk setelah uji.",
+      "Dokumentasikan hasil uji dengan foto atau video.",
+      "Catat bagian yang gagal atau perlu diperbaiki.",
+      "Beri status Lulus Uji, Lulus dengan Catatan, atau Tidak Lulus.",
+      "Jika tidak lulus, berikan rekomendasi perbaikan material, teknik produksi, atau desain.",
+      "Serahkan laporan uji kepada Kepala R&D.",
+      "Jangan melanjutkan produk ke produksi massal jika statusnya Tidak Lulus."
+    ]
+  },
+  "WI-RND-009": {
+    "title": "Optimasi HPP & Formula Biaya",
+    "pic": "Technical & Blueprint Specialist",
+    "output": "Laporan HPP produk, rekomendasi material/metode, status profitabilitas",
+    "purpose": "Menemukan formula bahan, metode produksi, dan struktur biaya yang efisien tanpa menurunkan kualitas produk.",
+    "steps": [
+      "Tentukan produk atau prototype yang akan dihitung HPP-nya.",
+      "Catat seluruh komponen bahan yang digunakan.",
+      "Hitung pemakaian bahan per unit produk.",
+      "Catat biaya bahan per unit.",
+      "Catat kebutuhan tenaga kerja atau estimasi waktu proses jika tersedia.",
+      "Catat biaya tambahan seperti tinta, lem, aksesoris, packaging, atau bahan pendukung.",
+      "Hitung estimasi HPP awal.",
+      "Bandingkan HPP awal dengan target margin perusahaan.",
+      "Jika HPP terlalu tinggi, cari alternatif bahan yang lebih efisien.",
+      "Uji apakah alternatif bahan tetap memenuhi standar kualitas.",
+      "Cari metode kerja yang lebih efisien jika memungkinkan.",
+      "Bandingkan beberapa alternatif formula biaya.",
+      "Pilih kombinasi material dan metode yang paling seimbang antara kualitas dan biaya.",
+      "Konsultasikan hasil perhitungan dengan Finance / Accounting bila diperlukan.",
+      "Susun laporan struktur biaya produk.",
+      "Ajukan laporan kepada Kepala R&D untuk validasi.",
+      "Jika disetujui, gunakan formula biaya tersebut sebagai acuan Tech Pack.",
+      "Jika tidak disetujui, lakukan optimasi ulang."
+    ]
+  },
+  "WI-RND-010": {
+    "title": "Evaluasi Teknis & Gatekeeper Manufacturing Ready",
+    "pic": "Technical & Blueprint Specialist",
+    "output": "Keputusan manufacturing ready: YA / TIDAK, catatan revisi teknis",
+    "purpose": "Menentukan apakah desain dapat diproduksi secara efisien menggunakan mesin, bahan, dan metode kerja yang tersedia.",
+    "steps": [
+      "Terima file desain dari Product Development.",
+      "Pastikan desain sudah berstatus review atau calon ACC.",
+      "Cek ukuran desain terhadap ukuran produk.",
+      "Cek detail kecil pada desain yang berisiko sulit dicetak atau dipotong.",
+      "Cek jumlah warna dan tingkat kerumitan visual.",
+      "Cek apakah desain sesuai dengan metode cetak yang tersedia.",
+      "Cek apakah desain dapat dipotong dengan presisi.",
+      "Cek apakah desain membutuhkan bahan khusus.",
+      "Cek apakah proses jahit/rakit memungkinkan dilakukan dengan alat dan SDM yang tersedia.",
+      "Cek apakah desain berpotensi meningkatkan waktu proses terlalu tinggi.",
+      "Cek apakah desain berpotensi membuat HPP terlalu tinggi.",
+      "Jika desain feasible, berikan status YA / Manufacturing Ready.",
+      "Jika desain belum feasible, berikan status TIDAK / Revisi Teknis.",
+      "Tulis catatan revisi teknis secara spesifik.",
+      "Berikan catatan kepada Product Development dan Kepala R&D.",
+      "Jika perlu, lakukan diskusi dengan Kepala Operations.",
+      "Jangan menyusun Tech Pack final sebelum desain dinyatakan manufacturing ready."
+    ]
+  },
+  "WI-RND-011": {
+    "title": "Penyusunan Tech Pack / Blueprint Produk",
+    "pic": "Technical & Blueprint Specialist",
+    "output": "Tech Pack / Blueprint produk",
+    "purpose": "Membuat dokumen teknis produk yang detail, presisi, dan mudah dipahami oleh Operations sebagai panduan produksi.",
+    "steps": [
+      "Pastikan desain sudah berstatus ACC Design dan Manufacturing Ready.",
+      "Buka file desain final dari Product Development.",
+      "Tentukan format Tech Pack yang digunakan.",
+      "Masukkan nama produk, kode produk/desain, versi dokumen, dan tanggal pembuatan.",
+      "Masukkan gambar produk atau preview desain.",
+      "Tuliskan ukuran produk secara presisi dalam cm atau mm.",
+      "Tuliskan area cetak atau area desain.",
+      "Tuliskan jenis bahan utama.",
+      "Tuliskan bahan pendukung seperti resleting, tali, ring, kancing, webbing, busa, mika, atau aksesoris lain jika ada.",
+      "Tuliskan kode warna yang digunakan, misalnya CMYK, RGB, Pantone, atau standar internal.",
+      "Tuliskan metode produksi yang harus digunakan.",
+      "Tuliskan instruksi cutting, print, jahit, atau rakit.",
+      "Tuliskan toleransi ukuran yang diperbolehkan.",
+      "Tuliskan standar kualitas visual dan finishing.",
+      "Tuliskan catatan risiko produksi jika ada.",
+      "Cantumkan formula bahan atau referensi HPP yang telah disetujui.",
+      "Cek ulang seluruh data dalam Tech Pack.",
+      "Ajukan Tech Pack kepada Kepala R&D untuk review dan approval.",
+      "Revisi Tech Pack jika ada catatan.",
+      "Jika sudah disahkan, simpan Tech Pack di folder resmi.",
+      "Jangan menyerahkan Tech Pack ke Operations sebelum disahkan."
+    ]
+  },
+  "WI-RND-012": {
+    "title": "Approval Tech Pack oleh Kepala R&D",
+    "pic": "Kepala R&D",
+    "output": "Tech Pack Approved",
+    "purpose": "Memastikan Tech Pack lengkap, valid, dan siap digunakan sebagai panduan produksi.",
+    "steps": [
+      "Terima Tech Pack dari Technical & Blueprint Specialist.",
+      "Periksa nama produk, kode produk, versi dokumen, dan tanggal.",
+      "Periksa gambar produk atau preview desain.",
+      "Periksa ukuran produk dan toleransi ukuran.",
+      "Periksa jenis bahan utama dan bahan pendukung.",
+      "Periksa kode warna dan metode cetak.",
+      "Periksa instruksi cutting, print, jahit, atau rakit.",
+      "Periksa standar finishing dan kualitas.",
+      "Periksa apakah risiko produksi sudah dicatat.",
+      "Periksa apakah formula HPP sudah sesuai target margin perusahaan.",
+      "Jika ada data kurang lengkap, kembalikan kepada Technical Specialist untuk revisi.",
+      "Jika Tech Pack sudah lengkap, beri approval.",
+      "Beri tanda pengesahan atau status Approved.",
+      "Simpan versi final Tech Pack di folder resmi.",
+      "Gunakan Tech Pack Approved sebagai dokumen utama untuk transfer ke Operations."
+    ]
+  },
+  "WI-RND-013": {
+    "title": "Transfer Guideline ke Operations",
+    "pic": "Kepala R&D + Technical & Blueprint Specialist",
+    "output": "Berita acara transfer, Tech Pack diterima Operations, daftar catatan produksi",
+    "purpose": "Memastikan tim Operations memahami Tech Pack sebelum produk masuk produksi awal atau produksi massal.",
+    "steps": [
+      "Pastikan Tech Pack sudah berstatus Approved.",
+      "Jadwalkan rapat transfer dengan Operations.",
+      "Undang pihak yang relevan, seperti Kepala Produksi, Admin Operations, Operator kunci, dan Finance bila terkait biaya.",
+      "Siapkan file Tech Pack, prototype, contoh bahan, dan catatan teknis.",
+      "Jelaskan konsep produk secara singkat.",
+      "Jelaskan bagian penting dari Tech Pack: ukuran, bahan, warna, metode cutting, metode print, metode jahit/rakit, toleransi, dan standar QC.",
+      "Jelaskan risiko produksi yang perlu diperhatikan.",
+      "Jelaskan bagian yang tidak boleh diubah tanpa approval R&D.",
+      "Berikan kesempatan Operations untuk bertanya.",
+      "Catat pertanyaan, masukan, atau potensi kendala dari Operations.",
+      "Jika ada kendala teknis yang valid, revisi Tech Pack sebelum produksi dimulai.",
+      "Jika semua pihak sudah memahami, tandai proses transfer sebagai selesai.",
+      "Upload Tech Pack ke platform kerja yang disepakati.",
+      "Pastikan Operations memiliki akses ke file tersebut.",
+      "Buat berita acara atau catatan hand-over.",
+      "Simpan dokumentasi transfer di folder R&D."
+    ]
+  },
+  "WI-RND-014": {
+    "title": "Supervisi Batch Pertama / First-Line Production",
+    "pic": "Technical & Blueprint Specialist",
+    "output": "Batch check report, catatan deviasi, rekomendasi perbaikan",
+    "purpose": "Memastikan hasil produksi awal sesuai dengan Tech Pack sebelum produk diproduksi lebih banyak.",
+    "steps": [
+      "Pastikan Operations sudah menerima Tech Pack Approved.",
+      "Tentukan jadwal batch pertama bersama Kepala Produksi.",
+      "Hadir atau lakukan supervisi pada proses batch pertama jika diperlukan.",
+      "Cek apakah bahan yang digunakan sesuai dengan Tech Pack.",
+      "Cek apakah ukuran potong sesuai blueprint.",
+      "Cek apakah warna dan hasil print sesuai standar.",
+      "Cek apakah proses jahit/rakit mengikuti instruksi.",
+      "Cek apakah hasil akhir sesuai prototype atau standar visual yang disetujui.",
+      "Bandingkan hasil produksi dengan Tech Pack.",
+      "Catat setiap deviasi yang ditemukan.",
+      "Jika deviasi kecil dan dapat diperbaiki, beri instruksi penyesuaian.",
+      "Jika deviasi besar, hentikan produksi lanjutan sementara dan laporkan ke Kepala R&D serta Kepala Produksi.",
+      "Koordinasikan solusi dengan Operations.",
+      "Jika perlu, revisi Tech Pack atau instruksi kerja.",
+      "Setelah hasil batch pertama sesuai, berikan status Batch Awal OK.",
+      "Serahkan proses produksi lanjutan kepada Operations.",
+      "Simpan laporan batch pertama sebagai arsip R&D."
+    ]
+  },
+  "WI-RND-015": {
+    "title": "Update Standar Produk dan Dokumentasi R&D",
+    "pic": "Kepala R&D / Technical & Blueprint Specialist",
+    "output": "Dokumen standar produk terbaru, revision log, file final tersimpan",
+    "purpose": "Memastikan semua perubahan desain, bahan, HPP, atau metode produksi terdokumentasi dan tidak menimbulkan versi dokumen yang membingungkan.",
+    "steps": [
+      "Terima masukan dari hasil uji material, durability test, batch pertama, Operations, Sales, atau customer.",
+      "Tentukan apakah masukan berdampak pada desain, bahan, ukuran, warna, HPP, atau metode produksi.",
+      "Jika tidak berdampak pada standar produk, catat sebagai insight.",
+      "Jika berdampak pada standar produk, lakukan revisi dokumen.",
+      "Update file desain jika ada perubahan visual.",
+      "Update Tech Pack jika ada perubahan teknis.",
+      "Update HPP jika ada perubahan bahan atau metode kerja.",
+      "Beri nomor versi baru pada dokumen yang direvisi.",
+      "Catat alasan revisi dalam revision log.",
+      "Pastikan versi lama tidak digunakan untuk produksi berikutnya.",
+      "Simpan versi terbaru di folder resmi.",
+      "Informasikan perubahan kepada Operations dan Sales & Marketing jika berdampak pada produksi atau penjualan.",
+      "Jika perubahan besar, lakukan transfer ulang kepada Operations.",
+      "Pastikan semua pihak menggunakan file terbaru.",
+      "Arsipkan dokumen lama agar tetap bisa ditelusuri bila diperlukan."
+    ]
+  },
+  "WI-FAT-001": {
+    "title": "Manajemen Arus Kas Harian",
+    "pic": "Staff Finance & Treasury",
+    "output": "Laporan posisi kas harian, catatan kas masuk, catatan kas keluar",
+    "purpose": "Memastikan seluruh transaksi masuk dan keluar perusahaan tercatat akurat setiap hari sehingga posisi kas perusahaan dapat dipantau dengan jelas.",
+    "steps": [
+      "Kumpulkan data transaksi masuk dari semua kanal penjualan.",
+      "Ambil data transaksi dari marketplace, transfer bank, pembayaran tunai, QRIS, dan channel lain yang digunakan perusahaan.",
+      "Terima laporan penjualan harian dari Admin Operations atau Sales jika ada transaksi manual.",
+      "Kumpulkan data transaksi keluar dari pembelian bahan, biaya operasional, pembayaran vendor, biaya ekspedisi, dan kebutuhan lain.",
+      "Cek setiap transaksi masuk berdasarkan tanggal, nominal, nama customer, dan sumber pembayaran.",
+      "Cek setiap transaksi keluar berdasarkan tanggal, nominal, tujuan pembayaran, dan bukti transaksi.",
+      "Input seluruh transaksi ke buku kas atau sistem keuangan.",
+      "Pisahkan transaksi berdasarkan kategori: penjualan eceran, penjualan grosir, pembayaran piutang, pembelian bahan, biaya operasional, pembayaran vendor, payroll, pajak, dan biaya lainnya.",
+      "Pastikan tidak ada transaksi yang dicatat ganda.",
+      "Pastikan tidak ada transaksi tanpa bukti pendukung.",
+      "Hitung saldo kas akhir hari.",
+      "Bandingkan saldo kas di catatan dengan saldo rekening atau kas fisik.",
+      "Jika terdapat selisih, tandai sebagai transaksi perlu klarifikasi.",
+      "Laporkan posisi kas harian kepada Manajer.",
+      "Simpan bukti transaksi harian di folder atau sistem arsip keuangan.",
+      "Tutup pencatatan harian setelah semua transaksi diverifikasi."
+    ]
+  },
+  "WI-FAT-002": {
+    "title": "Rekonsiliasi Bank & Kas",
+    "pic": "Staff Finance & Treasury",
+    "output": "Rekonsiliasi bank, daftar selisih, catatan penyesuaian",
+    "purpose": "Menyesuaikan catatan kas perusahaan dengan mutasi bank dan kas fisik agar tidak terjadi selisih pembukuan.",
+    "steps": [
+      "Ambil mutasi rekening bank pada periode yang akan dicek.",
+      "Ambil catatan buku kas atau sistem keuangan pada periode yang sama.",
+      "Cocokkan setiap transaksi di mutasi bank dengan catatan kas.",
+      "Tandai transaksi yang sudah cocok.",
+      "Pisahkan transaksi yang belum ditemukan pasangannya.",
+      "Cek apakah transaksi belum tercatat karena keterlambatan input.",
+      "Cek apakah ada biaya admin bank, biaya transfer, atau potongan otomatis yang belum dicatat.",
+      "Cek apakah ada pembayaran customer yang masuk tanpa identitas jelas.",
+      "Cek apakah ada transaksi keluar yang belum memiliki bukti lengkap.",
+      "Klarifikasi transaksi yang tidak jelas kepada pihak terkait.",
+      "Buat catatan penyesuaian jika ada transaksi yang harus dikoreksi.",
+      "Update buku kas atau sistem keuangan setelah validasi.",
+      "Hitung saldo akhir setelah rekonsiliasi.",
+      "Pastikan saldo akhir buku kas sama dengan saldo akhir bank atau kas fisik.",
+      "Jika masih ada selisih, laporkan kepada Manajer untuk investigasi.",
+      "Simpan file mutasi bank, hasil rekonsiliasi, dan catatan penyesuaian."
+    ]
+  },
+  "WI-FAT-003": {
+    "title": "Pengelolaan Piutang B2B",
+    "pic": "Staff Finance & Treasury",
+    "output": "Database piutang, invoice, aging piutang, status penagihan",
+    "purpose": "Memastikan piutang konsumen grosir atau B2B tertagih tepat waktu sesuai Term of Payment agar arus kas perusahaan tidak terganggu.",
+    "steps": [
+      "Terima data order B2B yang memiliki pembayaran tempo.",
+      "Cek nama customer atau perusahaan.",
+      "Cek nomor invoice atau nomor order.",
+      "Cek total nilai tagihan.",
+      "Cek syarat pembayaran atau Term of Payment.",
+      "Cek tanggal jatuh tempo pembayaran.",
+      "Input data piutang ke database piutang.",
+      "Lampirkan dokumen pendukung seperti invoice, surat jalan, dan bukti barang terkirim.",
+      "Kirim invoice kepada customer setelah barang dikirim atau sesuai kesepakatan pembayaran.",
+      "Catat tanggal invoice dikirim.",
+      "Pantau daftar piutang secara berkala.",
+      "Kirim pengingat pembayaran 3–5 hari sebelum jatuh tempo.",
+      "Gunakan bahasa penagihan yang profesional dan sopan.",
+      "Jika pembayaran sudah masuk, cocokkan nominal pembayaran dengan invoice.",
+      "Update status piutang menjadi Lunas jika pembayaran sesuai.",
+      "Jika pembayaran belum masuk setelah jatuh tempo, update status menjadi Overdue.",
+      "Koordinasikan dengan Sales untuk membantu follow-up customer.",
+      "Jika customer melakukan pembayaran sebagian, catat sisa piutang yang belum dibayar.",
+      "Buat laporan aging piutang secara berkala.",
+      "Laporkan piutang bermasalah kepada Manajer."
+    ]
+  },
+  "WI-FAT-004": {
+    "title": "Pengelolaan Utang Vendor",
+    "pic": "Staff Finance & Treasury",
+    "output": "Daftar utang vendor, jadwal pembayaran, bukti pembayaran",
+    "purpose": "Mengatur pembayaran kepada vendor secara tepat waktu tanpa mengganggu stabilitas kas harian perusahaan.",
+    "steps": [
+      "Terima invoice atau tagihan dari vendor.",
+      "Cek nama vendor.",
+      "Cek nomor invoice.",
+      "Cek tanggal invoice dan tanggal jatuh tempo.",
+      "Cek nominal tagihan.",
+      "Cocokkan invoice vendor dengan data barang masuk dari Gudang & Sourcing.",
+      "Pastikan jumlah barang, jenis barang, dan harga sesuai dengan pembelian.",
+      "Jika data tidak sesuai, tahan pembayaran sementara dan klarifikasi ke Gudang & Sourcing.",
+      "Jika data sesuai, input tagihan ke daftar utang vendor.",
+      "Urutkan tagihan berdasarkan tanggal jatuh tempo.",
+      "Tentukan prioritas pembayaran berdasarkan urgensi suplai bahan dan kondisi kas.",
+      "Susun jadwal pembayaran vendor.",
+      "Ajukan daftar rencana pembayaran kepada Manajer.",
+      "Lakukan pembayaran hanya setelah mendapat persetujuan.",
+      "Simpan bukti transfer atau bukti pembayaran.",
+      "Update status utang menjadi Lunas setelah pembayaran dilakukan.",
+      "Arsipkan invoice dan bukti pembayaran dalam folder vendor.",
+      "Buat rekap utang vendor secara berkala."
+    ]
+  },
+  "WI-FAT-005": {
+    "title": "Validasi Pembelian & Bukti Transaksi",
+    "pic": "Staff Finance & Treasury / Staff Accounting & Tax",
+    "output": "Bukti transaksi tervalidasi, catatan pengeluaran, daftar transaksi perlu klarifikasi",
+    "purpose": "Memastikan setiap pembelian bahan, inventori, alat, atau biaya operasional memiliki bukti yang valid dan sesuai kebutuhan perusahaan.",
+    "steps": [
+      "Terima permintaan pencatatan atau reimbursement pembelian.",
+      "Cek bukti transaksi seperti nota, invoice, kwitansi, atau bukti transfer.",
+      "Cek tanggal transaksi.",
+      "Cek nama vendor atau toko.",
+      "Cek item yang dibeli.",
+      "Cek jumlah item.",
+      "Cek nominal transaksi.",
+      "Cek tujuan pembelian.",
+      "Cocokkan pembelian bahan dengan kebutuhan produksi atau stok gudang.",
+      "Cocokkan pembelian alat atau mesin dengan kebutuhan operasional yang sudah disetujui.",
+      "Jika bukti transaksi tidak jelas, minta bukti tambahan.",
+      "Jika nominal tidak sesuai, lakukan klarifikasi kepada pihak yang membeli.",
+      "Jika pembelian tidak relevan atau belum disetujui, tahan pencatatan sebagai pengeluaran valid.",
+      "Jika transaksi valid, input ke sistem keuangan sesuai kategori biaya.",
+      "Simpan bukti transaksi dalam folder arsip.",
+      "Tandai transaksi yang berpotensi melebihi anggaran.",
+      "Laporkan transaksi tidak wajar kepada Manajer."
+    ]
+  },
+  "WI-FAT-006": {
+    "title": "Payroll, Lembur, Bonus, dan Insentif",
+    "pic": "Staff Finance & Treasury",
+    "output": "Draft payroll, payroll approved, bukti transfer gaji",
+    "purpose": "Memastikan gaji, lembur, bonus, dan insentif karyawan dihitung akurat dan dibayarkan tepat waktu.",
+    "steps": [
+      "Terima data karyawan aktif dari HRGA.",
+      "Terima data kehadiran dari HRGA.",
+      "Terima data lembur yang sudah disetujui atasan terkait.",
+      "Terima data bonus atau insentif Sales dari Kepala Sales & Marketing.",
+      "Terima data tambahan atau potongan lain jika ada.",
+      "Pastikan data yang diterima sudah lengkap.",
+      "Hitung gaji pokok setiap karyawan.",
+      "Hitung tunjangan jika ada.",
+      "Hitung lembur sesuai data yang disetujui.",
+      "Hitung bonus atau insentif sesuai ketentuan perusahaan.",
+      "Hitung potongan seperti kasbon, pajak, BPJS, atau potongan lain jika berlaku.",
+      "Buat draft payroll.",
+      "Cek ulang nama karyawan, nomor rekening, dan nominal transfer.",
+      "Ajukan draft payroll kepada Manajer untuk approval.",
+      "Jika ada koreksi, revisi draft payroll.",
+      "Setelah disetujui, lakukan transfer sesuai jadwal penggajian.",
+      "Simpan bukti transfer.",
+      "Update status payroll menjadi Dibayarkan.",
+      "Kirim slip gaji atau informasi pembayaran sesuai kebijakan perusahaan.",
+      "Simpan file payroll di folder khusus yang bersifat rahasia."
+    ]
+  },
+  "WI-FAT-007": {
+    "title": "Penghitungan HPP Produk",
+    "pic": "Staff Accounting & Tax",
+    "output": "Data HPP per produk, struktur biaya produk",
+    "purpose": "Menghitung Harga Pokok Produksi secara akurat sebagai dasar penentuan harga jual dan evaluasi profitabilitas produk.",
+    "steps": [
+      "Tentukan produk yang akan dihitung HPP-nya.",
+      "Kumpulkan data bahan baku dari Gudang & Sourcing.",
+      "Catat jenis bahan yang digunakan.",
+      "Catat jumlah bahan yang digunakan per unit produk.",
+      "Catat harga bahan per satuan.",
+      "Hitung total biaya bahan baku per unit.",
+      "Kumpulkan data tenaga kerja langsung dari Operations atau HRGA jika tersedia.",
+      "Hitung biaya tenaga kerja langsung per unit atau per batch.",
+      "Kumpulkan data biaya pendukung produksi seperti tinta, lem, aksesoris, packaging, listrik, atau biaya lain yang relevan.",
+      "Kumpulkan data penyusutan mesin jika digunakan dalam perhitungan.",
+      "Hitung total biaya produksi.",
+      "Bagi total biaya produksi berdasarkan jumlah unit produk untuk mendapatkan HPP per unit.",
+      "Bandingkan HPP dengan HPP periode sebelumnya jika produk sudah pernah dibuat.",
+      "Tandai jika ada kenaikan biaya yang signifikan.",
+      "Diskusikan penyebab kenaikan HPP dengan Operations, Gudang, atau R&D.",
+      "Simpan hasil perhitungan HPP.",
+      "Gunakan HPP sebagai dasar skema harga jual dan analisis margin."
+    ]
+  },
+  "WI-FAT-008": {
+    "title": "Penetapan Skema Harga Jual",
+    "pic": "Staff Accounting & Tax",
+    "output": "Skema harga jual eceran, skema harga grosir, batas minimum harga",
+    "purpose": "Menentukan harga jual yang proporsional, kompetitif, dan tetap menghasilkan margin profit yang sehat.",
+    "steps": [
+      "Ambil data HPP produk terbaru.",
+      "Ambil data harga pasar atau kompetitor dari Sales & Marketing.",
+      "Ambil data kebutuhan margin perusahaan dari Manajemen.",
+      "Tentukan kategori harga: harga eceran, harga grosir, harga reseller, harga custom, dan harga promo bila ada.",
+      "Hitung margin untuk setiap skema harga.",
+      "Tentukan batas minimum harga agar produk tidak dijual di bawah margin aman.",
+      "Cek apakah harga masih kompetitif di pasar.",
+      "Jika harga terlalu tinggi, evaluasi kembali HPP bersama Operations atau R&D.",
+      "Jika bahan baku naik, lakukan simulasi penyesuaian harga.",
+      "Jika ada promo, pastikan promo tidak membuat margin negatif.",
+      "Ajukan skema harga kepada Manajer atau Owner.",
+      "Setelah disetujui, update price list resmi.",
+      "Informasikan perubahan harga kepada Sales & Marketing.",
+      "Pastikan Sales hanya menggunakan price list terbaru.",
+      "Simpan riwayat perubahan harga untuk evaluasi."
+    ]
+  },
+  "WI-FAT-009": {
+    "title": "Budgeting & Budget Control",
+    "pic": "Staff Accounting & Tax",
+    "output": "Budget plan, budget vs actual report, warning budget",
+    "purpose": "Mengendalikan pengeluaran setiap divisi agar tetap sesuai plafon anggaran yang disetujui.",
+    "steps": [
+      "Kumpulkan rencana kebutuhan biaya dari setiap divisi.",
+      "Kelompokkan kebutuhan biaya berdasarkan divisi dan kategori.",
+      "Susun anggaran periode berjalan, misalnya bulanan, kuartalan, atau tahunan.",
+      "Ajukan anggaran kepada Manajer atau Owner untuk persetujuan.",
+      "Setelah disetujui, input plafon anggaran ke sistem atau file kontrol.",
+      "Catat setiap realisasi pengeluaran berdasarkan kategori anggaran.",
+      "Bandingkan pengeluaran aktual dengan budget yang tersedia.",
+      "Hitung persentase penggunaan budget.",
+      "Jika penggunaan budget mendekati batas, kirim warning kepada kepala divisi terkait.",
+      "Jika pengeluaran sudah melebihi budget, tahan pengeluaran tambahan sampai ada approval.",
+      "Tandai pengeluaran yang tidak sesuai rencana.",
+      "Diskusikan penyimpangan anggaran dengan kepala divisi terkait.",
+      "Buat laporan budget vs actual secara berkala.",
+      "Serahkan laporan kepada Manajer.",
+      "Gunakan data budget sebagai dasar forecasting periode berikutnya."
+    ]
+  },
+  "WI-FAT-010": {
+    "title": "Kepatuhan Pajak PPh, PPN, dan Arsip Pajak",
+    "pic": "Staff Accounting & Tax",
+    "output": "Perhitungan pajak, bukti bayar pajak, SPT, arsip pajak",
+    "purpose": "Memastikan kewajiban pajak perusahaan dihitung, disetor, dilaporkan, dan diarsipkan sesuai ketentuan yang berlaku.",
+    "steps": [
+      "Identifikasi transaksi yang memiliki unsur pajak.",
+      "Pisahkan transaksi yang berkaitan dengan PPN masukan dan PPN keluaran jika berlaku.",
+      "Identifikasi kewajiban PPh karyawan.",
+      "Identifikasi kewajiban PPh lain yang relevan dengan transaksi perusahaan.",
+      "Kumpulkan faktur pajak, invoice, bukti potong, dan dokumen pendukung lain.",
+      "Hitung kewajiban pajak bulanan.",
+      "Cek ulang perhitungan pajak sebelum pembayaran.",
+      "Ajukan nominal pajak kepada Manajer untuk diketahui atau disetujui.",
+      "Lakukan pembayaran pajak sesuai jadwal.",
+      "Simpan bukti pembayaran pajak.",
+      "Lakukan pelaporan pajak melalui sistem yang berlaku.",
+      "Simpan bukti lapor pajak.",
+      "Arsipkan faktur pajak, bukti potong, SPT, dan bukti bayar dengan rapi.",
+      "Catat deadline pajak berikutnya.",
+      "Pastikan tidak ada kewajiban pajak yang terlambat dilaporkan.",
+      "Jika ada kendala atau perubahan regulasi, konsultasikan kepada pihak yang kompeten."
+    ]
+  },
+  "WI-FAT-011": {
+    "title": "Closing Bulanan & Laporan Keuangan",
+    "pic": "Staff Accounting & Tax",
+    "output": "Laporan Laba Rugi, Neraca, Arus Kas, file closing bulanan",
+    "purpose": "Menyusun laporan keuangan bulanan secara akurat sebagai dasar pengambilan keputusan manajemen.",
+    "steps": [
+      "Tentukan tanggal cut-off closing bulanan.",
+      "Pastikan seluruh transaksi kas masuk dan kas keluar sudah dicatat.",
+      "Pastikan piutang dan utang sudah diperbarui.",
+      "Pastikan data payroll sudah dicatat.",
+      "Pastikan data HPP dan biaya produksi sudah masuk.",
+      "Pastikan data pajak sudah dicatat.",
+      "Lakukan rekonsiliasi bank dan kas.",
+      "Cek transaksi yang belum memiliki bukti.",
+      "Minta kelengkapan bukti kepada pihak terkait.",
+      "Lakukan penyesuaian jurnal jika diperlukan.",
+      "Susun laporan Laba Rugi.",
+      "Susun laporan Neraca.",
+      "Susun laporan Arus Kas.",
+      "Cek kewajaran laporan.",
+      "Bandingkan laporan dengan bulan sebelumnya.",
+      "Tandai perubahan yang signifikan.",
+      "Buat ringkasan hasil closing bulanan.",
+      "Serahkan laporan kepada Manajer.",
+      "Simpan file laporan dan data pendukung di folder keuangan."
+    ]
+  },
+  "WI-FAT-012": {
+    "title": "Audit Internal & Cek Penyimpangan",
+    "pic": "Staff Accounting & Tax",
+    "output": "Daftar temuan audit, catatan penyimpangan, rekomendasi koreksi",
+    "purpose": "Mendeteksi pemborosan, transaksi tidak wajar, selisih dana, atau penggunaan anggaran yang tidak sesuai rencana.",
+    "steps": [
+      "Tentukan periode transaksi yang akan diaudit.",
+      "Ambil data transaksi dari sistem keuangan.",
+      "Ambil bukti fisik seperti nota, invoice, kwitansi, surat jalan, dan bukti transfer.",
+      "Cocokkan transaksi dengan bukti pendukung.",
+      "Cek apakah transaksi memiliki approval yang diperlukan.",
+      "Cek apakah pengeluaran sesuai kategori anggaran.",
+      "Cek apakah ada transaksi ganda.",
+      "Cek apakah ada transaksi tanpa bukti.",
+      "Cek apakah ada nominal yang tidak wajar.",
+      "Cek apakah ada pembelian yang tidak sesuai kebutuhan operasional.",
+      "Cek apakah ada selisih antara nota fisik, laporan pengadaan, dan kas riil.",
+      "Kelompokkan temuan berdasarkan tingkat risiko: rendah, sedang, atau tinggi.",
+      "Klarifikasi temuan kepada divisi terkait.",
+      "Catat hasil klarifikasi.",
+      "Buat rekomendasi tindakan koreksi.",
+      "Laporkan temuan kepada Manajer.",
+      "Pantau apakah tindakan koreksi sudah dilakukan."
+    ]
+  },
+  "WI-FAT-013": {
+    "title": "Analisis Profitabilitas Produk & Cost Center",
+    "pic": "Staff Accounting & Tax",
+    "output": "Laporan profitabilitas produk, laporan cost center, rekomendasi strategis",
+    "purpose": "Mengetahui produk yang paling menguntungkan dan area operasional yang paling banyak menghabiskan biaya.",
+    "steps": [
+      "Ambil data penjualan per produk.",
+      "Ambil data HPP per produk.",
+      "Hitung gross profit setiap produk.",
+      "Hitung margin profit setiap produk.",
+      "Urutkan produk dari margin tertinggi sampai terendah.",
+      "Identifikasi produk dengan penjualan tinggi tetapi margin rendah.",
+      "Identifikasi produk dengan margin tinggi tetapi volume penjualan rendah.",
+      "Ambil data biaya per divisi atau aktivitas.",
+      "Kelompokkan biaya berdasarkan cost center: produksi, marketing, R&D, logistik, administrasi, dan biaya umum.",
+      "Identifikasi cost center yang mengalami kenaikan biaya.",
+      "Cek penyebab kenaikan biaya bersama divisi terkait.",
+      "Buat rekomendasi seperti revisi harga, optimasi bahan, pengurangan waste, atau penghentian produk yang tidak efisien.",
+      "Susun laporan analisis profitabilitas.",
+      "Serahkan laporan kepada Manajer atau Owner.",
+      "Gunakan hasil analisis sebagai bahan evaluasi bisnis."
+    ]
+  },
+  "WI-FAT-014": {
+    "title": "Financial Forecasting & Perencanaan Kas",
+    "pic": "Staff Accounting & Tax",
+    "output": "Forecast keuangan, proyeksi arus kas, rekomendasi budgeting",
+    "purpose": "Membuat proyeksi pendapatan, pengeluaran, kebutuhan modal kerja, dan anggaran periode mendatang.",
+    "steps": [
+      "Ambil data penjualan periode sebelumnya.",
+      "Ambil data campaign atau musim penjualan dari Sales & Marketing.",
+      "Ambil data rencana produksi dari Operations jika ada potensi order besar.",
+      "Ambil data rencana pengembangan produk dari R&D jika membutuhkan biaya tambahan.",
+      "Hitung rata-rata pendapatan bulanan.",
+      "Identifikasi pola musiman seperti Lebaran, Natal, Imlek, tahun ajaran baru, atau event perusahaan.",
+      "Buat proyeksi pendapatan untuk periode berikutnya.",
+      "Buat proyeksi biaya bahan, produksi, marketing, payroll, pajak, dan operasional.",
+      "Hitung kebutuhan kas minimum untuk menjaga operasional tetap aman.",
+      "Identifikasi bulan dengan risiko kas rendah.",
+      "Identifikasi kebutuhan modal kerja tambahan jika ada rencana ekspansi.",
+      "Susun skenario konservatif, normal, dan optimis jika diperlukan.",
+      "Buat rekomendasi anggaran berdasarkan forecast.",
+      "Serahkan forecast kepada Manajer atau Owner.",
+      "Gunakan forecast sebagai dasar keputusan bisnis periode berikutnya."
+    ]
+  },
+  "WI-HRD-001": {
+    "title": "Analisis Kebutuhan Jabatan dan Personil",
+    "pic": "HR Specialist",
+    "output": "Form kebutuhan personil, job requirement, approval pembukaan lowongan",
+    "purpose": "Memastikan permintaan tambahan personil benar-benar berdasarkan kebutuhan kerja, beban kerja, dan kompetensi yang jelas sebelum proses recruitment dibuka.",
+    "steps": [
+      "Terima permintaan tambahan personil dari kepala divisi terkait.",
+      "Catat divisi yang mengajukan permintaan.",
+      "Catat posisi yang dibutuhkan.",
+      "Tanyakan alasan kebutuhan personil, misalnya beban kerja meningkat, pengganti karyawan keluar, ekspansi, atau kebutuhan skill baru.",
+      "Review beban kerja divisi yang mengajukan.",
+      "Cek apakah kebutuhan bisa diselesaikan dengan pembagian ulang tugas, training, atau perbaikan proses kerja.",
+      "Jika memang membutuhkan personil baru, susun kriteria jabatan.",
+      "Tentukan tanggung jawab utama posisi tersebut.",
+      "Tentukan skill teknis yang wajib dimiliki.",
+      "Tentukan soft skill dan karakter yang dibutuhkan.",
+      "Tentukan pengalaman kerja minimum jika diperlukan.",
+      "Tentukan status kerja, misalnya harian, kontrak, tetap, magang, atau freelance.",
+      "Tentukan estimasi gaji atau range kompensasi.",
+      "Validasi kebutuhan posisi dengan kepala divisi terkait.",
+      "Ajukan pembukaan lowongan kepada Manajer / Owner untuk approval.",
+      "Jika disetujui, lanjutkan ke proses recruitment.",
+      "Jika tidak disetujui, dokumentasikan alasan penolakan dan alternatif solusi.",
+      "Simpan form kebutuhan personil sebagai arsip HRD."
+    ]
+  },
+  "WI-HRD-002": {
+    "title": "Training Needs Analysis (TNA)",
+    "pic": "HR Specialist",
+    "output": "Form TNA, daftar kebutuhan training, rekomendasi program training",
+    "purpose": "Mengidentifikasi kebutuhan pelatihan karyawan berdasarkan gap kompetensi, kebutuhan divisi, dan target kinerja perusahaan.",
+    "steps": [
+      "Terima pengajuan kebutuhan training dari kepala divisi atau hasil evaluasi KPI.",
+      "Catat nama divisi yang membutuhkan training.",
+      "Catat nama karyawan atau kelompok karyawan yang membutuhkan training.",
+      "Identifikasi skill yang perlu ditingkatkan.",
+      "Tanyakan alasan kebutuhan training.",
+      "Cek apakah masalah kinerja terjadi karena kurang skill, kurang alat, kurang SOP, kurang motivasi, atau masalah lain.",
+      "Bandingkan kemampuan karyawan saat ini dengan standar kerja yang dibutuhkan.",
+      "Tentukan jenis training yang sesuai: teknis, mesin, software, sales/negosiasi, leadership, customer service, atau budaya kerja.",
+      "Tentukan apakah training dilakukan internal atau eksternal.",
+      "Tentukan prioritas training berdasarkan urgensi dan dampaknya terhadap kinerja.",
+      "Susun rekomendasi program training.",
+      "Ajukan rekomendasi kepada Manajer / Owner untuk approval jika membutuhkan biaya.",
+      "Jika disetujui, lanjutkan ke perencanaan training.",
+      "Jika belum disetujui, simpan sebagai usulan training periode berikutnya.",
+      "Dokumentasikan hasil TNA di database HRD."
+    ]
+  },
+  "WI-HRD-003": {
+    "title": "Recruitment End-to-End",
+    "pic": "HR Specialist",
+    "output": "Shortlist kandidat, hasil interview, kandidat terpilih, offering letter",
+    "purpose": "Menjalankan proses recruitment secara sistematis agar kandidat yang diterima memiliki kompetensi, integritas, dan karakter yang sesuai dengan kebutuhan perusahaan.",
+    "steps": [
+      "Pastikan pembukaan lowongan sudah disetujui.",
+      "Siapkan job description dan job requirement.",
+      "Buat materi lowongan kerja yang jelas dan menarik.",
+      "Cantumkan nama posisi, tanggung jawab, kualifikasi, lokasi kerja, cara melamar, dan deadline lamaran.",
+      "Publikasikan lowongan melalui channel yang sesuai.",
+      "Kumpulkan lamaran yang masuk.",
+      "Screening CV berdasarkan kriteria minimum.",
+      "Pisahkan kandidat yang memenuhi syarat dan tidak memenuhi syarat.",
+      "Hubungi kandidat yang lolos screening awal.",
+      "Jadwalkan interview HR.",
+      "Lakukan interview HR untuk menilai motivasi, attitude, komunikasi, pengalaman, dan kesesuaian budaya kerja.",
+      "Jika diperlukan, berikan tes teknis, psikotes sederhana, atau studi kasus.",
+      "Buat catatan hasil interview HR.",
+      "Pilih kandidat yang layak masuk interview user.",
+      "Jadwalkan interview dengan kepala divisi terkait.",
+      "Terima hasil penilaian dari user.",
+      "Lakukan background check bila diperlukan.",
+      "Pilih kandidat final.",
+      "Ajukan kandidat final kepada Manajer / Owner untuk approval.",
+      "Berikan offering kepada kandidat terpilih.",
+      "Jika kandidat menerima offering, lanjutkan ke administrasi penerimaan.",
+      "Jika kandidat menolak, hubungi kandidat cadangan.",
+      "Simpan seluruh data recruitment sebagai arsip HRD."
+    ]
+  },
+  "WI-HRD-004": {
+    "title": "Screening Kandidat dan Interview HR",
+    "pic": "HR Specialist",
+    "output": "Form hasil screening kandidat, catatan interview HR",
+    "purpose": "Memastikan kandidat disaring tidak hanya dari kemampuan teknis, tetapi juga dari karakter, integritas, dan kesesuaian budaya perusahaan.",
+    "steps": [
+      "Buka CV atau data pelamar.",
+      "Cek kesesuaian pengalaman dengan posisi yang dibutuhkan.",
+      "Cek kesesuaian skill teknis dengan job requirement.",
+      "Cek riwayat pendidikan atau pelatihan bila relevan.",
+      "Cek stabilitas pengalaman kerja jika tersedia.",
+      "Tandai kandidat yang memenuhi syarat minimum.",
+      "Jadwalkan interview HR.",
+      "Saat interview, jelaskan singkat posisi dan perusahaan.",
+      "Tanyakan motivasi kandidat melamar.",
+      "Tanyakan pengalaman kerja yang relevan.",
+      "Tanyakan contoh situasi kerja yang menunjukkan tanggung jawab dan integritas.",
+      "Tanyakan cara kandidat menghadapi konflik atau tekanan kerja.",
+      "Tanyakan ekspektasi gaji dan ketersediaan mulai kerja.",
+      "Nilai komunikasi, sikap, kedisiplinan, dan kesesuaian budaya.",
+      "Catat kelebihan dan risiko kandidat.",
+      "Beri rekomendasi: lanjut interview user, kandidat cadangan, atau tidak lanjut.",
+      "Simpan catatan interview di database recruitment.",
+      "Informasikan kandidat terpilih kepada kepala divisi untuk interview user."
+    ]
+  },
+  "WI-HRD-005": {
+    "title": "Offering, Penerimaan, dan Administrasi Karyawan Baru",
+    "pic": "HR Admin / HR Specialist",
+    "output": "Offering diterima, data karyawan baru, dokumen administrasi lengkap",
+    "purpose": "Memastikan kandidat yang diterima memahami posisi, kompensasi, aturan kerja, dan dokumen yang wajib dilengkapi sebelum mulai bekerja.",
+    "steps": [
+      "Pastikan kandidat final sudah disetujui oleh Manajer / Owner.",
+      "Siapkan informasi offering.",
+      "Cantumkan posisi kerja, status kerja, tanggal mulai kerja, jam kerja, dan lokasi kerja.",
+      "Cantumkan gaji, tunjangan, insentif, atau benefit yang berlaku.",
+      "Cantumkan masa percobaan jika ada.",
+      "Sampaikan offering kepada kandidat secara tertulis.",
+      "Minta kandidat memberikan konfirmasi menerima atau menolak offering.",
+      "Jika kandidat menerima, minta dokumen administrasi yang dibutuhkan.",
+      "Dokumen dapat mencakup KTP, KK, NPWP, nomor rekening, ijazah, CV final, pas foto, dan dokumen lain sesuai kebutuhan.",
+      "Buat data karyawan baru di database HRD.",
+      "Informasikan tanggal masuk kepada kepala divisi terkait.",
+      "Siapkan kontrak kerja atau dokumen kerja.",
+      "Siapkan agenda onboarding.",
+      "Simpan seluruh dokumen karyawan baru di folder HRD yang aman.",
+      "Pastikan data pribadi karyawan tidak dibagikan sembarangan."
+    ]
+  },
+  "WI-HRD-006": {
+    "title": "Onboarding Karyawan Baru",
+    "pic": "HR Specialist",
+    "output": "Checklist onboarding, karyawan memahami aturan dasar, karyawan siap masuk kerja",
+    "purpose": "Membantu karyawan baru memahami perusahaan, budaya kerja, SOP, dan tugas divisinya sejak awal bergabung.",
+    "steps": [
+      "Siapkan jadwal onboarding sebelum hari pertama karyawan masuk.",
+      "Pastikan data karyawan baru sudah tercatat.",
+      "Sambut karyawan baru pada hari pertama.",
+      "Jelaskan profil singkat perusahaan.",
+      "Jelaskan visi, misi, dan nilai budaya perusahaan.",
+      "Jelaskan nilai utama seperti teamwork, integritas, dan customer-oriented.",
+      "Jelaskan aturan umum perusahaan, seperti jam kerja, absensi, izin, cuti, pakaian kerja, dan etika kerja.",
+      "Jelaskan struktur organisasi secara ringkas.",
+      "Perkenalkan karyawan baru kepada kepala divisi dan tim kerja.",
+      "Lakukan tour area kerja jika diperlukan.",
+      "Berikan akses atau alat kerja yang dibutuhkan.",
+      "Jelaskan SOP dasar yang relevan dengan posisi.",
+      "Kepala divisi memberikan penjelasan tugas harian.",
+      "Tentukan mentor atau PIC pendamping jika diperlukan.",
+      "Catat checklist onboarding yang sudah selesai.",
+      "Tanyakan apakah karyawan baru memiliki pertanyaan.",
+      "Lakukan follow-up setelah 1 minggu pertama.",
+      "Simpan checklist onboarding sebagai arsip HRD."
+    ]
+  },
+  "WI-HRD-007": {
+    "title": "Perencanaan dan Pelaksanaan Training",
+    "pic": "HR Specialist",
+    "output": "Training plan, daftar peserta, materi training, evaluasi training",
+    "purpose": "Menjalankan program training internal atau eksternal agar skill karyawan meningkat sesuai kebutuhan perusahaan.",
+    "steps": [
+      "Gunakan hasil TNA sebagai dasar perencanaan training.",
+      "Tentukan topik training.",
+      "Tentukan tujuan training.",
+      "Tentukan peserta training.",
+      "Tentukan trainer internal atau eksternal.",
+      "Tentukan jadwal dan durasi training.",
+      "Tentukan lokasi training atau platform online.",
+      "Siapkan materi training.",
+      "Siapkan daftar hadir peserta.",
+      "Informasikan jadwal training kepada peserta dan kepala divisi.",
+      "Pastikan peserta memahami kewajiban hadir.",
+      "Jalankan training sesuai agenda.",
+      "Dokumentasikan kegiatan training.",
+      "Minta peserta mengisi evaluasi training.",
+      "Catat hasil evaluasi peserta.",
+      "Evaluasi apakah training berdampak pada pekerjaan.",
+      "Buat laporan training.",
+      "Simpan materi, daftar hadir, dan laporan training di arsip HRD."
+    ]
+  },
+  "WI-HRD-008": {
+    "title": "Penyusunan KPI Individu dan Divisi",
+    "pic": "HR Specialist",
+    "output": "KPI individu, KPI divisi, target kinerja",
+    "purpose": "Membantu setiap divisi menyusun KPI yang jelas, objektif, terukur, dan selaras dengan target perusahaan.",
+    "steps": [
+      "Terima target perusahaan atau target divisi.",
+      "Jadwalkan diskusi dengan kepala divisi.",
+      "Identifikasi tugas utama setiap posisi.",
+      "Tentukan hasil kerja yang harus dicapai oleh posisi tersebut.",
+      "Buat KPI yang spesifik dan dapat diukur.",
+      "Pastikan KPI memiliki satuan ukuran yang jelas.",
+      "Tentukan target angka atau standar pencapaian.",
+      "Tentukan periode pengukuran KPI.",
+      "Tentukan sumber data untuk mengukur KPI.",
+      "Pastikan KPI tidak terlalu banyak agar tetap fokus.",
+      "Pastikan KPI realistis dan sesuai wewenang karyawan.",
+      "Diskusikan KPI dengan kepala divisi.",
+      "Revisi KPI jika masih terlalu umum atau sulit diukur.",
+      "Finalisasi KPI setelah disetujui.",
+      "Sosialisasikan KPI kepada karyawan terkait.",
+      "Simpan dokumen KPI di database HRD.",
+      "Gunakan KPI sebagai dasar evaluasi berkala."
+    ]
+  },
+  "WI-HRD-009": {
+    "title": "Evaluasi Kinerja Berkala dan Feedback",
+    "pic": "HR Specialist",
+    "output": "Form evaluasi kinerja, catatan feedback, status performa karyawan",
+    "purpose": "Menilai performa karyawan secara objektif dan memberikan feedback yang membantu peningkatan kinerja.",
+    "steps": [
+      "Tentukan periode evaluasi, misalnya 3 bulan atau 6 bulan sekali.",
+      "Ambil data KPI karyawan.",
+      "Ambil data kehadiran dan kedisiplinan.",
+      "Ambil catatan performa dari kepala divisi.",
+      "Bandingkan hasil kerja dengan target KPI.",
+      "Tandai KPI yang tercapai dan belum tercapai.",
+      "Catat perilaku kerja yang positif.",
+      "Catat area yang perlu diperbaiki.",
+      "Jadwalkan sesi feedback bersama kepala divisi dan karyawan.",
+      "Sampaikan hasil evaluasi secara objektif.",
+      "Mulai dari apresiasi terhadap hal yang sudah baik.",
+      "Jelaskan gap performa dengan data, bukan asumsi pribadi.",
+      "Dengarkan penjelasan karyawan.",
+      "Sepakati tindakan perbaikan.",
+      "Jika performa baik, catat rekomendasi pengembangan, promosi, atau reward bila relevan.",
+      "Jika performa di bawah target, lanjutkan ke Performance Improvement Plan.",
+      "Simpan hasil evaluasi di database HRD."
+    ]
+  },
+  "WI-HRD-010": {
+    "title": "Performance Improvement Plan (PIP)",
+    "pic": "HR Specialist",
+    "output": "Dokumen PIP, target perbaikan, hasil monitoring PIP",
+    "purpose": "Membantu karyawan yang performanya di bawah standar agar memiliki rencana perbaikan yang jelas, terukur, dan memiliki batas waktu.",
+    "steps": [
+      "Gunakan hasil evaluasi kinerja sebagai dasar PIP.",
+      "Pastikan masalah performa sudah dibahas dengan kepala divisi.",
+      "Identifikasi KPI atau perilaku kerja yang belum memenuhi standar.",
+      "Jelaskan masalah performa dengan data.",
+      "Tentukan target perbaikan yang spesifik.",
+      "Tentukan periode PIP, misalnya 30, 60, atau 90 hari.",
+      "Tentukan dukungan yang akan diberikan perusahaan, misalnya training, mentoring, atau perubahan metode kerja.",
+      "Buat dokumen PIP tertulis.",
+      "Jelaskan isi PIP kepada karyawan.",
+      "Minta karyawan memahami dan menyetujui rencana perbaikan.",
+      "Jadwalkan monitoring berkala selama periode PIP.",
+      "Catat progres setiap monitoring.",
+      "Jika ada kemajuan, berikan feedback positif dan arahan lanjutan.",
+      "Jika tidak ada kemajuan, diskusikan tindakan berikutnya dengan Manajer / Owner.",
+      "Setelah periode PIP selesai, lakukan evaluasi akhir.",
+      "Tentukan status akhir: PIP berhasil, PIP diperpanjang, atau tindakan administratif lanjutan.",
+      "Simpan dokumen PIP sebagai arsip HRD."
+    ]
+  },
+  "WI-HRD-011": {
+    "title": "Promosi, Mutasi, dan Perubahan Jabatan",
+    "pic": "HR Specialist / HR Admin",
+    "output": "Form promosi/mutasi, approval perubahan jabatan, SK atau addendum kontrak",
+    "purpose": "Memastikan promosi, mutasi, atau perubahan jabatan dilakukan berdasarkan kebutuhan organisasi, performa, dan approval yang jelas.",
+    "steps": [
+      "Terima usulan promosi atau mutasi dari kepala divisi.",
+      "Catat nama karyawan dan posisi saat ini.",
+      "Catat posisi baru atau divisi tujuan.",
+      "Minta alasan promosi atau mutasi.",
+      "Review data performa karyawan.",
+      "Review data kehadiran dan kedisiplinan.",
+      "Review kompetensi yang dibutuhkan pada posisi baru.",
+      "Cek apakah karyawan siap menjalankan tanggung jawab baru.",
+      "Diskusikan perubahan jabatan dengan kepala divisi terkait.",
+      "Jika perubahan berdampak pada gaji atau benefit, koordinasikan dengan Finance.",
+      "Ajukan usulan kepada Manajer / Owner untuk approval.",
+      "Jika disetujui, siapkan dokumen perubahan jabatan.",
+      "Buat SK, surat mutasi, atau addendum kontrak jika diperlukan.",
+      "Informasikan perubahan kepada karyawan secara resmi.",
+      "Update database karyawan.",
+      "Informasikan perubahan kepada divisi terkait.",
+      "Simpan seluruh dokumen perubahan jabatan di arsip HRD."
+    ]
+  },
+  "WI-HRD-012": {
+    "title": "Administrasi Database Karyawan",
+    "pic": "HR Admin, Payroll & Compliance",
+    "output": "Database karyawan ter-update, arsip data karyawan",
+    "purpose": "Menjaga data karyawan agar lengkap, rapi, aman, dan mudah ditelusuri saat dibutuhkan.",
+    "steps": [
+      "Buat database karyawan terpusat.",
+      "Input data diri karyawan.",
+      "Input posisi dan divisi karyawan.",
+      "Input tanggal mulai kerja.",
+      "Input status kerja.",
+      "Input kontak darurat.",
+      "Input nomor rekening.",
+      "Input data NPWP dan BPJS jika ada.",
+      "Simpan dokumen pendukung seperti KTP, KK, CV, kontrak kerja, SK, SP, dan dokumen resmi lain.",
+      "Update database jika ada perubahan jabatan, gaji, status kerja, atau data pribadi.",
+      "Rekap absensi harian atau bulanan sesuai kebutuhan payroll.",
+      "Catat hak cuti karyawan.",
+      "Catat riwayat training.",
+      "Catat riwayat evaluasi kinerja.",
+      "Batasi akses database hanya untuk pihak yang berwenang.",
+      "Backup database secara berkala.",
+      "Pastikan dokumen dapat ditemukan dengan mudah saat dibutuhkan.",
+      "Jaga kerahasiaan data pribadi karyawan."
+    ]
+  },
+  "WI-HRD-013": {
+    "title": "Administrasi Cuti, Izin, dan Absensi",
+    "pic": "HR Admin, Payroll & Compliance",
+    "output": "Rekap absensi, rekap cuti, status izin, data payroll",
+    "purpose": "Memastikan absensi, izin, dan cuti karyawan tercatat rapi sebagai dasar payroll dan pengelolaan ketersediaan tenaga kerja.",
+    "steps": [
+      "Ambil data absensi harian dari sistem atau catatan manual.",
+      "Cek kehadiran setiap karyawan.",
+      "Tandai status karyawan: hadir, izin, sakit, cuti, alpha, atau lembur.",
+      "Terima pengajuan cuti atau izin dari karyawan.",
+      "Cek sisa hak cuti karyawan.",
+      "Cek apakah pengajuan sudah disetujui kepala divisi.",
+      "Jika disetujui, update status cuti atau izin.",
+      "Jika tidak disetujui, informasikan alasan penolakan.",
+      "Catat keterlambatan atau ketidakhadiran tanpa keterangan.",
+      "Rekap absensi mingguan atau bulanan.",
+      "Serahkan data absensi kepada Finance untuk payroll bila diperlukan.",
+      "Simpan dokumen pendukung seperti surat sakit atau izin tertulis.",
+      "Informasikan ketersediaan tim kepada kepala divisi jika ada banyak karyawan cuti pada periode yang sama.",
+      "Pastikan data absensi tidak diubah tanpa approval."
+    ]
+  },
+  "WI-HRD-014": {
+    "title": "Kompensasi, Benefit, BPJS, dan Data Payroll",
+    "pic": "HR Admin, Payroll & Compliance",
+    "output": "Data payroll HRD, data benefit, update BPJS, rekap hak karyawan",
+    "purpose": "Memastikan data hak finansial dan benefit karyawan lengkap, akurat, dan siap digunakan Finance untuk proses payroll.",
+    "steps": [
+      "Update daftar karyawan aktif.",
+      "Cek status kerja setiap karyawan.",
+      "Cek komponen gaji pokok.",
+      "Cek tunjangan jika ada.",
+      "Cek data lembur yang sudah disetujui.",
+      "Cek bonus atau insentif yang berlaku.",
+      "Cek potongan yang perlu dicatat.",
+      "Update data BPJS Kesehatan dan BPJS Ketenagakerjaan bila berlaku.",
+      "Catat perubahan gaji atau benefit akibat promosi, mutasi, atau perubahan status kerja.",
+      "Cek rekap absensi sebagai dasar perhitungan.",
+      "Susun data payroll dari sisi HRD.",
+      "Serahkan data payroll kepada Finance sesuai jadwal cut-off.",
+      "Jika Finance menemukan selisih, bantu melakukan klarifikasi.",
+      "Simpan salinan data payroll HRD.",
+      "Jaga kerahasiaan data gaji dan benefit."
+    ]
+  },
+  "WI-HRD-015": {
+    "title": "Pembuatan dan Arsip Dokumen Legal Karyawan",
+    "pic": "HR Admin, Payroll & Compliance",
+    "output": "Kontrak kerja, SK, SP, addendum, arsip legal karyawan",
+    "purpose": "Memastikan seluruh dokumen legal kepegawaian dibuat, diperbarui, dan diarsipkan dengan aman.",
+    "steps": [
+      "Identifikasi dokumen legal yang dibutuhkan.",
+      "Siapkan draft dokumen sesuai kebutuhan: kontrak kerja, surat keputusan, surat peringatan, addendum kontrak, surat mutasi, surat promosi, atau dokumen administrasi lain.",
+      "Pastikan data karyawan pada dokumen benar.",
+      "Pastikan jabatan, divisi, tanggal berlaku, dan hak/kewajiban tertulis jelas.",
+      "Review dokumen sebelum ditandatangani.",
+      "Ajukan dokumen kepada pihak berwenang untuk approval.",
+      "Minta tanda tangan pihak terkait.",
+      "Berikan salinan dokumen kepada karyawan jika diperlukan.",
+      "Simpan dokumen asli atau digital di arsip HRD.",
+      "Beri nama file dengan format yang konsisten.",
+      "Catat tanggal berlaku dan tanggal berakhir dokumen.",
+      "Buat reminder jika kontrak akan habis.",
+      "Pastikan dokumen tidak dapat diakses pihak yang tidak berwenang.",
+      "Update database karyawan setelah dokumen diterbitkan."
+    ]
+  },
+  "WI-HRD-016": {
+    "title": "Kepatuhan Hukum Ketenagakerjaan",
+    "pic": "HR Admin, Payroll & Compliance",
+    "output": "Checklist compliance, hasil review kebijakan, catatan mitigasi risiko",
+    "purpose": "Memastikan kebijakan SDM dan dokumen kepegawaian perusahaan sesuai dengan regulasi ketenagakerjaan yang berlaku di Indonesia.",
+    "steps": [
+      "Kumpulkan dokumen kebijakan SDM yang berlaku.",
+      "Cek kontrak kerja karyawan.",
+      "Cek aturan jam kerja, cuti, lembur, dan pengupahan.",
+      "Cek administrasi BPJS jika berlaku.",
+      "Cek dokumen surat peringatan, mutasi, promosi, dan pemutusan hubungan kerja bila ada.",
+      "Review apakah kebijakan internal sudah sesuai dengan regulasi ketenagakerjaan.",
+      "Tandai bagian kebijakan yang berpotensi menimbulkan risiko hukum.",
+      "Diskusikan temuan dengan Manajer / Owner.",
+      "Jika diperlukan, konsultasikan dengan pihak legal atau konsultan ketenagakerjaan.",
+      "Buat rekomendasi perbaikan kebijakan.",
+      "Update dokumen kebijakan setelah disetujui.",
+      "Sosialisasikan perubahan kebijakan kepada karyawan bila berdampak langsung.",
+      "Simpan hasil audit compliance dan dokumen revisi.",
+      "Lakukan review compliance secara berkala."
+    ]
+  },
+  "WI-HRD-017": {
+    "title": "Internalisasi Budaya Perusahaan",
+    "pic": "HR Specialist",
+    "output": "Program budaya, dokumentasi kegiatan, feedback karyawan",
+    "purpose": "Menanamkan nilai budaya perusahaan seperti teamwork, integritas, dan customer-oriented ke dalam perilaku kerja harian.",
+    "steps": [
+      "Tentukan nilai budaya utama yang ingin dikuatkan.",
+      "Susun agenda internalisasi budaya.",
+      "Pilih bentuk kegiatan, seperti briefing nilai perusahaan, sharing session, gathering, coaching, atau aktivitas tim.",
+      "Tentukan peserta kegiatan.",
+      "Tentukan jadwal kegiatan.",
+      "Siapkan materi atau pesan utama yang ingin disampaikan.",
+      "Pastikan contoh perilaku kerja yang diharapkan dijelaskan secara konkret.",
+      "Libatkan kepala divisi sebagai contoh perilaku budaya.",
+      "Jalankan kegiatan sesuai agenda.",
+      "Dokumentasikan kegiatan.",
+      "Minta feedback dari peserta jika diperlukan.",
+      "Amati apakah nilai budaya mulai terlihat dalam perilaku kerja.",
+      "Jika terdapat perilaku yang tidak sesuai nilai perusahaan, berikan coaching atau arahan.",
+      "Catat kegiatan budaya di arsip HRD.",
+      "Lakukan kegiatan secara berkala agar budaya tidak hanya menjadi slogan."
+    ]
+  },
+  "WI-HRD-018": {
+    "title": "Mediasi Konflik dan Hubungan Industrial",
+    "pic": "HR Specialist",
+    "output": "Catatan konflik, berita acara mediasi, kesepakatan penyelesaian",
+    "purpose": "Menyelesaikan konflik antar-karyawan atau antar-divisi secara objektif, adil, dan terdokumentasi.",
+    "steps": [
+      "Terima laporan konflik atau permasalahan internal.",
+      "Catat pihak yang terlibat.",
+      "Catat waktu, tempat, dan kronologi awal kejadian.",
+      "Pastikan laporan diterima dengan sikap netral.",
+      "Jangan langsung mengambil kesimpulan sebelum mendengar semua pihak.",
+      "Jadwalkan sesi klarifikasi dengan pihak pertama.",
+      "Jadwalkan sesi klarifikasi dengan pihak kedua.",
+      "Jika perlu, minta keterangan saksi atau kepala divisi terkait.",
+      "Catat fakta yang konsisten dari berbagai pihak.",
+      "Pisahkan fakta, opini, dan asumsi.",
+      "Identifikasi akar masalah.",
+      "Tentukan apakah masalah dapat diselesaikan dengan mediasi internal atau perlu eskalasi ke Manajer / Owner.",
+      "Lakukan sesi mediasi dengan bahasa yang netral.",
+      "Berikan kesempatan setiap pihak menyampaikan pandangan.",
+      "Arahkan diskusi pada solusi, bukan saling menyalahkan.",
+      "Buat kesepakatan penyelesaian.",
+      "Catat hasil mediasi dalam berita acara.",
+      "Minta pihak terkait memahami hasil kesepakatan.",
+      "Pantau pelaksanaan kesepakatan.",
+      "Jika konflik berulang, eskalasi kepada Manajer / Owner."
+    ]
+  }
+};
+
+const RELATED_WI = {
+  "ops-start": [
+    "WI-OPS-001"
+  ],
+  "ops-order": [
+    "WI-OPS-001"
+  ],
+  "ops-data-complete": [
+    "WI-OPS-001"
+  ],
+  "ops-return-sales": [
+    "WI-OPS-001"
+  ],
+  "ops-wo": [
+    "WI-OPS-002"
+  ],
+  "ops-planning": [
+    "WI-OPS-003"
+  ],
+  "ops-jadwal": [
+    "WI-OPS-004"
+  ],
+  "ops-bahan": [
+    "WI-OPS-005"
+  ],
+  "ops-material-ready": [
+    "WI-OPS-005"
+  ],
+  "ops-sourcing": [
+    "WI-OPS-006"
+  ],
+  "ops-preprod": [
+    "WI-OPS-007"
+  ],
+  "ops-cutting-bahan": [
+    "WI-OPS-008"
+  ],
+  "ops-cutting-gambar": [
+    "WI-OPS-008",
+    "WI-OPS-012"
+  ],
+  "ops-jahit": [
+    "WI-OPS-008"
+  ],
+  "ops-helper-support": [
+    "WI-OPS-009"
+  ],
+  "ops-trimming": [
+    "WI-OPS-009",
+    "WI-OPS-010"
+  ],
+  "ops-firstline": [
+    "WI-OPS-010"
+  ],
+  "ops-qc": [
+    "WI-OPS-011"
+  ],
+  "ops-dec-qc": [
+    "WI-OPS-011"
+  ],
+  "ops-defect": [
+    "WI-OPS-012"
+  ],
+  "ops-barangjadi": [
+    "WI-OPS-013"
+  ],
+  "ops-gudang": [
+    "WI-OPS-013"
+  ],
+  "ops-shipping-doc": [
+    "WI-OPS-014"
+  ],
+  "ops-logistik": [
+    "WI-OPS-015"
+  ],
+  "ops-courier": [
+    "WI-OPS-015"
+  ],
+  "ops-tracking": [
+    "WI-OPS-015"
+  ],
+  "ops-report": [
+    "WI-OPS-016"
+  ],
+  "ops-ci": [
+    "WI-OPS-017"
+  ],
+  "sm-riset": [
+    "WI-SM-001"
+  ],
+  "sm-kampanye": [
+    "WI-SM-002",
+    "WI-SM-013"
+  ],
+  "sm-konten": [
+    "WI-SM-003"
+  ],
+  "sm-iklan": [
+    "WI-SM-004"
+  ],
+  "sm-leads": [
+    "WI-SM-005"
+  ],
+  "sm-b2b": [
+    "WI-SM-006"
+  ],
+  "sm-spek": [
+    "WI-SM-007"
+  ],
+  "sm-closing": [
+    "WI-SM-008"
+  ],
+  "sm-sync-ops": [
+    "WI-SM-009"
+  ],
+  "sm-monitor": [
+    "WI-SM-010"
+  ],
+  "sm-aftersales": [
+    "WI-SM-011"
+  ],
+  "sm-evaluasi": [
+    "WI-SM-012",
+    "WI-SM-014"
+  ],
+  "rnd-brief": [
+    "WI-RND-001"
+  ],
+  "rnd-creative": [
+    "WI-RND-001"
+  ],
+  "rnd-desain": [
+    "WI-RND-002",
+    "WI-RND-003"
+  ],
+  "rnd-review": [
+    "WI-RND-004"
+  ],
+  "rnd-acc": [
+    "WI-RND-004",
+    "WI-RND-010"
+  ],
+  "rnd-material": [
+    "WI-RND-007",
+    "WI-RND-008"
+  ],
+  "rnd-hpp": [
+    "WI-RND-009"
+  ],
+  "rnd-techpack": [
+    "WI-RND-011",
+    "WI-RND-012"
+  ],
+  "rnd-transfer": [
+    "WI-RND-013"
+  ],
+  "rnd-supervisi": [
+    "WI-RND-014"
+  ],
+  "rnd-katalog": [
+    "WI-RND-005",
+    "WI-RND-006"
+  ],
+  "fin-kas": [
+    "WI-FAT-001",
+    "WI-FAT-002"
+  ],
+  "fin-piutang": [
+    "WI-FAT-003",
+    "WI-FAT-004",
+    "WI-FAT-005"
+  ],
+  "fin-payroll": [
+    "WI-FAT-006"
+  ],
+  "fin-hpp": [
+    "WI-FAT-007",
+    "WI-FAT-008"
+  ],
+  "fin-anggaran": [
+    "WI-FAT-009"
+  ],
+  "fin-pajak": [
+    "WI-FAT-010"
+  ],
+  "fin-audit": [
+    "WI-FAT-012",
+    "WI-FAT-005"
+  ],
+  "fin-laporan": [
+    "WI-FAT-011"
+  ],
+  "fin-analisis": [
+    "WI-FAT-002",
+    "WI-FAT-008",
+    "WI-FAT-013",
+    "WI-FAT-014"
+  ],
+  "hrd-analisis": [
+    "WI-HRD-001",
+    "WI-HRD-002"
+  ],
+  "hrd-rekrutmen": [
+    "WI-HRD-003",
+    "WI-HRD-004",
+    "WI-HRD-005"
+  ],
+  "hrd-onboarding": [
+    "WI-HRD-006"
+  ],
+  "hrd-training": [
+    "WI-HRD-002",
+    "WI-HRD-007"
+  ],
+  "hrd-budaya": [
+    "WI-HRD-008",
+    "WI-HRD-017"
+  ],
+  "hrd-kpi": [
+    "WI-HRD-009",
+    "WI-HRD-018"
+  ],
+  "hrd-pip": [
+    "WI-HRD-010",
+    "WI-HRD-011"
+  ],
+  "hrd-payroll": [
+    "WI-HRD-012",
+    "WI-HRD-013",
+    "WI-HRD-014",
+    "WI-HRD-015"
+  ],
+  "hrd-compliance": [
+    "WI-HRD-016",
+    "WI-HRD-015"
+  ]
+};
+
+
+function resetWiPanelContent(){
+  const ids=['wi-code','wi-title','wi-pic','wi-output','wi-purpose','wi-steps'];
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.innerHTML='';
+  });
+}
+
+function renderRelatedWiTags(key){
+  const block=document.getElementById('d-wi-block');
+  const tagsEl=document.getElementById('d-wi-tags');
+  if(!block||!tagsEl)return;
+  const codes=RELATED_WI[key]||[];
+  if(!codes.length){
+    block.style.display='none';
+    tagsEl.innerHTML='';
+    closeWiPanel();
+    return;
+  }
+  block.style.display='block';
+  tagsEl.innerHTML=codes.map(code=>{
+    const wi=WI_LIBRARY[code];
+    const label=wi?`${code} — ${wi.title}`:code;
+    return `<button class="wi-tag-btn" onclick="openWiPanel(event,'${code}')" type="button">${label}</button>`;
+  }).join('');
+}
+
+function openWiPanel(event, code){
+  if(event)event.stopPropagation();
+  const wi=WI_LIBRARY[code];
+  if(!wi)return;
+  document.getElementById('wi-code').textContent=code;
+  document.getElementById('wi-title').textContent=wi.title;
+  document.getElementById('wi-pic').textContent=wi.pic;
+  document.getElementById('wi-output').textContent=wi.output;
+  document.getElementById('wi-purpose').textContent=wi.purpose;
+  document.getElementById('wi-steps').innerHTML=wi.steps.map((s,i)=>`
+    <div class="wi-step">
+      <div class="wi-step-num">${i+1}</div>
+      <div class="wi-step-text">${s}</div>
+    </div>
+  `).join('');
+  document.getElementById('wi-panel')?.classList.add('open');
+  document.getElementById('wi-panel')?.scrollTo({top:0,behavior:'instant'});
+}
+
+function closeWiPanel(event){
+  if(event)event.stopPropagation();
+  document.getElementById('wi-panel')?.classList.remove('open');
+  resetWiPanelContent();
+}
+
 function openDrawer(key){
+  closeWiPanel(); // close the previous WI panel whenever another flow box is opened
   currentSopKey=key;
   const d=SOP[key];
   if(!d)return;
   document.getElementById('d-div').textContent=d.div;
   document.getElementById('d-title').textContent=d.title;
   document.getElementById('d-purpose').textContent=d.purpose;
+  renderRelatedWiTags(key);
   const stepsEl=document.getElementById('d-steps');
   stepsEl.innerHTML=d.steps.map((s,i)=>`<div class="step-item"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join('');
   const noteEl=document.getElementById('d-note');
