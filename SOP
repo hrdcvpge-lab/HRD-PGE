@@ -88,7 +88,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,14,18,0.9
 main{max-width:1200px;margin:0 auto;padding:0 24px 80px}
 
 /* SECTION */
-.sop-section{padding:48px 0 0;border-bottom:1px solid var(--border)}
+.sop-section{padding:48px 0 0;border-bottom:1px solid var(--border);scroll-margin-top:112px}
 .sop-section:last-child{border-bottom:none}
 .sec-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:32px}
 .sec-title{display:flex;align-items:center;gap:12px}
@@ -172,11 +172,11 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 80px}
     </div>
   </div>
   <div class="nav-links">
-    <button class="nav-link active" onclick="scrollTo('ops')">Operations</button>
-    <button class="nav-link" onclick="scrollTo('sm')">Sales & Marketing</button>
-    <button class="nav-link" onclick="scrollTo('rnd')">R&D</button>
-    <button class="nav-link" onclick="scrollTo('fin')">Finance</button>
-    <button class="nav-link" onclick="scrollTo('hrd')">HRD</button>
+    <button class="nav-link active" onclick="scrollToSection('ops')">Operations</button>
+    <button class="nav-link" onclick="scrollToSection('sm')">Sales & Marketing</button>
+    <button class="nav-link" onclick="scrollToSection('rnd')">R&D</button>
+    <button class="nav-link" onclick="scrollToSection('fin')">Finance</button>
+    <button class="nav-link" onclick="scrollToSection('hrd')">HRD</button>
   </div>
   <div class="nav-search">
     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -199,11 +199,11 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 80px}
 
 <!-- SECTION TABS -->
 <div class="section-nav" id="section-nav">
-  <div class="sec-tab active" onclick="scrollTo('ops')">⚙️ Operations</div>
-  <div class="sec-tab" onclick="scrollTo('sm')">📢 Sales & Marketing</div>
-  <div class="sec-tab" onclick="scrollTo('rnd')">🔬 Research & Development</div>
-  <div class="sec-tab" onclick="scrollTo('fin')">💰 Finance</div>
-  <div class="sec-tab" onclick="scrollTo('hrd')">👥 Human Resources</div>
+  <div class="sec-tab active" onclick="scrollToSection('ops')">⚙️ Operations</div>
+  <div class="sec-tab" onclick="scrollToSection('sm')">📢 Sales & Marketing</div>
+  <div class="sec-tab" onclick="scrollToSection('rnd')">🔬 Research & Development</div>
+  <div class="sec-tab" onclick="scrollToSection('fin')">💰 Finance</div>
+  <div class="sec-tab" onclick="scrollToSection('hrd')">👥 Human Resources</div>
 </div>
 
 <main>
@@ -1009,13 +1009,24 @@ main{max-width:1200px;margin:0 auto;padding:0 24px 80px}
 </div>
 
 <script>
-function scrollTo(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
-  document.querySelectorAll('.sec-tab').forEach(t=>t.classList.remove('active'));
+function setActiveSection(id){
   const map={ops:0,sm:1,rnd:2,fin:3,hrd:4};
-  document.querySelectorAll('.sec-tab')[map[id]]?.classList.add('active');
+  const index=map[id];
+
+  document.querySelectorAll('.sec-tab,.nav-link').forEach(t=>t.classList.remove('active'));
+
+  if(index!==undefined){
+    document.querySelectorAll('.sec-tab')[index]?.classList.add('active');
+    document.querySelectorAll('.nav-link')[index]?.classList.add('active');
+  }
 }
-function scrollTo2(id){scrollTo(id)}
+
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+  setActiveSection(id);
+}
 window.addEventListener('scroll',()=>{
   const sections=['ops','sm','rnd','fin','hrd'];
   const tabs=document.querySelectorAll('.sec-tab');
@@ -1024,8 +1035,7 @@ window.addEventListener('scroll',()=>{
     const el=document.getElementById(id);
     if(el&&el.getBoundingClientRect().top<200)active=i;
   });
-  tabs.forEach(t=>t.classList.remove('active'));
-  tabs[active]?.classList.add('active');
+  setActiveSection(sections[active]);
 });
 
 const SOP={
@@ -1129,10 +1139,6 @@ function filterSOP(q){
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawerBtn();});
 
-function scrollTo(id){
-  const el=document.getElementById(id);
-  if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
-}
 </script>
 </body>
 </html>
