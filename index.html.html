@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PGE — Aligning Organizations System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@600;700;800&family=Source+Serif+4:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0e12;
+  --bg2: #13151c;
+  --bg3: #1a1d27;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #e8e6de;
+  --muted: #8a8880;
+  --hint: #5a5856;
+
+  --purple: #7f77dd;
+  --purple-bg: rgba(127,119,221,0.1);
+  --purple-border: rgba(127,119,221,0.3);
+
+  --teal: #1d9e75;
+  --teal-bg: rgba(29,158,117,0.1);
+  --teal-border: rgba(29,158,117,0.3);
+
+  --blue: #378add;
+  --blue-bg: rgba(55,138,221,0.1);
+  --blue-border: rgba(55,138,221,0.3);
+
+  --amber: #ef9f27;
+  --amber-bg: rgba(239,159,39,0.1);
+  --amber-border: rgba(239,159,39,0.3);
+
+  --green: #639922;
+  --green-bg: rgba(99,153,34,0.1);
+  --green-border: rgba(99,153,34,0.3);
+
+  --coral: #d85a30;
+  --coral-bg: rgba(216,90,48,0.1);
+  --coral-border: rgba(216,90,48,0.3);
+
+  --pink: #d4537e;
+  --pink-bg: rgba(212,83,126,0.1);
+  --pink-border: rgba(212,83,126,0.3);
+
+  --red: #e24b4a;
+  --red-bg: rgba(226,75,74,0.08);
+  --red-border: rgba(226,75,74,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6}
+a{color:var(--blue);text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,14,18,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 24px;gap:0;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo{width:28px;height:28px;background:var(--purple);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;letter-spacing:-.5px}
+.nav-name{font-weight:600;font-size:14px;letter-spacing:.02em}
+.nav-sub{font-size:11px;color:var(--muted);margin-left:4px}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:5px 12px;border-radius:6px;font-size:13px;color:var(--muted);cursor:pointer;transition:all .15s;border:none;background:none}
+.nav-link:hover,.nav-link.active{background:var(--bg3);color:var(--text)}
+.nav-search{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:5px 12px;font-size:13px;color:var(--muted)}
+.nav-search input{background:none;border:none;outline:none;color:var(--text);font-size:13px;width:180px}
+.nav-search input::placeholder{color:var(--hint)}
+
+/* HERO */
+.hero{margin-top:56px;padding:80px 24px 60px;text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse at center,rgba(127,119,221,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--purple-bg);border:1px solid var(--purple-border);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--purple);font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:48px;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px}
+.hero h1 span{color:var(--purple)}
+.hero p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 32px;line-height:1.6}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat .n{font-size:28px;font-weight:700;color:var(--text)}
+.hero-stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+/* SECTION TABS */
+.section-nav{position:sticky;top:56px;z-index:90;background:var(--bg);border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:0;overflow-x:auto}
+.section-nav::-webkit-scrollbar{display:none}
+.sec-tab{padding:14px 18px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;border-radius:0}
+.sec-tab:hover{color:var(--text)}
+.sec-tab.active{color:var(--text);border-bottom-color:var(--purple)}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:0 24px 80px}
+
+/* SECTION */
+.sop-section{padding:48px 0 0;border-bottom:1px solid var(--border);scroll-margin-top:112px}
+.sop-section:last-child{border-bottom:none}
+.sec-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:32px}
+.sec-title{display:flex;align-items:center;gap:12px}
+.sec-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.sec-name{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.sec-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.sec-badge{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:3px 8px;font-size:11px;color:var(--muted);white-space:nowrap}
+
+/* FLOW CARD */
+.flow-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px}
+.flow-card-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.flow-card-title{font-size:14px;font-weight:600}
+.flow-card-meta{font-size:11px;color:var(--muted)}
+.flow-hint{font-size:11px;color:var(--hint);display:flex;align-items:center;gap:5px}
+
+/* SVG FLOW */
+.flow-svg-wrap{overflow-x:auto;padding:20px}
+.flow-svg-wrap::-webkit-scrollbar{height:4px}
+.flow-svg-wrap::-webkit-scrollbar-track{background:var(--bg3)}
+.flow-svg-wrap::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.flow-svg-wrap svg{min-width:600px}
+
+/* SVG NODES */
+.fnode{cursor:pointer;transition:opacity .15s}
+.fnode:hover{opacity:.85}
+.fnode rect,.fnode polygon,.fnode ellipse{transition:filter .15s}
+.fnode:hover rect,.fnode:hover polygon,.fnode:hover ellipse{filter:brightness(1.15)}
+
+/* DETAIL PANEL */
+.detail-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(4px)}
+.detail-overlay.open{display:block}
+.detail-drawer{position:fixed;right:0;top:0;bottom:0;width:420px;max-width:100vw;background:var(--bg2);border-left:1px solid var(--border2);z-index:201;overflow-y:auto;transform:translateX(100%);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+.detail-overlay.open .detail-drawer{transform:translateX(0)}
+.drawer-header{padding:20px 20px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.drawer-close{float:right;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--muted);cursor:pointer;font-size:13px;transition:all .15s}
+.drawer-close:hover{color:var(--text);border-color:var(--border2)}
+.drawer-div{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.drawer-title{font-size:16px;font-weight:700;color:var(--text);padding-right:60px}
+.drawer-purpose{margin:0 20px 16px;padding:12px 14px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.6;border-left:3px solid var(--purple)}
+.drawer-steps{padding:0 20px 24px}
+.drawer-steps-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:12px}
+.step-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--muted);flex-shrink:0;margin-top:1px}
+.step-text{font-size:13px;color:var(--text);line-height:1.5}
+.drawer-note{margin:0 20px 20px;padding:10px 14px;background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:8px;font-size:12px;color:var(--amber);line-height:1.5}
+
+/* SOP GRID */
+.sop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:32px}
+.sop-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;cursor:pointer;transition:all .15s}
+.sop-card:hover{border-color:var(--border2);background:var(--bg2)}
+.sop-card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sop-card-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sop-card-title{font-size:13px;font-weight:600;line-height:1.3}
+.sop-card-role{font-size:11px;color:var(--muted);margin-bottom:8px}
+.sop-card-steps{font-size:11px;color:var(--hint)}
+
+/* LEGEND */
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.leg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.leg-diamond{width:10px;height:10px;background:var(--amber-bg);border:1px solid var(--amber-border);transform:rotate(45deg);flex-shrink:0}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .hero h1{font-size:32px}
+  .nav-links{display:none}
+  .detail-drawer{width:100vw}
+  .sec-header{flex-direction:column}
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   PGE Editorial Wine UI Refresh
+   Palette anchor: #871719 | Complement: #78E8E6
+   This layer preserves the original HTML, SVG, SOP content, and JS data.
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --wine:#871719;
+  --wine-rgb:135,23,25;
+  --wine-dark:#2b0708;
+  --wine-ink:#3c090b;
+  --wine-soft:#f5e7e3;
+  --wine-line:rgba(135,23,25,.22);
+  --complement:#78E8E6;
+  --complement-rgb:120,232,230;
+  --teal-ink:#0e5d5b;
+  --cream:#fffaf6;
+  --paper:#f8efe9;
+  --paper-2:#fff5ef;
+  --paper-3:#f1ddd4;
+  --black:#180304;
+  --bg:var(--cream);
+  --bg2:var(--paper-2);
+  --bg3:var(--paper);
+  --border:rgba(var(--wine-rgb),.18);
+  --border2:rgba(var(--wine-rgb),.42);
+  --text:var(--wine-dark);
+  --muted:#765b59;
+  --hint:#9d7775;
+  --purple:var(--wine);
+  --purple-bg:rgba(var(--wine-rgb),.075);
+  --purple-border:rgba(var(--wine-rgb),.34);
+  --blue:var(--teal-ink);
+  --blue-bg:rgba(var(--complement-rgb),.22);
+  --blue-border:rgba(14,93,91,.34);
+  --teal:var(--teal-ink);
+  --teal-bg:rgba(var(--complement-rgb),.18);
+  --teal-border:rgba(14,93,91,.32);
+  --amber:var(--wine);
+  --amber-bg:rgba(var(--wine-rgb),.075);
+  --amber-border:rgba(var(--wine-rgb),.28);
+  --green:var(--teal-ink);
+  --green-bg:rgba(var(--complement-rgb),.18);
+  --green-border:rgba(14,93,91,.32);
+  --coral:var(--wine);
+  --coral-bg:rgba(var(--wine-rgb),.08);
+  --coral-border:rgba(var(--wine-rgb),.3);
+  --pink:var(--wine);
+  --pink-bg:rgba(var(--wine-rgb),.075);
+  --pink-border:rgba(var(--wine-rgb),.3);
+  --red:#a52124;
+  --red-bg:rgba(165,33,36,.08);
+  --red-border:rgba(165,33,36,.3);
+}
+*{border-radius:0!important}
+html{scroll-padding-top:132px}
+body{
+  color:var(--text);
+  background:var(--cream);
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:16px;
+  letter-spacing:.005em;
+  overflow-x:hidden;
+}
+body::before,
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+}
+body::before{
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(var(--wine-rgb),.22) 1px,rgba(var(--wine-rgb),.22) 2px),
+    linear-gradient(90deg,rgba(var(--wine-rgb),.04) 1px,transparent 1px),
+    linear-gradient(rgba(var(--wine-rgb),.04) 1px,transparent 1px);
+  background-size:100% 5px,42px 42px,42px 42px;
+  opacity:.11;
+}
+body::after{
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.45'/%3E%3C/svg%3E");
+  opacity:.045;
+  mix-blend-mode:multiply;
+}
+::selection{background:var(--wine);color:var(--cream)}
+button,input,.sop-card,.sec-tab,.fnode{font:inherit}
+button,.sop-card,.sec-tab,.fnode{touch-action:manipulation}
+button:focus-visible,input:focus-visible,.sop-card:focus-visible,.sec-tab:focus-visible,.nav-link:focus-visible,.fnode:focus-visible{
+  outline:3px solid var(--wine)!important;
+  outline-offset:3px;
+}
+.skip-link{
+  position:fixed;
+  top:10px;
+  left:10px;
+  z-index:999;
+  transform:translateY(-150%);
+  background:var(--wine);
+  color:var(--cream);
+  border:2px solid var(--wine);
+  padding:10px 14px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.skip-link:focus{transform:translateY(0)}
+#scroll-progress{
+  position:fixed;
+  inset:0 auto auto 0;
+  height:4px;
+  width:0%;
+  background:linear-gradient(90deg,var(--wine),var(--complement));
+  z-index:1000;
+  transition:width 80ms linear;
+}
+nav{
+  height:72px;
+  padding:0 28px;
+  background:rgba(255,250,246,.9);
+  border-bottom:3px solid var(--wine);
+  backdrop-filter:blur(16px) saturate(140%);
+  box-shadow:none;
+}
+.nav-brand{gap:14px;min-width:250px}
+.nav-logo{
+  width:44px;
+  height:44px;
+  background:var(--wine);
+  color:var(--cream);
+  border:2px solid var(--wine);
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  letter-spacing:.02em;
+}
+.nav-name{
+  display:block;
+  color:var(--wine-dark);
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:800;
+  font-size:18px;
+  letter-spacing:-.02em;
+  line-height:1;
+}
+.nav-sub{
+  display:block;
+  margin:4px 0 0;
+  color:var(--muted);
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.nav-links{gap:0;border-left:1px solid var(--wine-line);border-right:1px solid var(--wine-line)}
+.nav-link{
+  min-height:44px;
+  padding:0 16px;
+  color:var(--wine-dark);
+  border:0;
+  border-left:1px solid var(--wine-line);
+  background:transparent;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  transition:background 100ms linear,color 100ms linear;
+}
+.nav-link:first-child{border-left:0}
+.nav-link:hover,.nav-link.active{background:var(--wine);color:var(--cream)}
+.nav-search{
+  position:relative;
+  min-height:44px;
+  gap:10px;
+  padding:0 14px;
+  background:transparent;
+  color:var(--wine);
+  border:2px solid var(--wine);
+}
+.nav-search svg{width:16px;height:16px;stroke-width:2.4px}
+.nav-search input{
+  width:210px;
+  color:var(--wine-dark);
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+}
+.nav-search input::placeholder{color:#8a6664;font-style:italic}
+.search-count{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:700;
+  color:var(--cream);
+  background:var(--wine);
+  padding:3px 6px;
+  white-space:nowrap;
+}
+.hero{
+  margin-top:72px;
+  min-height:calc(100vh - 72px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:left;
+  padding:96px max(24px,calc((100vw - 1280px)/2 + 24px)) 72px;
+  border-bottom:8px solid var(--wine);
+  background:
+    radial-gradient(circle at 83% 14%,rgba(var(--complement-rgb),.34),transparent 24%),
+    linear-gradient(135deg,rgba(var(--wine-rgb),.07),transparent 36%),
+    var(--cream);
+}
+.hero::before{
+  inset:0;
+  width:auto;
+  height:auto;
+  transform:none;
+  background-image:repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(var(--wine-rgb),.13) 48px,rgba(var(--wine-rgb),.13) 49px);
+  opacity:.34;
+}
+.hero::after{
+  content:'AOS';
+  position:absolute;
+  right:max(20px,calc((100vw - 1280px)/2));
+  bottom:-.18em;
+  color:rgba(var(--wine-rgb),.05);
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(8rem,24vw,24rem);
+  font-weight:800;
+  letter-spacing:-.08em;
+  line-height:1;
+  pointer-events:none;
+}
+.hero>*{position:relative;z-index:1}
+.hero-badge{
+  align-self:flex-start;
+  background:var(--wine);
+  color:var(--cream);
+  border:2px solid var(--wine);
+  padding:8px 12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  margin-bottom:24px;
+}
+.hero h1{
+  max-width:1000px;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(4rem,10.8vw,9.8rem);
+  font-weight:800;
+  letter-spacing:-.075em;
+  line-height:.86;
+  margin:0 0 24px;
+  color:var(--wine-dark);
+}
+.hero h1 span{color:var(--wine);font-style:italic}
+.hero p{
+  max-width:680px;
+  margin:0 0 30px;
+  color:var(--muted);
+  font-size:clamp(1.1rem,2vw,1.42rem);
+  line-height:1.45;
+  border-left:6px solid var(--wine);
+  padding-left:18px;
+}
+.hero-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:2px 0 34px;
+}
+.hero-btn{
+  min-height:48px;
+  padding:0 22px;
+  border:2px solid var(--wine);
+  background:var(--wine);
+  color:var(--cream);
+  cursor:pointer;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  transition:background 100ms linear,color 100ms linear,transform 100ms linear;
+}
+.hero-btn.secondary{background:transparent;color:var(--wine)}
+.hero-btn:hover{background:var(--cream);color:var(--wine);transform:translate(-2px,-2px)}
+.hero-btn.secondary:hover{background:var(--wine);color:var(--cream)}
+.hero-shortcut{
+  color:var(--hint);
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:.04em;
+}
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(120px,1fr));
+  gap:0;
+  max-width:820px;
+  justify-content:stretch;
+  background:var(--wine);
+  color:var(--cream);
+  border:3px solid var(--wine);
+  position:relative;
+  overflow:hidden;
+}
+.hero-stats::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:repeating-linear-gradient(90deg,transparent,transparent 1px,rgba(255,255,255,.42) 1px,rgba(255,255,255,.42) 2px);
+  background-size:6px 100%;
+  opacity:.09;
+}
+.hero-stat{padding:22px 20px;text-align:left;border-right:1px solid rgba(255,255,255,.28);position:relative;z-index:1}
+.hero-stat:last-child{border-right:0}
+.hero-stat .n{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,4vw,4.2rem);line-height:.9;color:var(--cream)}
+.hero-stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:rgba(255,250,246,.75);letter-spacing:.12em;margin-top:10px}
+.section-nav{
+  top:72px;
+  padding:0 max(24px,calc((100vw - 1280px)/2 + 24px));
+  background:rgba(255,250,246,.92);
+  border-bottom:2px solid var(--wine);
+  backdrop-filter:blur(14px);
+}
+.sec-tab{
+  min-height:56px;
+  display:flex;
+  align-items:center;
+  color:var(--wine-dark);
+  border-right:1px solid var(--wine-line);
+  border-bottom:0;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  transition:background 100ms linear,color 100ms linear;
+}
+.sec-tab:first-child{border-left:1px solid var(--wine-line)}
+.sec-tab:hover,.sec-tab.active{background:var(--wine);color:var(--cream);border-bottom:0}
+main{max-width:1280px;padding:0 24px 90px}
+.sop-section{padding:76px 0 24px;border-bottom:8px solid rgba(var(--wine-rgb),.92);scroll-margin-top:140px;position:relative}
+.sop-section:last-child{border-bottom:0}
+.sec-header{align-items:flex-end;margin-bottom:34px;padding-bottom:22px;border-bottom:2px solid var(--wine)}
+.sec-title{gap:18px}
+.sec-icon{
+  width:58px;
+  height:58px;
+  border:2px solid var(--wine)!important;
+  background:var(--cream)!important;
+  color:var(--wine);
+  font-size:24px;
+}
+.sec-name{
+  font-family:'Playfair Display',Georgia,serif;
+  color:var(--wine-dark);
+  font-size:clamp(2.2rem,4.4vw,4.2rem);
+  line-height:.95;
+  letter-spacing:-.055em;
+}
+.sec-sub{max-width:680px;color:var(--muted);font-size:1.05rem;margin-top:8px}
+.sec-badge{
+  background:var(--wine);
+  color:var(--cream);
+  border:2px solid var(--wine);
+  padding:8px 10px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.flow-card{
+  background:var(--cream);
+  border:2px solid var(--wine);
+  margin-bottom:28px;
+  position:relative;
+  overflow:hidden;
+}
+.flow-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:repeating-linear-gradient(45deg,transparent,transparent 38px,rgba(var(--wine-rgb),.06) 38px,rgba(var(--wine-rgb),.06) 40px);
+  opacity:.9;
+}
+.flow-card>*{position:relative;z-index:1}
+.flow-card-header{padding:20px 24px;border-bottom:2px solid var(--wine);background:rgba(255,250,246,.88)}
+.flow-card-title{font-family:'Playfair Display',Georgia,serif;font-size:1.45rem;line-height:1.05;color:var(--wine-dark)}
+.flow-card-meta,.flow-hint{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:6px}
+.flow-hint{padding:8px 10px;border:1px solid var(--wine-line);background:rgba(var(--complement-rgb),.16);white-space:nowrap}
+.flow-svg-wrap{padding:24px;background:rgba(255,255,255,.4)}
+.flow-svg-wrap::-webkit-scrollbar{height:10px}
+.flow-svg-wrap::-webkit-scrollbar-track{background:rgba(var(--wine-rgb),.09)}
+.flow-svg-wrap::-webkit-scrollbar-thumb{background:var(--wine)}
+.flow-svg-wrap svg{background:rgba(255,250,246,.72);border:1px solid rgba(var(--wine-rgb),.16)}
+.flow-svg-wrap svg>rect:not([width="1"]),
+.flow-svg-wrap svg>rect[height="40"],
+.flow-svg-wrap svg>rect[height="50"]{fill:rgba(var(--wine-rgb),.045)!important}
+.flow-svg-wrap svg>rect[width="1"],
+.flow-svg-wrap svg>rect[height="1"]{fill:rgba(var(--wine-rgb),.14)!important}
+.flow-svg-wrap svg>text{fill:rgba(var(--wine-rgb),.78)!important;font-family:'JetBrains Mono',monospace!important;letter-spacing:.04em}
+.flow-svg-wrap svg line,
+.flow-svg-wrap svg path{stroke:rgba(var(--wine-rgb),.66)!important}
+.flow-svg-wrap svg g.fnode rect,
+.flow-svg-wrap svg g.fnode ellipse{
+  fill:rgba(var(--wine-rgb),.055)!important;
+  stroke:rgba(var(--wine-rgb),.42)!important;
+  stroke-width:2px!important;
+}
+.flow-svg-wrap svg g.fnode polygon{
+  fill:rgba(var(--complement-rgb),.22)!important;
+  stroke:rgba(14,93,91,.55)!important;
+  stroke-width:2px!important;
+}
+.flow-svg-wrap svg g.fnode text{fill:var(--wine-dark)!important;font-family:'JetBrains Mono',monospace!important;font-weight:700!important}
+.fnode{transition:opacity 100ms linear,transform 100ms linear;transform-origin:center}
+.fnode:hover,.fnode:focus{opacity:1;transform:translateY(-2px)}
+.fnode:hover rect,.fnode:hover ellipse,.fnode:hover polygon,
+.fnode:focus rect,.fnode:focus ellipse,.fnode:focus polygon{fill:var(--wine)!important;stroke:var(--wine)!important;filter:none!important}
+.fnode:hover text,.fnode:focus text{fill:var(--cream)!important}
+.legend-row{padding-top:0!important;gap:10px}
+.leg{
+  min-height:30px;
+  padding:4px 8px;
+  border:1px solid rgba(var(--wine-rgb),.18);
+  background:rgba(255,250,246,.72);
+  color:var(--muted);
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.leg-dot,.sop-card-dot{background:var(--wine)!important;border:1px solid rgba(var(--complement-rgb),.7);width:10px;height:10px}
+.leg-diamond{background:rgba(var(--complement-rgb),.24);border-color:var(--teal-ink)}
+.sop-grid{grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;margin-bottom:48px}
+.sop-card{
+  position:relative;
+  background:rgba(255,250,246,.88);
+  border:2px solid rgba(var(--wine-rgb),.35);
+  padding:20px;
+  min-height:150px;
+  transition:background 100ms linear,color 100ms linear,border-color 100ms linear,transform 100ms linear;
+}
+.sop-card::before{
+  content:'OPEN';
+  position:absolute;
+  right:16px;
+  bottom:14px;
+  color:rgba(var(--wine-rgb),.32);
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+.sop-card:hover,.sop-card:focus-visible{
+  background:var(--wine);
+  color:var(--cream);
+  border-color:var(--wine);
+  transform:translate(-3px,-3px);
+}
+.sop-card:hover .sop-card-role,
+.sop-card:hover .sop-card-steps,
+.sop-card:focus-visible .sop-card-role,
+.sop-card:focus-visible .sop-card-steps{color:rgba(255,250,246,.76)}
+.sop-card:hover .sop-card-dot,
+.sop-card:focus-visible .sop-card-dot{background:var(--complement)!important;border-color:var(--cream)}
+.sop-card:hover::before,.sop-card:focus-visible::before{color:rgba(255,250,246,.35)}
+.sop-card-title{font-family:'Playfair Display',Georgia,serif;font-size:1.18rem;line-height:1.08;letter-spacing:-.02em}
+.sop-card-role{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin:12px 0 10px}
+.sop-card-steps{color:var(--hint);font-size:.92rem}
+.detail-overlay{background:rgba(43,7,8,.55);backdrop-filter:blur(8px)}
+.detail-drawer{
+  width:min(520px,100vw);
+  background:var(--cream);
+  border-left:4px solid var(--wine);
+  box-shadow:none;
+}
+.drawer-header{
+  padding:22px 24px 18px;
+  border-bottom:3px solid var(--wine);
+  background:var(--cream);
+}
+.drawer-actions{float:right;display:flex;gap:8px;margin-left:12px}
+.drawer-close,.drawer-copy{
+  min-height:38px;
+  background:transparent;
+  border:2px solid var(--wine);
+  color:var(--wine);
+  padding:0 12px;
+  cursor:pointer;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  transition:background 100ms linear,color 100ms linear;
+}
+.drawer-close:hover,.drawer-copy:hover{background:var(--wine);color:var(--cream);border-color:var(--wine)}
+.drawer-div{clear:none;color:var(--teal-ink);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.12em;margin-bottom:10px;text-transform:uppercase}
+.drawer-title{font-family:'Playfair Display',Georgia,serif;color:var(--wine-dark);font-size:clamp(1.6rem,4vw,2.4rem);line-height:1;letter-spacing:-.045em;padding-right:0;max-width:360px}
+.drawer-purpose{
+  margin:22px 24px 20px;
+  padding:18px 20px;
+  background:rgba(var(--complement-rgb),.15);
+  border:2px solid var(--wine);
+  border-left:8px solid var(--wine);
+  color:var(--wine-dark);
+  font-size:1rem;
+  line-height:1.55;
+}
+.drawer-steps{padding:0 24px 32px}
+.drawer-steps-title{font-family:'JetBrains Mono',monospace;color:var(--wine);font-size:11px;letter-spacing:.14em;margin-bottom:16px}
+.step-item{gap:14px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(var(--wine-rgb),.13)}
+.step-num{
+  width:30px;
+  height:30px;
+  background:var(--wine);
+  border:2px solid var(--wine);
+  color:var(--cream);
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+}
+.step-text{color:var(--wine-dark);font-size:1rem;line-height:1.5}
+.drawer-note{
+  margin:0 24px 24px;
+  padding:16px 18px;
+  background:var(--wine);
+  border:2px solid var(--wine);
+  color:var(--cream);
+  font-size:.98rem;
+}
+.floating-top{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:130;
+  width:48px;
+  height:48px;
+  border:2px solid var(--wine);
+  background:var(--cream);
+  color:var(--wine);
+  cursor:pointer;
+  font-family:'JetBrains Mono',monospace;
+  font-size:18px;
+  font-weight:800;
+  transition:background 100ms linear,color 100ms linear,transform 100ms linear,opacity 100ms linear;
+  opacity:0;
+  pointer-events:none;
+}
+.floating-top.visible{opacity:1;pointer-events:auto}
+.floating-top:hover{background:var(--wine);color:var(--cream);transform:translateY(-3px)}
+@media(max-width:1000px){
+  nav{gap:14px}.nav-brand{min-width:auto}.nav-sub{display:none}.nav-search input{width:150px}.hero-stats{grid-template-columns:repeat(2,1fr);max-width:640px}.hero-stat:nth-child(2){border-right:0}.sec-header{align-items:flex-start;flex-direction:column}.flow-card-header{align-items:flex-start;flex-direction:column}.flow-hint{white-space:normal}
+}
+@media(max-width:700px){
+  nav{height:auto;min-height:70px;padding:12px 14px;align-items:flex-start}.nav-links{display:none}.nav-search{margin-left:auto;max-width:52vw}.nav-search input{width:100%;min-width:0}.search-count{display:none}.hero{margin-top:70px;min-height:auto;padding:72px 20px 52px}.hero h1{font-size:clamp(3.5rem,18vw,6.4rem)}.hero p{font-size:1.05rem}.hero-actions{align-items:stretch}.hero-btn{width:100%;justify-content:center}.hero-stats{grid-template-columns:1fr}.hero-stat{border-right:0;border-bottom:1px solid rgba(255,255,255,.25)}.hero-stat:last-child{border-bottom:0}.section-nav{top:70px;padding:0}.sec-tab{min-height:48px;padding:0 14px;font-size:10px}.sop-section{padding-top:56px;scroll-margin-top:118px}.sec-icon{width:48px;height:48px}.sec-name{font-size:2.35rem}.sop-grid{grid-template-columns:1fr}.drawer-actions{float:none;margin:0 0 16px}.drawer-title{max-width:none}.detail-drawer{width:100vw}.drawer-purpose,.drawer-steps,.drawer-note{margin-left:18px;margin-right:18px}.flow-svg-wrap{padding:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+
+</style>
+</head>
+<body>
+<div id="scroll-progress" aria-hidden="true"></div>
+<a href="#ops" class="skip-link">Skip to SOP content</a>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">PGE</div>
+    <div>
+      <span class="nav-name">AOS</span>
+      <span class="nav-sub">Aligning Organizations System</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="scrollToSection('ops')">Operations</button>
+    <button class="nav-link" onclick="scrollToSection('sm')">Sales & Marketing</button>
+    <button class="nav-link" onclick="scrollToSection('rnd')">R&D</button>
+    <button class="nav-link" onclick="scrollToSection('fin')">Finance</button>
+    <button class="nav-link" onclick="scrollToSection('hrd')">HRD</button>
+  </div>
+  <div class="nav-search">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="search-input" placeholder="Cari SOP..." oninput="filterSOP(this.value)">
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📋 Dokumen Internal PGE 2026</div>
+  <h1>Aligning <span>Organizations</span><br>System</h1>
+  <p>Standar Operasional Prosedur end-to-end untuk seluruh divisi PGE. Klik setiap node untuk melihat detail SOP.</p>
+  <div class="hero-actions" aria-label="Quick actions">
+    <button class="hero-btn" onclick="scrollToSection('ops')">Explore SOP →</button>
+    <button class="hero-btn secondary" onclick="focusSearch()">Search SOP</button>
+    <span class="hero-shortcut">Shortcut: press / to search</span>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="n">5</div><div class="l">Divisi</div></div>
+    <div class="hero-stat"><div class="n">18</div><div class="l">SOP</div></div>
+    <div class="hero-stat"><div class="n">70+</div><div class="l">Langkah Prosedur</div></div>
+    <div class="hero-stat"><div class="n">20</div><div class="l">Jabatan</div></div>
+  </div>
+</div>
+
+<!-- SECTION TABS -->
+<div class="section-nav" id="section-nav">
+  <div class="sec-tab active" onclick="scrollToSection('ops')">⚙️ Operations</div>
+  <div class="sec-tab" onclick="scrollToSection('sm')">📢 Sales & Marketing</div>
+  <div class="sec-tab" onclick="scrollToSection('rnd')">🔬 Research & Development</div>
+  <div class="sec-tab" onclick="scrollToSection('fin')">💰 Finance</div>
+  <div class="sec-tab" onclick="scrollToSection('hrd')">👥 Human Resources</div>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- OPERATIONS -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="sop-section" id="ops">
+  <div class="sec-header">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--blue-bg);border:1px solid var(--blue-border)">⚙️</div>
+      <div>
+        <div class="sec-name">Operations</div>
+        <div class="sec-sub">Production planning, eksekusi, QC, gudang, logistik, admin ops</div>
+      </div>
+    </div>
+    <span class="sec-badge">6 SOP · 20+ prosedur</span>
+  </div>
+
+  <!-- BUSINESS PROCESS FLOW -->
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div>
+        <div class="flow-card-title">Alur Proses Bisnis — Order to Delivery</div>
+        <div class="flow-card-meta">End-to-end dari penerimaan pesanan sampai barang di tangan pelanggan</div>
+      </div>
+      <div class="flow-hint">👆 Klik node untuk detail SOP</div>
+    </div>
+    <div class="flow-svg-wrap">
+<svg viewBox="0 0 1060 420" width="1060" style="display:block">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- Swimlane backgrounds -->
+<rect x="0" y="0" width="1060" height="50" fill="rgba(127,119,221,0.06)" rx="0"/>
+<rect x="0" y="50" width="1060" height="1" fill="rgba(255,255,255,0.06)"/>
+<rect x="0" y="50" width="145" height="370" fill="rgba(127,119,221,0.04)"/>
+<rect x="145" y="50" width="1" height="370" fill="rgba(255,255,255,0.06)"/>
+<rect x="145" y="50" width="180" height="370" fill="rgba(55,138,221,0.04)"/>
+<rect x="325" y="50" width="1" height="370" fill="rgba(255,255,255,0.06)"/>
+<rect x="325" y="50" width="175" height="370" fill="rgba(55,138,221,0.06)"/>
+<rect x="500" y="50" width="1" height="370" fill="rgba(255,255,255,0.06)"/>
+<rect x="500" y="50" width="175" height="370" fill="rgba(55,138,221,0.04)"/>
+<rect x="675" y="50" width="1" height="370" fill="rgba(255,255,255,0.06)"/>
+<rect x="675" y="50" width="215" height="370" fill="rgba(29,158,117,0.04)"/>
+<rect x="890" y="50" width="1" height="370" fill="rgba(255,255,255,0.06)"/>
+<rect x="890" y="50" width="170" height="370" fill="rgba(99,153,34,0.04)"/>
+
+<!-- Lane labels row 1 -->
+<text x="72" y="28" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(127,119,221,0.8)" font-family="system-ui,sans-serif">Admin Ops</text>
+<text x="235" y="28" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(55,138,221,0.8)" font-family="system-ui,sans-serif">Perencanaan</text>
+<text x="412" y="28" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(55,138,221,0.8)" font-family="system-ui,sans-serif">Produksi</text>
+<text x="587" y="28" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(55,138,221,0.8)" font-family="system-ui,sans-serif">Produksi Lanjut</text>
+<text x="782" y="28" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(29,158,117,0.8)" font-family="system-ui,sans-serif">QC &amp; Gudang</text>
+<text x="975" y="28" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(99,153,34,0.8)" font-family="system-ui,sans-serif">Logistik</text>
+
+<!-- START -->
+<g class="fnode" onclick="openDrawer('ops-start')">
+  <ellipse cx="72" cy="100" rx="52" ry="26" fill="rgba(30,32,44,1)" stroke="rgba(139,132,128,0.5)" stroke-width="1"/>
+  <text x="72" y="105" text-anchor="middle" font-size="12" font-weight="600" fill="#8a8880" font-family="system-ui,sans-serif">Mulai</text>
+</g>
+<line x1="72" y1="126" x2="72" y2="152" stroke="#5a5856" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Terima Pesanan -->
+<g class="fnode" onclick="openDrawer('ops-order')">
+  <rect x="20" y="152" width="104" height="46" rx="8" fill="rgba(127,119,221,0.12)" stroke="rgba(127,119,221,0.4)" stroke-width="1"/>
+  <text x="72" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#afa9ec" font-family="system-ui,sans-serif">Terima &amp; verifikasi</text>
+  <text x="72" y="185" text-anchor="middle" font-size="10" fill="rgba(127,119,221,0.6)" font-family="system-ui,sans-serif">pesanan → WO</text>
+</g>
+<line x1="72" y1="198" x2="72" y2="224" stroke="#534ab7" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Buat Work Order -->
+<g class="fnode" onclick="openDrawer('ops-wo')">
+  <rect x="20" y="224" width="104" height="46" rx="8" fill="rgba(127,119,221,0.12)" stroke="rgba(127,119,221,0.4)" stroke-width="1"/>
+  <text x="72" y="242" text-anchor="middle" font-size="11" font-weight="600" fill="#afa9ec" font-family="system-ui,sans-serif">Terbitkan</text>
+  <text x="72" y="257" text-anchor="middle" font-size="10" fill="rgba(127,119,221,0.6)" font-family="system-ui,sans-serif">Work Order</text>
+</g>
+<line x1="124" y1="247" x2="162" y2="247" stroke="#534ab7" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Perencanaan Produksi -->
+<g class="fnode" onclick="openDrawer('ops-planning')">
+  <rect x="162" y="224" width="124" height="46" rx="8" fill="rgba(55,138,221,0.12)" stroke="rgba(55,138,221,0.4)" stroke-width="1"/>
+  <text x="224" y="242" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Perencanaan</text>
+  <text x="224" y="257" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">produksi</text>
+</g>
+<line x1="224" y1="224" x2="224" y2="198" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Cek Bahan Baku -->
+<g class="fnode" onclick="openDrawer('ops-bahan')">
+  <rect x="162" y="152" width="124" height="46" rx="8" fill="rgba(55,138,221,0.12)" stroke="rgba(55,138,221,0.4)" stroke-width="1"/>
+  <text x="224" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Cek bahan baku</text>
+  <text x="224" y="185" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">&amp; capacity map</text>
+</g>
+<line x1="224" y1="152" x2="224" y2="126" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Jadwal & PIC -->
+<g class="fnode" onclick="openDrawer('ops-jadwal')">
+  <rect x="162" y="80" width="124" height="46" rx="8" fill="rgba(55,138,221,0.12)" stroke="rgba(55,138,221,0.4)" stroke-width="1"/>
+  <text x="224" y="98" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Jadwal &amp; PIC</text>
+  <text x="224" y="113" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">instruksi kerja</text>
+</g>
+<line x1="286" y1="103" x2="340" y2="103" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Pre-Production -->
+<g class="fnode" onclick="openDrawer('ops-preprod')">
+  <rect x="340" y="80" width="120" height="46" rx="8" fill="rgba(55,138,221,0.1)" stroke="rgba(55,138,221,0.35)" stroke-width="1"/>
+  <text x="400" y="98" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Pre-production</text>
+  <text x="400" y="113" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">cek mesin &amp; bahan</text>
+</g>
+<line x1="400" y1="126" x2="400" y2="152" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Cutting Bahan -->
+<g class="fnode" onclick="openDrawer('ops-cutting-bahan')">
+  <rect x="340" y="152" width="120" height="46" rx="8" fill="rgba(55,138,221,0.1)" stroke="rgba(55,138,221,0.35)" stroke-width="1"/>
+  <text x="400" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Cutting bahan</text>
+  <text x="400" y="185" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">presisi ukuran</text>
+</g>
+<line x1="400" y1="198" x2="400" y2="224" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Cutting Gambar -->
+<g class="fnode" onclick="openDrawer('ops-cutting-gambar')">
+  <rect x="340" y="224" width="120" height="46" rx="8" fill="rgba(55,138,221,0.1)" stroke="rgba(55,138,221,0.35)" stroke-width="1"/>
+  <text x="400" y="242" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Cutting gambar</text>
+  <text x="400" y="257" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">cetak &amp; motif</text>
+</g>
+<line x1="460" y1="247" x2="513" y2="247" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Jahit -->
+<g class="fnode" onclick="openDrawer('ops-jahit')">
+  <rect x="513" y="224" width="124" height="46" rx="8" fill="rgba(55,138,221,0.1)" stroke="rgba(55,138,221,0.35)" stroke-width="1"/>
+  <text x="575" y="242" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Jahit / rakit</text>
+  <text x="575" y="257" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">kuat &amp; rapi</text>
+</g>
+<line x1="575" y1="224" x2="575" y2="198" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Trimming -->
+<g class="fnode" onclick="openDrawer('ops-trimming')">
+  <rect x="513" y="152" width="124" height="46" rx="8" fill="rgba(55,138,221,0.1)" stroke="rgba(55,138,221,0.35)" stroke-width="1"/>
+  <text x="575" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Trimming</text>
+  <text x="575" y="185" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">finishing produk</text>
+</g>
+<line x1="637" y1="175" x2="686" y2="175" stroke="#378add" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- QC Inspeksi -->
+<g class="fnode" onclick="openDrawer('ops-qc')">
+  <rect x="686" y="152" width="124" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="748" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">QC inspeksi</text>
+  <text x="748" y="185" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">berlapis</text>
+</g>
+<line x1="748" y1="198" x2="748" y2="222" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- DECISION: Lolos QC? -->
+<g class="fnode" onclick="openDrawer('ops-dec-qc')">
+  <polygon points="748,222 782,248 748,274 714,248" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.5)" stroke-width="1"/>
+  <text x="748" y="244" text-anchor="middle" font-size="10" font-weight="600" fill="#ef9f27" font-family="system-ui,sans-serif">Lolos</text>
+  <text x="748" y="257" text-anchor="middle" font-size="10" font-weight="600" fill="#ef9f27" font-family="system-ui,sans-serif">QC?</text>
+</g>
+<!-- Lolos Ya -->
+<line x1="782" y1="248" x2="830" y2="248" stroke="#ef9f27" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4 3"/>
+<text x="805" y="241" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.7)" font-family="system-ui,sans-serif">Ya</text>
+<!-- Tidak → Rework -->
+<path d="M714 248 L680 248 L680 175 L686 175" fill="none" stroke="#e24b4a" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text x="660" y="215" text-anchor="middle" font-size="10" fill="rgba(226,75,74,0.8)" font-family="system-ui,sans-serif">Rework</text>
+
+<!-- Barang Jadi -->
+<g class="fnode" onclick="openDrawer('ops-barangjadi')">
+  <rect x="830" y="224" width="130" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="895" y="242" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">Barang jadi</text>
+  <text x="895" y="257" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">lolos QC</text>
+</g>
+<line x1="895" y1="224" x2="895" y2="198" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Gudang -->
+<g class="fnode" onclick="openDrawer('ops-gudang')">
+  <rect x="910" y="152" width="120" height="46" rx="8" fill="rgba(99,153,34,0.1)" stroke="rgba(99,153,34,0.4)" stroke-width="1"/>
+  <text x="970" y="170" text-anchor="middle" font-size="11" font-weight="600" fill="#97c459" font-family="system-ui,sans-serif">Gudang &amp;</text>
+  <text x="970" y="185" text-anchor="middle" font-size="10" fill="rgba(99,153,34,0.6)" font-family="system-ui,sans-serif">packaging</text>
+</g>
+<path d="M895 198 L895 175 L910 175" fill="none" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="970" y1="152" x2="970" y2="126" stroke="#639922" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Pengiriman -->
+<g class="fnode" onclick="openDrawer('ops-logistik')">
+  <rect x="910" y="80" width="120" height="46" rx="8" fill="rgba(99,153,34,0.1)" stroke="rgba(99,153,34,0.4)" stroke-width="1"/>
+  <text x="970" y="98" text-anchor="middle" font-size="11" font-weight="600" fill="#97c459" font-family="system-ui,sans-serif">Pengiriman</text>
+  <text x="970" y="113" text-anchor="middle" font-size="10" fill="rgba(99,153,34,0.6)" font-family="system-ui,sans-serif">tracking delivery</text>
+</g>
+
+<!-- END -->
+<g class="fnode">
+  <ellipse cx="970" cy="330" rx="52" ry="22" fill="rgba(30,32,44,1)" stroke="rgba(99,153,34,0.5)" stroke-width="1"/>
+  <text x="970" y="334" text-anchor="middle" font-size="12" font-weight="600" fill="#639922" font-family="system-ui,sans-serif">Selesai</text>
+</g>
+<line x1="970" y1="126" x2="970" y2="308" stroke="#639922" stroke-width="1.5" stroke-dasharray="2 3" marker-end="url(#arr)"/>
+
+<!-- CI Loop annotation -->
+<g class="fnode" onclick="openDrawer('ops-ci')">
+  <rect x="686" y="300" width="150" height="40" rx="8" fill="rgba(127,119,221,0.08)" stroke="rgba(127,119,221,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="761" y="318" text-anchor="middle" font-size="10" font-weight="600" fill="rgba(127,119,221,0.7)" font-family="system-ui,sans-serif">↻ Continuous</text>
+  <text x="761" y="331" text-anchor="middle" font-size="10" fill="rgba(127,119,221,0.5)" font-family="system-ui,sans-serif">Improvement</text>
+</g>
+
+<!-- Maintenance annotation -->
+<g class="fnode" onclick="openDrawer('ops-maintenance')">
+  <rect x="340" y="300" width="140" height="40" rx="8" fill="rgba(239,159,39,0.08)" stroke="rgba(239,159,39,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="410" y="318" text-anchor="middle" font-size="10" font-weight="600" fill="rgba(239,159,39,0.7)" font-family="system-ui,sans-serif">🔧 Perawatan</text>
+  <text x="410" y="331" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.5)" font-family="system-ui,sans-serif">mesin berkala</text>
+</g>
+
+</svg>
+    </div>
+    <div class="legend-row" style="padding:0 20px 16px">
+      <div class="leg"><div class="leg-dot" style="background:rgba(127,119,221,0.4)"></div>Admin Ops</div>
+      <div class="leg"><div class="leg-dot" style="background:rgba(55,138,221,0.4)"></div>Kepala &amp; Operator Produksi</div>
+      <div class="leg"><div class="leg-dot" style="background:rgba(29,158,117,0.4)"></div>QC &amp; Gudang</div>
+      <div class="leg"><div class="leg-dot" style="background:rgba(99,153,34,0.4)"></div>Logistik</div>
+      <div class="leg"><div class="leg-diamond"></div>Decision point</div>
+      <div class="leg"><svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#e24b4a" stroke-width="1.5" stroke-dasharray="4 3"/></svg>Rework</div>
+    </div>
+  </div>
+
+  <!-- SOP CARDS GRID -->
+  <div class="sop-grid" id="ops-cards">
+    <div class="sop-card" onclick="openDrawer('ops-order')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--purple)"></div><div class="sop-card-title">SOP Admin Ops — Pemrosesan Pesanan</div></div><div class="sop-card-role">Admin Operations</div><div class="sop-card-steps">4 prosedur · Order Integration</div></div>
+    <div class="sop-card" onclick="openDrawer('ops-planning')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--blue)"></div><div class="sop-card-title">SOP Manajemen Produksi</div></div><div class="sop-card-role">Kepala Produksi</div><div class="sop-card-steps">4 prosedur · Planning, Control, Maintenance, CI</div></div>
+    <div class="sop-card" onclick="openDrawer('ops-preprod')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--blue)"></div><div class="sop-card-title">SOP Eksekusi Produksi & Perawatan Aset</div></div><div class="sop-card-role">Operator Produksi</div><div class="sop-card-steps">4 tahap · Pre, Eksekusi, QC Mandiri, Post</div></div>
+    <div class="sop-card" onclick="openDrawer('ops-qc')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--teal)"></div><div class="sop-card-title">SOP Kendali Mutu (Quality Control)</div></div><div class="sop-card-role">Staff QC & Assurance</div><div class="sop-card-steps">4 tahap · Inspeksi, Sortir, Catat, Hand-over</div></div>
+    <div class="sop-card" onclick="openDrawer('ops-gudang')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--teal)"></div><div class="sop-card-title">SOP Manajemen Gudang & Sourcing</div></div><div class="sop-card-role">Staff Gudang & Sourcing</div><div class="sop-card-steps">3 prosedur · Sourcing, Inventory, Warehousing</div></div>
+    <div class="sop-card" onclick="openDrawer('ops-logistik')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--green)"></div><div class="sop-card-title">SOP Pengemasan & Pengiriman (Logistik)</div></div><div class="sop-card-role">Staff Logistik & Pengemasan</div><div class="sop-card-steps">3 prosedur · Packaging, Koordinasi, Tracking</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SALES & MARKETING -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="sop-section" id="sm">
+  <div class="sec-header">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--coral-bg);border:1px solid var(--coral-border)">📢</div>
+      <div>
+        <div class="sec-name">Sales & Marketing</div>
+        <div class="sec-sub">Etalase digital, kampanye, penjualan B2B, hubungan pelanggan</div>
+      </div>
+    </div>
+    <span class="sec-badge">3 SOP · 15+ prosedur</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div><div class="flow-card-title">Alur Sales & Marketing</div><div class="flow-card-meta">Dari riset pasar sampai closing dan after sales</div></div>
+      <div class="flow-hint">👆 Klik node untuk detail</div>
+    </div>
+    <div class="flow-svg-wrap">
+<svg viewBox="0 0 980 300" width="980" style="display:block">
+<defs>
+  <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<!-- Lane backgrounds -->
+<rect x="0" y="0" width="980" height="40" fill="rgba(216,90,48,0.06)"/>
+<rect x="0" y="40" width="200" height="260" fill="rgba(216,90,48,0.04)"/>
+<rect x="200" y="40" width="1" height="260" fill="rgba(255,255,255,0.06)"/>
+<rect x="200" y="40" width="200" height="260" fill="rgba(212,83,126,0.04)"/>
+<rect x="400" y="40" width="1" height="260" fill="rgba(255,255,255,0.06)"/>
+<rect x="400" y="40" width="200" height="260" fill="rgba(216,90,48,0.06)"/>
+<rect x="600" y="40" width="1" height="260" fill="rgba(255,255,255,0.06)"/>
+<rect x="600" y="40" width="200" height="260" fill="rgba(216,90,48,0.04)"/>
+<rect x="800" y="40" width="1" height="260" fill="rgba(255,255,255,0.06)"/>
+<rect x="800" y="40" width="180" height="260" fill="rgba(127,119,221,0.04)"/>
+<!-- Labels -->
+<text x="100" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(216,90,48,0.8)" font-family="system-ui,sans-serif">Kepala S&amp;M</text>
+<text x="300" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(212,83,126,0.8)" font-family="system-ui,sans-serif">Marketing</text>
+<text x="500" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(216,90,48,0.8)" font-family="system-ui,sans-serif">Sales</text>
+<text x="700" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(216,90,48,0.8)" font-family="system-ui,sans-serif">Pelayanan</text>
+<text x="890" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(127,119,221,0.8)" font-family="system-ui,sans-serif">→ Ops</text>
+
+<!-- Riset Pasar -->
+<g class="fnode" onclick="openDrawer('sm-riset')">
+  <rect x="18" y="60" width="164" height="46" rx="8" fill="rgba(216,90,48,0.1)" stroke="rgba(216,90,48,0.4)" stroke-width="1"/>
+  <text x="100" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#f0997b" font-family="system-ui,sans-serif">Riset pasar</text>
+  <text x="100" y="93" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.6)" font-family="system-ui,sans-serif">&amp; analisis tren</text>
+</g>
+<line x1="100" y1="106" x2="100" y2="132" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- Strategi Kampanye -->
+<g class="fnode" onclick="openDrawer('sm-kampanye')">
+  <rect x="18" y="132" width="164" height="46" rx="8" fill="rgba(216,90,48,0.1)" stroke="rgba(216,90,48,0.4)" stroke-width="1"/>
+  <text x="100" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#f0997b" font-family="system-ui,sans-serif">Strategi</text>
+  <text x="100" y="165" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.6)" font-family="system-ui,sans-serif">kampanye &amp; promosi</text>
+</g>
+<line x1="182" y1="155" x2="218" y2="155" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- Konten Digital -->
+<g class="fnode" onclick="openDrawer('sm-konten')">
+  <rect x="218" y="60" width="164" height="46" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="300" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Konten digital</text>
+  <text x="300" y="93" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">&amp; SEO</text>
+</g>
+<line x1="300" y1="106" x2="300" y2="132" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- Iklan & Kampanye -->
+<g class="fnode" onclick="openDrawer('sm-iklan')">
+  <rect x="218" y="132" width="164" height="46" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="300" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Iklan berbayar</text>
+  <text x="300" y="165" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">Meta/Google Ads</text>
+</g>
+<line x1="300" y1="178" x2="300" y2="204" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- Leads ke Sales -->
+<g class="fnode" onclick="openDrawer('sm-leads')">
+  <rect x="218" y="204" width="164" height="46" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="300" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Hand-off leads</text>
+  <text x="300" y="237" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">ke tim Sales</text>
+</g>
+<line x1="382" y1="227" x2="418" y2="227" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- Penawaran B2B -->
+<g class="fnode" onclick="openDrawer('sm-b2b')">
+  <rect x="418" y="60" width="164" height="46" rx="8" fill="rgba(216,90,48,0.1)" stroke="rgba(216,90,48,0.4)" stroke-width="1"/>
+  <text x="500" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#f0997b" font-family="system-ui,sans-serif">Penawaran B2B</text>
+  <text x="500" y="93" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.6)" font-family="system-ui,sans-serif">&amp; distribusi sampel</text>
+</g>
+<line x1="500" y1="106" x2="500" y2="132" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- Klarifikasi Spesifikasi -->
+<g class="fnode" onclick="openDrawer('sm-spek')">
+  <rect x="418" y="132" width="164" height="46" rx="8" fill="rgba(216,90,48,0.1)" stroke="rgba(216,90,48,0.4)" stroke-width="1"/>
+  <text x="500" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#f0997b" font-family="system-ui,sans-serif">Klarifikasi</text>
+  <text x="500" y="165" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.6)" font-family="system-ui,sans-serif">spesifikasi pesanan</text>
+</g>
+<line x1="500" y1="204" x2="500" y2="178" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- Closing & Form Spec -->
+<g class="fnode" onclick="openDrawer('sm-closing')">
+  <rect x="418" y="204" width="164" height="46" rx="8" fill="rgba(216,90,48,0.1)" stroke="rgba(216,90,48,0.4)" stroke-width="1"/>
+  <text x="500" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#f0997b" font-family="system-ui,sans-serif">Closing &amp; form</text>
+  <text x="500" y="237" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.6)" font-family="system-ui,sans-serif">spesifikasi → Admin</text>
+</g>
+<line x1="582" y1="227" x2="618" y2="227" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- Monitor Status -->
+<g class="fnode" onclick="openDrawer('sm-monitor')">
+  <rect x="618" y="132" width="164" height="46" rx="8" fill="rgba(216,90,48,0.1)" stroke="rgba(216,90,48,0.4)" stroke-width="1"/>
+  <text x="700" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#f0997b" font-family="system-ui,sans-serif">Monitor status</text>
+  <text x="700" y="165" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.6)" font-family="system-ui,sans-serif">order &amp; update klien</text>
+</g>
+<path d="M618 227 L600 227 L600 155 L618 155" fill="none" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr2)"/>
+<line x1="700" y1="132" x2="700" y2="106" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- After Sales -->
+<g class="fnode" onclick="openDrawer('sm-aftersales')">
+  <rect x="618" y="60" width="164" height="46" rx="8" fill="rgba(216,90,48,0.1)" stroke="rgba(216,90,48,0.4)" stroke-width="1"/>
+  <text x="700" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#f0997b" font-family="system-ui,sans-serif">After sales</text>
+  <text x="700" y="93" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.6)" font-family="system-ui,sans-serif">&amp; repeat order</text>
+</g>
+<line x1="782" y1="83" x2="818" y2="83" stroke="#d85a30" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<!-- → ke Ops -->
+<g class="fnode" onclick="openDrawer('sm-sync-ops')">
+  <rect x="818" y="60" width="144" height="46" rx="8" fill="rgba(127,119,221,0.1)" stroke="rgba(127,119,221,0.35)" stroke-width="1"/>
+  <text x="890" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#afa9ec" font-family="system-ui,sans-serif">Sinkronisasi</text>
+  <text x="890" y="93" text-anchor="middle" font-size="10" fill="rgba(127,119,221,0.6)" font-family="system-ui,sans-serif">ke Operasional</text>
+</g>
+
+<!-- Evaluasi loop -->
+<g class="fnode" onclick="openDrawer('sm-evaluasi')">
+  <rect x="818" y="204" width="144" height="46" rx="8" fill="rgba(216,90,48,0.08)" stroke="rgba(216,90,48,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="890" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="rgba(216,90,48,0.7)" font-family="system-ui,sans-serif">↻ Evaluasi</text>
+  <text x="890" y="237" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.5)" font-family="system-ui,sans-serif">&amp; riset pasar</text>
+</g>
+</svg>
+    </div>
+    <div class="legend-row" style="padding:0 20px 16px">
+      <div class="leg"><div class="leg-dot" style="background:rgba(216,90,48,0.5)"></div>Kepala S&M &amp; Sales</div>
+      <div class="leg"><div class="leg-dot" style="background:rgba(212,83,126,0.5)"></div>Marketing</div>
+      <div class="leg"><div class="leg-dot" style="background:rgba(127,119,221,0.4)"></div>Hand-off ke Operasional</div>
+    </div>
+  </div>
+
+  <div class="sop-grid" id="sm-cards">
+    <div class="sop-card" onclick="openDrawer('sm-kampanye')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--coral)"></div><div class="sop-card-title">SOP Manajemen Sales & Marketing</div></div><div class="sop-card-role">Kepala Sales & Marketing</div><div class="sop-card-steps">4 prosedur · Strategi, Kampanye, Sinkronisasi, Evaluasi</div></div>
+    <div class="sop-card" onclick="openDrawer('sm-konten')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--pink)"></div><div class="sop-card-title">SOP Divisi Marketing</div></div><div class="sop-card-role">Staff Marketing</div><div class="sop-card-steps">5 prosedur · Konten, Iklan, Leads, CRM, Evaluasi</div></div>
+    <div class="sop-card" onclick="openDrawer('sm-b2b')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--coral)"></div><div class="sop-card-title">SOP Sales & Business Development</div></div><div class="sop-card-role">Staff Sales</div><div class="sop-card-steps">5 prosedur · B2B, Closing, Event, CRM, Pelaporan</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- R&D -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="sop-section" id="rnd">
+  <div class="sec-header">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--teal-bg);border:1px solid var(--teal-border)">🔬</div>
+      <div>
+        <div class="sec-name">Research & Development</div>
+        <div class="sec-sub">Desain produk, tech pack, uji material, standarisasi teknis</div>
+      </div>
+    </div>
+    <span class="sec-badge">3 SOP · 12+ prosedur</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div><div class="flow-card-title">Alur R&D — Ide sampai Production-Ready</div><div class="flow-card-meta">Dari brief tren pasar hingga tech pack yang disahkan ke Operasional</div></div>
+      <div class="flow-hint">👆 Klik node untuk detail</div>
+    </div>
+    <div class="flow-svg-wrap">
+<svg viewBox="0 0 900 300" width="900" style="display:block">
+<defs>
+  <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="900" height="40" fill="rgba(29,158,117,0.06)"/>
+<rect x="0" y="40" width="220" height="260" fill="rgba(29,158,117,0.04)"/>
+<rect x="220" y="40" width="1" height="260" fill="rgba(255,255,255,0.06)"/>
+<rect x="220" y="40" width="220" height="260" fill="rgba(29,158,117,0.06)"/>
+<rect x="440" y="40" width="1" height="260" fill="rgba(255,255,255,0.06)"/>
+<rect x="440" y="40" width="220" height="260" fill="rgba(29,158,117,0.04)"/>
+<rect x="660" y="40" width="1" height="260" fill="rgba(255,255,255,0.06)"/>
+<rect x="660" y="40" width="240" height="260" fill="rgba(55,138,221,0.04)"/>
+<text x="110" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(29,158,117,0.8)" font-family="system-ui,sans-serif">Kepala R&amp;D</text>
+<text x="330" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(29,158,117,0.8)" font-family="system-ui,sans-serif">Product Development</text>
+<text x="550" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(29,158,117,0.8)" font-family="system-ui,sans-serif">Technical Specialist</text>
+<text x="780" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(55,138,221,0.8)" font-family="system-ui,sans-serif">→ Ops / Sales</text>
+
+<!-- Brief dari Sales -->
+<g class="fnode" onclick="openDrawer('rnd-brief')">
+  <rect x="18" y="60" width="184" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="110" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">Terima brief</text>
+  <text x="110" y="93" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">tren pasar dari Sales</text>
+</g>
+<line x1="110" y1="106" x2="110" y2="132" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- Creative Brief -->
+<g class="fnode" onclick="openDrawer('rnd-creative')">
+  <rect x="18" y="132" width="184" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="110" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">Creative briefing</text>
+  <text x="110" y="165" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">ke Product Development</text>
+</g>
+<line x1="202" y1="155" x2="238" y2="155" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- Desain & AI -->
+<g class="fnode" onclick="openDrawer('rnd-desain')">
+  <rect x="238" y="60" width="184" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="330" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">Desain &amp; eksplorasi</text>
+  <text x="330" y="93" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">AI generatif, motif</text>
+</g>
+<line x1="330" y1="106" x2="330" y2="132" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- Review Desain -->
+<g class="fnode" onclick="openDrawer('rnd-review')">
+  <rect x="238" y="132" width="184" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="330" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">Review &amp; iterasi</text>
+  <text x="330" y="165" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">ke Kepala RnD</text>
+</g>
+<line x1="330" y1="178" x2="330" y2="204" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- DECISION: ACC? -->
+<g class="fnode" onclick="openDrawer('rnd-acc')">
+  <polygon points="330,204 364,230 330,256 296,230" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.5)" stroke-width="1"/>
+  <text x="330" y="226" text-anchor="middle" font-size="10" font-weight="600" fill="#ef9f27" font-family="system-ui,sans-serif">ACC</text>
+  <text x="330" y="239" text-anchor="middle" font-size="10" font-weight="600" fill="#ef9f27" font-family="system-ui,sans-serif">Design?</text>
+</g>
+<!-- Tidak → revisi -->
+<path d="M296 230 L260 230 L260 155 L238 155" fill="none" stroke="#e24b4a" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr3)"/>
+<text x="248" y="200" text-anchor="middle" font-size="10" fill="rgba(226,75,74,0.7)" font-family="system-ui,sans-serif">Revisi</text>
+<!-- Ya → Tech -->
+<line x1="364" y1="230" x2="440" y2="230" stroke="#ef9f27" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr3)"/>
+<text x="402" y="222" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.7)" font-family="system-ui,sans-serif">Ya</text>
+
+<!-- Uji Material -->
+<g class="fnode" onclick="openDrawer('rnd-material')">
+  <rect x="458" y="60" width="184" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="550" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">Uji material</text>
+  <text x="550" y="93" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">&amp; durability test</text>
+</g>
+<line x1="550" y1="106" x2="550" y2="132" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- Optimasi HPP -->
+<g class="fnode" onclick="openDrawer('rnd-hpp')">
+  <rect x="458" y="132" width="184" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="550" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">Optimasi HPP</text>
+  <text x="550" y="165" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">&amp; formula biaya</text>
+</g>
+<line x1="550" y1="204" x2="550" y2="178" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- Tech Pack -->
+<g class="fnode" onclick="openDrawer('rnd-techpack')">
+  <rect x="458" y="204" width="184" height="46" rx="8" fill="rgba(29,158,117,0.1)" stroke="rgba(29,158,117,0.4)" stroke-width="1"/>
+  <text x="550" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#5dcaa5" font-family="system-ui,sans-serif">Susun Tech Pack</text>
+  <text x="550" y="237" text-anchor="middle" font-size="10" fill="rgba(29,158,117,0.6)" font-family="system-ui,sans-serif">blueprint &amp; ukuran presisi</text>
+</g>
+<line x1="642" y1="227" x2="678" y2="227" stroke="#1d9e75" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- Rapat Transfer -->
+<g class="fnode" onclick="openDrawer('rnd-transfer')">
+  <rect x="678" y="60" width="204" height="46" rx="8" fill="rgba(55,138,221,0.1)" stroke="rgba(55,138,221,0.4)" stroke-width="1"/>
+  <text x="780" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Rapat transfer</text>
+  <text x="780" y="93" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">ke Operasional</text>
+</g>
+<line x1="780" y1="106" x2="780" y2="132" stroke="#378add" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- Supervisi batch 1 -->
+<g class="fnode" onclick="openDrawer('rnd-supervisi')">
+  <rect x="678" y="132" width="204" height="46" rx="8" fill="rgba(55,138,221,0.1)" stroke="rgba(55,138,221,0.4)" stroke-width="1"/>
+  <text x="780" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#85b7eb" font-family="system-ui,sans-serif">Supervisi batch 1</text>
+  <text x="780" y="165" text-anchor="middle" font-size="10" fill="rgba(55,138,221,0.6)" font-family="system-ui,sans-serif">cross-check blueprint</text>
+</g>
+<path d="M678 227 L660 227 L660 155 L678 155" fill="none" stroke="#378add" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<!-- Katalog ke Sales -->
+<g class="fnode" onclick="openDrawer('rnd-katalog')">
+  <rect x="18" y="230" width="184" height="40" rx="8" fill="rgba(216,90,48,0.08)" stroke="rgba(216,90,48,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="110" y="248" text-anchor="middle" font-size="10" font-weight="600" fill="rgba(216,90,48,0.7)" font-family="system-ui,sans-serif">📋 Katalog visual</text>
+  <text x="110" y="261" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.5)" font-family="system-ui,sans-serif">hand-over ke Sales</text>
+</g>
+<path d="M110 230 L110 178 M110 178 L110 178" fill="none" stroke="rgba(216,90,48,0.4)" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="110" y1="230" x2="110" y2="206" stroke="rgba(216,90,48,0.4)" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr3)"/>
+<line x1="202" y1="245" x2="238" y2="245" stroke="rgba(216,90,48,0.4)" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr3)"/>
+<g class="fnode" onclick="openDrawer('rnd-katalog')">
+  <rect x="238" y="224" width="184" height="46" rx="8" fill="rgba(216,90,48,0.08)" stroke="rgba(216,90,48,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="330" y="268" text-anchor="middle" font-size="10" fill="rgba(216,90,48,0.5)" font-family="system-ui,sans-serif" style="display:none"></text>
+</g>
+</svg>
+    </div>
+  </div>
+
+  <div class="sop-grid" id="rnd-cards">
+    <div class="sop-card" onclick="openDrawer('rnd-creative')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--teal)"></div><div class="sop-card-title">SOP Kepala R&D</div></div><div class="sop-card-role">Kepala R&D</div><div class="sop-card-steps">4 prosedur · Strategi, Uji Teknis, Standarisasi, ACC Design</div></div>
+    <div class="sop-card" onclick="openDrawer('rnd-desain')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--teal)"></div><div class="sop-card-title">SOP Product Development</div></div><div class="sop-card-role">Designer & Pattern Specialist</div><div class="sop-card-steps">3 prosedur · Desain, Iterasi ACC, Katalog &amp; Hand-over</div></div>
+    <div class="sop-card" onclick="openDrawer('rnd-techpack')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--teal)"></div><div class="sop-card-title">SOP R&D QC & Standarisasi Teknis</div></div><div class="sop-card-role">Technical & Blueprint Specialist</div><div class="sop-card-steps">4 prosedur · Material, HPP, Blueprint, Transfer Teknologi</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- FINANCE -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="sop-section" id="fin">
+  <div class="sec-header">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--amber-bg);border:1px solid var(--amber-border)">💰</div>
+      <div>
+        <div class="sec-name">Finance & Accounting</div>
+        <div class="sec-sub">Arus kas, piutang, HPP, pajak, laporan keuangan</div>
+      </div>
+    </div>
+    <span class="sec-badge">2 SOP · 8 prosedur</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div><div class="flow-card-title">Alur Finance — Daily Operation to Reporting</div><div class="flow-card-meta">Dari transaksi harian sampai laporan keuangan dan kepatuhan pajak</div></div>
+      <div class="flow-hint">👆 Klik node untuk detail</div>
+    </div>
+    <div class="flow-svg-wrap">
+<svg viewBox="0 0 860 260" width="860" style="display:block">
+<defs>
+  <marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="860" height="40" fill="rgba(239,159,39,0.06)"/>
+<rect x="0" y="40" width="220" height="220" fill="rgba(239,159,39,0.04)"/>
+<rect x="220" y="40" width="1" height="220" fill="rgba(255,255,255,0.06)"/>
+<rect x="220" y="40" width="220" height="220" fill="rgba(239,159,39,0.06)"/>
+<rect x="440" y="40" width="1" height="220" fill="rgba(255,255,255,0.06)"/>
+<rect x="440" y="40" width="200" height="220" fill="rgba(239,159,39,0.04)"/>
+<rect x="640" y="40" width="1" height="220" fill="rgba(255,255,255,0.06)"/>
+<rect x="640" y="40" width="220" height="220" fill="rgba(99,153,34,0.04)"/>
+<text x="110" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(239,159,39,0.8)" font-family="system-ui,sans-serif">Finance & Treasury</text>
+<text x="330" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(239,159,39,0.8)" font-family="system-ui,sans-serif">Accounting & Tax</text>
+<text x="540" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(239,159,39,0.8)" font-family="system-ui,sans-serif">Audit & Kontrol</text>
+<text x="750" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(99,153,34,0.8)" font-family="system-ui,sans-serif">Pelaporan</text>
+
+<!-- Arus Kas Harian -->
+<g class="fnode" onclick="openDrawer('fin-kas')">
+  <rect x="18" y="60" width="184" height="46" rx="8" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.4)" stroke-width="1"/>
+  <text x="110" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#fac775" font-family="system-ui,sans-serif">Arus kas harian</text>
+  <text x="110" y="93" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.6)" font-family="system-ui,sans-serif">input &amp; rekonsiliasi</text>
+</g>
+<line x1="110" y1="106" x2="110" y2="132" stroke="#ef9f27" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<!-- Piutang & Utang -->
+<g class="fnode" onclick="openDrawer('fin-piutang')">
+  <rect x="18" y="132" width="184" height="46" rx="8" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.4)" stroke-width="1"/>
+  <text x="110" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#fac775" font-family="system-ui,sans-serif">Piutang B2B</text>
+  <text x="110" y="165" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.6)" font-family="system-ui,sans-serif">&amp; utang vendor</text>
+</g>
+<line x1="110" y1="178" x2="110" y2="204" stroke="#ef9f27" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<!-- Payroll -->
+<g class="fnode" onclick="openDrawer('fin-payroll')">
+  <rect x="18" y="204" width="184" height="40" rx="8" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.4)" stroke-width="1"/>
+  <text x="110" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#fac775" font-family="system-ui,sans-serif">Penggajian (Payroll)</text>
+  <text x="110" y="237" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.6)" font-family="system-ui,sans-serif">akurat &amp; tepat waktu</text>
+</g>
+<line x1="202" y1="155" x2="238" y2="155" stroke="#ef9f27" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<!-- HPP -->
+<g class="fnode" onclick="openDrawer('fin-hpp')">
+  <rect x="238" y="60" width="184" height="46" rx="8" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.4)" stroke-width="1"/>
+  <text x="330" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#fac775" font-family="system-ui,sans-serif">Kalkulasi HPP</text>
+  <text x="330" y="93" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.6)" font-family="system-ui,sans-serif">&amp; skema harga jual</text>
+</g>
+<line x1="330" y1="106" x2="330" y2="132" stroke="#ef9f27" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<!-- Anggaran -->
+<g class="fnode" onclick="openDrawer('fin-anggaran')">
+  <rect x="238" y="132" width="184" height="46" rx="8" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.4)" stroke-width="1"/>
+  <text x="330" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#fac775" font-family="system-ui,sans-serif">Penganggaran</text>
+  <text x="330" y="165" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.6)" font-family="system-ui,sans-serif">&amp; monitoring plafon</text>
+</g>
+<line x1="330" y1="178" x2="330" y2="204" stroke="#ef9f27" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<!-- Pajak -->
+<g class="fnode" onclick="openDrawer('fin-pajak')">
+  <rect x="238" y="204" width="184" height="40" rx="8" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.4)" stroke-width="1"/>
+  <text x="330" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#fac775" font-family="system-ui,sans-serif">Kepatuhan pajak</text>
+  <text x="330" y="237" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.6)" font-family="system-ui,sans-serif">PPh &amp; PPN e-Filing</text>
+</g>
+<line x1="422" y1="155" x2="458" y2="155" stroke="#ef9f27" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<!-- Audit Internal -->
+<g class="fnode" onclick="openDrawer('fin-audit')">
+  <rect x="458" y="132" width="164" height="46" rx="8" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.4)" stroke-width="1"/>
+  <text x="540" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#fac775" font-family="system-ui,sans-serif">Audit internal</text>
+  <text x="540" y="165" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.6)" font-family="system-ui,sans-serif">&amp; kontrol anggaran</text>
+</g>
+<line x1="622" y1="155" x2="658" y2="155" stroke="#ef9f27" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<!-- Laporan Keuangan -->
+<g class="fnode" onclick="openDrawer('fin-laporan')">
+  <rect x="658" y="60" width="184" height="46" rx="8" fill="rgba(99,153,34,0.1)" stroke="rgba(99,153,34,0.4)" stroke-width="1"/>
+  <text x="750" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#97c459" font-family="system-ui,sans-serif">Laporan keuangan</text>
+  <text x="750" y="93" text-anchor="middle" font-size="10" fill="rgba(99,153,34,0.6)" font-family="system-ui,sans-serif">L/R, Neraca, Arus Kas</text>
+</g>
+<line x1="750" y1="106" x2="750" y2="132" stroke="#639922" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<!-- Analisis Kinerja -->
+<g class="fnode" onclick="openDrawer('fin-analisis')">
+  <rect x="658" y="132" width="184" height="46" rx="8" fill="rgba(99,153,34,0.1)" stroke="rgba(99,153,34,0.4)" stroke-width="1"/>
+  <text x="750" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#97c459" font-family="system-ui,sans-serif">Analisis kinerja</text>
+  <text x="750" y="165" text-anchor="middle" font-size="10" fill="rgba(99,153,34,0.6)" font-family="system-ui,sans-serif">&amp; forecasting</text>
+</g>
+<path d="M658 155 L640 155 L640 83 L658 83" fill="none" stroke="#639922" stroke-width="1.5" marker-end="url(#arr4)"/>
+</svg>
+    </div>
+  </div>
+
+  <div class="sop-grid" id="fin-cards">
+    <div class="sop-card" onclick="openDrawer('fin-kas')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--amber)"></div><div class="sop-card-title">SOP Finance & Treasury</div></div><div class="sop-card-role">Staff Finance & Treasury</div><div class="sop-card-steps">4 prosedur · Kas, Piutang, Utang Vendor, Payroll</div></div>
+    <div class="sop-card" onclick="openDrawer('fin-hpp')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--amber)"></div><div class="sop-card-title">SOP Accounting & Tax</div></div><div class="sop-card-role">Staff Accounting & Tax</div><div class="sop-card-steps">4 prosedur · HPP, Anggaran, Pajak, Pelaporan</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- HRD -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="sop-section" id="hrd">
+  <div class="sec-header">
+    <div class="sec-title">
+      <div class="sec-icon" style="background:var(--pink-bg);border:1px solid var(--pink-border)">👥</div>
+      <div>
+        <div class="sec-name">Human Resources Development</div>
+        <div class="sec-sub">Rekrutmen, pelatihan, KPI, payroll, kepatuhan ketenagakerjaan</div>
+      </div>
+    </div>
+    <span class="sec-badge">2 SOP · 7 prosedur</span>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-card-header">
+      <div><div class="flow-card-title">Alur HRD — Talent Acquisition to Performance</div><div class="flow-card-meta">Dari analisis kebutuhan, rekrutmen, onboarding, sampai evaluasi kinerja</div></div>
+      <div class="flow-hint">👆 Klik node untuk detail</div>
+    </div>
+    <div class="flow-svg-wrap">
+<svg viewBox="0 0 900 260" width="900" style="display:block">
+<defs>
+  <marker id="arr5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect x="0" y="0" width="900" height="40" fill="rgba(212,83,126,0.06)"/>
+<rect x="0" y="40" width="225" height="220" fill="rgba(212,83,126,0.04)"/>
+<rect x="225" y="40" width="1" height="220" fill="rgba(255,255,255,0.06)"/>
+<rect x="225" y="40" width="225" height="220" fill="rgba(212,83,126,0.06)"/>
+<rect x="450" y="40" width="1" height="220" fill="rgba(255,255,255,0.06)"/>
+<rect x="450" y="40" width="225" height="220" fill="rgba(212,83,126,0.04)"/>
+<rect x="675" y="40" width="1" height="220" fill="rgba(255,255,255,0.06)"/>
+<rect x="675" y="40" width="225" height="220" fill="rgba(127,119,221,0.04)"/>
+<text x="112" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(212,83,126,0.8)" font-family="system-ui,sans-serif">HR Specialist</text>
+<text x="337" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(212,83,126,0.8)" font-family="system-ui,sans-serif">Rekrutmen &amp; Training</text>
+<text x="562" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(212,83,126,0.8)" font-family="system-ui,sans-serif">Manajemen Kinerja</text>
+<text x="787" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(127,119,221,0.8)" font-family="system-ui,sans-serif">HR Admin &amp; Compliance</text>
+
+<!-- Analisis Kebutuhan -->
+<g class="fnode" onclick="openDrawer('hrd-analisis')">
+  <rect x="18" y="60" width="189" height="46" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="112" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Analisis kebutuhan</text>
+  <text x="112" y="93" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">SDM &amp; training</text>
+</g>
+<line x1="112" y1="106" x2="112" y2="132" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+<!-- Budaya & KPI -->
+<g class="fnode" onclick="openDrawer('hrd-budaya')">
+  <rect x="18" y="132" width="189" height="46" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="112" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Budaya &amp; KPI</text>
+  <text x="112" y="165" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">perumusan target</text>
+</g>
+<line x1="207" y1="155" x2="243" y2="155" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+<!-- Rekrutmen -->
+<g class="fnode" onclick="openDrawer('hrd-rekrutmen')">
+  <rect x="243" y="60" width="189" height="46" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="337" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Rekrutmen</text>
+  <text x="337" y="93" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">sourcing, screening, offering</text>
+</g>
+<line x1="337" y1="106" x2="337" y2="132" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+<!-- Onboarding -->
+<g class="fnode" onclick="openDrawer('hrd-onboarding')">
+  <rect x="243" y="132" width="189" height="46" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="337" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Onboarding</text>
+  <text x="337" y="165" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">&amp; internalisasi budaya</text>
+</g>
+<line x1="337" y1="178" x2="337" y2="204" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+<!-- Training -->
+<g class="fnode" onclick="openDrawer('hrd-training')">
+  <rect x="243" y="204" width="189" height="40" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="337" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Training &amp; TNA</text>
+  <text x="337" y="237" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">Learning &amp; Development</text>
+</g>
+<line x1="432" y1="155" x2="468" y2="155" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+<!-- Evaluasi KPI -->
+<g class="fnode" onclick="openDrawer('hrd-kpi')">
+  <rect x="468" y="132" width="189" height="46" rx="8" fill="rgba(212,83,126,0.1)" stroke="rgba(212,83,126,0.4)" stroke-width="1"/>
+  <text x="562" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#ed93b1" font-family="system-ui,sans-serif">Evaluasi kinerja</text>
+  <text x="562" y="165" text-anchor="middle" font-size="10" fill="rgba(212,83,126,0.6)" font-family="system-ui,sans-serif">KPI &amp; feedback</text>
+</g>
+<line x1="562" y1="178" x2="562" y2="204" stroke="#d4537e" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+<!-- PIP / Promosi -->
+<g class="fnode" onclick="openDrawer('hrd-pip')">
+  <polygon points="562,204 600,230 562,256 524,230" fill="rgba(239,159,39,0.1)" stroke="rgba(239,159,39,0.5)" stroke-width="1"/>
+  <text x="562" y="226" text-anchor="middle" font-size="10" font-weight="600" fill="#ef9f27" font-family="system-ui,sans-serif">Target</text>
+  <text x="562" y="239" text-anchor="middle" font-size="10" font-weight="600" fill="#ef9f27" font-family="system-ui,sans-serif">tercapai?</text>
+</g>
+<!-- Ya Promosi -->
+<line x1="600" y1="230" x2="693" y2="230" stroke="#ef9f27" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr5)"/>
+<text x="646" y="222" text-anchor="middle" font-size="10" fill="rgba(239,159,39,0.7)" font-family="system-ui,sans-serif">Ya → Promosi</text>
+<!-- Tidak → PIP -->
+<path d="M524 230 L468 230 L468 204" fill="none" stroke="#e24b4a" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr5)"/>
+<text x="490" y="220" text-anchor="middle" font-size="10" fill="rgba(226,75,74,0.7)" font-family="system-ui,sans-serif">PIP</text>
+
+<!-- Admin Payroll -->
+<g class="fnode" onclick="openDrawer('hrd-payroll')">
+  <rect x="693" y="60" width="189" height="46" rx="8" fill="rgba(127,119,221,0.1)" stroke="rgba(127,119,221,0.4)" stroke-width="1"/>
+  <text x="787" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#afa9ec" font-family="system-ui,sans-serif">Admin &amp; payroll</text>
+  <text x="787" y="93" text-anchor="middle" font-size="10" fill="rgba(127,119,221,0.6)" font-family="system-ui,sans-serif">BPJS, cuti, kontrak</text>
+</g>
+<line x1="787" y1="106" x2="787" y2="132" stroke="#534ab7" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+<!-- Compliance -->
+<g class="fnode" onclick="openDrawer('hrd-compliance')">
+  <rect x="693" y="132" width="189" height="46" rx="8" fill="rgba(127,119,221,0.1)" stroke="rgba(127,119,221,0.4)" stroke-width="1"/>
+  <text x="787" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#afa9ec" font-family="system-ui,sans-serif">Kepatuhan hukum</text>
+  <text x="787" y="165" text-anchor="middle" font-size="10" fill="rgba(127,119,221,0.6)" font-family="system-ui,sans-serif">UU Ketenagakerjaan</text>
+</g>
+</svg>
+    </div>
+  </div>
+
+  <div class="sop-grid" id="hrd-cards">
+    <div class="sop-card" onclick="openDrawer('hrd-rekrutmen')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--pink)"></div><div class="sop-card-title">SOP HR Talent, Culture & Performance</div></div><div class="sop-card-role">HR Specialist</div><div class="sop-card-steps">4 prosedur · Rekrutmen, Training, KPI, Budaya</div></div>
+    <div class="sop-card" onclick="openDrawer('hrd-payroll')"><div class="sop-card-header"><div class="sop-card-dot" style="background:var(--purple)"></div><div class="sop-card-title">SOP HR Admin, Payroll & Compliance</div></div><div class="sop-card-role">Staff HR Admin</div><div class="sop-card-steps">3 prosedur · Comp&Ben, Administrasi, Kepatuhan</div></div>
+  </div>
+</section>
+
+</main>
+
+<!-- DETAIL DRAWER -->
+<div class="detail-overlay" id="detail-overlay" onclick="closeDrawer(event)">
+  <div class="detail-drawer" id="detail-drawer">
+    <div class="drawer-header">
+      <button class="drawer-close" onclick="closeDrawerBtn()">✕ Tutup</button>
+      <div class="drawer-div" id="d-div"></div>
+      <div class="drawer-title" id="d-title"></div>
+    </div>
+    <div class="drawer-purpose" id="d-purpose"></div>
+    <div class="drawer-steps">
+      <div class="drawer-steps-title">Langkah-langkah</div>
+      <div id="d-steps"></div>
+    </div>
+    <div class="drawer-note" id="d-note" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+function setActiveSection(id){
+  const map={ops:0,sm:1,rnd:2,fin:3,hrd:4};
+  const index=map[id];
+
+  document.querySelectorAll('.sec-tab,.nav-link').forEach(t=>t.classList.remove('active'));
+
+  if(index!==undefined){
+    document.querySelectorAll('.sec-tab')[index]?.classList.add('active');
+    document.querySelectorAll('.nav-link')[index]?.classList.add('active');
+  }
+}
+
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+  setActiveSection(id);
+}
+window.addEventListener('scroll',()=>{
+  const sections=['ops','sm','rnd','fin','hrd'];
+  const tabs=document.querySelectorAll('.sec-tab');
+  let active=0;
+  sections.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<200)active=i;
+  });
+  setActiveSection(sections[active]);
+});
+
+const SOP={
+  'ops-start':{div:'Operations — Admin Ops',title:'Mulai: penerimaan pesanan masuk',purpose:'Titik masuk sistem operasional PGE. Setiap pesanan masuk dari kanal manapun harus melalui Admin Operations terlebih dahulu sebelum diproses.',steps:['Pesanan masuk dari semua kanal (marketplace, WhatsApp, B2B langsung, counter)','Admin memverifikasi kelengkapan data: nama, spesifikasi, jumlah, deadline, DP','Input ke sistem manajemen order (Notion/ClickUp)','Terbitkan Work Order resmi'],note:'Dilarang: tim Produksi tidak boleh menerima instruksi langsung dari Sales atau pelanggan. Semua harus melalui Admin Ops.'},
+  'ops-order':{div:'Admin Operations — SOP Pemrosesan Pesanan',title:'Terima & verifikasi pesanan → Work Order',purpose:'Menerjemahkan pesanan Sales menjadi instruksi kerja (Work Order) yang sah untuk tim Produksi. Memastikan semua detail spesifikasi terkonfirmasi sebelum produksi dimulai.',steps:['Terima Detail Order dari divisi Sales & Marketing (custom maupun standar)','Verifikasi data: ketersediaan desain ACC, deadline, dan instruksi khusus pelanggan','Terbitkan Work Order (WO) resmi berisi spesifikasi produksi dan tenggat waktu','Teruskan WO kepada Kepala Produksi untuk Production Planning','Catat data penjualan dan rekap harian untuk Finance']},
+  'ops-wo':{div:'Admin Operations',title:'Work Order (WO) — dokumen produksi resmi',purpose:'Work Order adalah dokumen resmi yang menjadi dasar seluruh aktivitas produksi. Tanpa WO yang sah, produksi tidak boleh dimulai.',steps:['WO memuat: nomor order, nama pemesan, spesifikasi produk, jumlah, deadline pengiriman','WO dilampiri blueprint dari RnD (untuk pesanan custom)','WO ditandatangani Admin Ops sebelum diserahkan ke Kepala Produksi','Salinan WO disimpan oleh Admin, Kepala Produksi, dan Finance'],note:'SOP kritis: produksi tanpa WO adalah pelanggaran prosedur.'},
+  'ops-planning':{div:'Operations — Kepala Produksi',title:'Perencanaan produksi (Production Planning)',purpose:'Menjamin jadwal produksi yang akurat dan mencegah overload kapasitas. Kepala Produksi mengelola seluruh resource planning berdasarkan WO yang diterima dari Admin Ops.',steps:['Terima Work Order dari Admin Operations dan baca spesifikasi dengan teliti','Cek ketersediaan bahan baku ke Gudang & Sourcing','Lakukan capacity mapping: hitung kapasitas mesin dan operator yang tersedia','Susun jadwal produksi mingguan dan target harian per operator','Assign PIC untuk setiap stasiun kerja','Update jadwal di platform terpusat (Notion/ClickUp) agar Sales bisa pantau progress','Lakukan revisi jadwal jika ada kendala teknis atau lonjakan order mendadak']},
+  'ops-bahan':{div:'Operasional — Gudang & Sourcing',title:'Cek bahan baku & capacity mapping',purpose:'Memastikan bahan baku tersedia sesuai kebutuhan WO sebelum produksi dimulai. Mencegah stock-out di tengah proses produksi.',steps:['Terima daftar kebutuhan bahan dari Admin Ops berdasarkan WO','Cek stok fisik dan sistem inventori secara bersamaan','Jika stok cukup: siapkan bahan dan serahkan ke area produksi','Jika stok kurang: buat Purchase Request dan koordinasi dengan Kepala Gudang','Verifikasi kualitas bahan sebelum diserahkan ke operator','Catat pengeluaran bahan di sistem untuk rekap Finance']},
+  'ops-jadwal':{div:'Operasional — Kepala Produksi',title:'Jadwal & PIC — instruksi kerja',purpose:'Menerbitkan jadwal produksi final dan menetapkan penanggung jawab di setiap stasiun kerja. Lakukan briefing pagi setiap hari sebelum produksi dimulai.',steps:['Tetapkan urutan proses: cutting bahan → cutting gambar → jahit → trimming → QC','Assign PIC (Person In Charge) untuk setiap stasiun','Tetapkan target harian per operator sesuai kapasitas optimal','Distribusikan instruksi kerja (WO + blueprint) kepada seluruh operator','Lakukan briefing pagi: pastikan semua PIC memahami target dan spesifikasi hari ini','Update progress di platform manajemen proyek secara harian']},
+  'ops-preprod':{div:'Operasional — Operator Produksi',title:'Pre-production — persiapan sebelum mulai',purpose:'Memastikan operator, mesin, dan bahan siap sebelum eksekusi produksi dimulai. Mencegah gangguan di tengah proses kerja.',steps:['Terima dan baca detail Work Order dan blueprint RnD','Pastikan memahami spesifikasi produk: ukuran, motif, bahan, teknik sebelum memulai','Ambil bahan baku yang diperlukan sesuai WO — jika kurang, lapor ke atasan','Cek kondisi fisik mesin: bersih dari sisa produksi sebelumnya','Lakukan warming-up mesin jika diperlukan sesuai prosedur standar']},
+  'ops-cutting-bahan':{div:'Operasional — Operator Produksi',title:'Cutting bahan — presisi ukuran',purpose:'Pemotongan bahan baku sesuai pola dan ukuran yang ditetapkan dalam blueprint RnD. Presisi di tahap ini menentukan kualitas produk akhir.',steps:['Ambil bahan baku yang sudah disiapkan Gudang sesuai WO','Baca pola dan ukuran dari blueprint RnD dengan teliti','Lakukan pemotongan menggunakan alat yang sesuai (mesin cutting / gunting pola)','Cek presisi ukuran setelah pemotongan — toleransi sesuai standar QC','Pisahkan potongan ke area selanjutnya (cutting gambar)','First-line QC: jika ada bahan yang rusak atau tidak sesuai ukuran, pisahkan ke wadah reject'],note:'Tidak boleh membuang sisa bahan sebelum dicek oleh Kepala Produksi.'},
+  'ops-cutting-gambar':{div:'Operasional — Operator Produksi',title:'Cutting gambar — cetak & motif',purpose:'Proses cetak dan pemotongan motif/gambar yang akan diterapkan ke bahan. Termasuk setting mesin cetak dan verifikasi warna.',steps:['Load file desain dari blueprint RnD ke mesin cetak/sublimasi','Lakukan test print kecil untuk verifikasi warna dan ketajaman motif','Jalankan proses cetak sesuai spesifikasi (suhu, tekanan, waktu press)','Potong gambar/motif sesuai ukuran yang ditentukan','Cek ketajaman warna, kebersihan tepi, dan kesesuaian motif dengan preview','Pisahkan hasil cetakan yang tidak sesuai ke wadah reject']},
+  'ops-jahit':{div:'Operasional — Operator Produksi',title:'Jahit / rakit — kuat & rapi',purpose:'Proses penggabungan komponen menjadi produk jadi. Kualitas jahitan langsung menentukan daya tahan produk dan kepuasan pelanggan.',steps:['Gabungkan komponen bahan dan gambar/motif sesuai urutan blueprint','Jahit menggunakan mesin dengan benang warna sesuai spesifikasi','Pastikan kerapian sambungan — tidak boleh ada benang terurai','Cek simetri dan proporsi produk setelah jahit','Pasang aksesoris (resleting, kancing, label merek) jika diperlukan','Pisahkan produk yang jahitannya tidak rapi ke wadah rework'],note:'Dilarang improvisasi metode jahit tanpa izin Supervisor.'},
+  'ops-trimming':{div:'Operasional — Operator / Helper Produksi',title:'Trimming & finishing',purpose:'Pembersihan akhir produk sebelum masuk QC. Tahap ini menentukan tampilan estetis produk yang diterima pelanggan.',steps:['Potong semua sisa benang (thread trimming) dengan gunting khusus trimmer','Bersihkan sisa tinta atau kotoran dari permukaan produk','Rapikan tepi jahitan yang tidak rata','Periksa kelengkapan aksesoris dan label','Lakukan quick check: apakah ada jahitan yang loncat atau robekan kain?','Barang OK → langsung ke QC. Barang cacat → ke keranjang Revisi']},
+  'ops-qc':{div:'Operasional — Staff QC & Assurance',title:'Quality Control — inspeksi berlapis',purpose:'Menjamin seluruh barang yang dikirim ke konsumen memenuhi standar kualitas perusahaan. QC adalah benteng terakhir sebelum produk keluar.',steps:['Terima batch produk jadi dari tim Produksi beserta Work Order','Bandingkan produk fisik dengan blueprint RnD: ukuran, motif, warna, material','Periksa kekuatan jahitan: tarik uji ringan di setiap sambungan','Cek kebersihan cetak: tidak ada noda, luntur, atau motif tidak sesuai','Beri label "Lolos QC" pada produk yang lulus inspeksi','Pisahkan produk tidak lolos ke area rework dengan catatan cacat spesifik','Catat setiap jenis cacat di Buku Log Cacat Produksi untuk data CI']},
+  'ops-dec-qc':{div:'Operasional — QC',title:'Decision: Lolos QC?',purpose:'Titik keputusan kritis. Produk yang tidak memenuhi standar TIDAK boleh lanjut ke Gudang atau pelanggan.',steps:['Lolos (YA): labeli produk dan teruskan ke Gudang & Packaging','Tidak lolos (TIDAK): berikan catatan cacat spesifik, kembalikan ke operator untuk rework','Cacat yang bisa diperbaiki → rework. Cacat yang tidak bisa diperbaiki → reject final','Laporkan jumlah lolos dan reject ke Admin Ops untuk sinkronisasi data stok'],note:'Kompromi kualitas di tahap ini berdampak langsung pada reputasi PGE.'},
+  'ops-barangjadi':{div:'Operasional — Gudang',title:'Barang jadi — lolos QC',purpose:'Produk yang telah lolos QC dinyatakan sebagai barang jadi dan siap masuk gudang untuk packaging dan pengiriman.',steps:['Terima produk lolos QC beserta dokumen WO dari Staff QC','Catat jumlah barang jadi di sistem inventori gudang','Cocokkan jumlah fisik dengan target WO — laporkan jika ada selisih','Teruskan ke area packaging untuk dikemas sesuai standar'],note:'Barang jadi yang belum dikemas harus disimpan di area bersih dan tertata.'},
+  'ops-gudang':{div:'Operasional — Gudang & Sourcing',title:'Manajemen Gudang & Sourcing',purpose:'Menjamin ketersediaan bahan baku untuk produksi, menjaga akurasi stok barang, dan memastikan produk jadi terorganisir dengan baik.',steps:['SOURCING: Terima kebutuhan bahan dari Admin Ops, survei dan pesan ke supplier','INBOUND: Verifikasi kualitas dan kuantitas bahan saat barang tiba','INVENTORY: Catat keluar-masuk barang real-time, lakukan stock opname berkala','Beri notifikasi ke Admin Ops jika stok bahan mencapai Reorder Point','WAREHOUSING: Terima produk lolos QC, kelompokkan berdasarkan nama pemesan/tanggal kirim','Serahkan ke Staff Logistik sesuai daftar pengiriman harian']},
+  'ops-logistik':{div:'Operasional — Logistik & Pengemasan',title:'Pengemasan & Pengiriman (Logistik)',purpose:'Memastikan produk dikemas dengan standar keamanan tertinggi dan sampai di tangan konsumen selamat, tepat waktu, terdokumentasi.',steps:['Ambil produk jadi dari area Siap Kirim di Gudang','Verifikasi akhir: jumlah dan jenis produk sesuai packing list','Kemas produk: bubble wrap, box kardus, atau polymailer sesuai tingkat kerapuhan','Tempel label pengiriman (alamat, nomor resi, "Fragile" jika perlu)','Booking pickup kurir melalui sistem/aplikasi sesuai jadwal','Pastikan kurir memindai paket atau menandatangani manifest saat pickup','Pantau tracking minimal 2x sehari — eskalasi jika status tidak bergerak']},
+  'ops-ci':{div:'Operasional — Kepala Produksi',title:'Continuous Improvement (CI)',purpose:'Mengaudit kinerja lini produksi secara mingguan untuk meningkatkan efisiensi dan menekan HPP.',steps:['Analisis mingguan: defect rate, cycle time, efektivitas jam kerja mesin','Identifikasi bottleneck yang menyebabkan proses melambat','Rumuskan usulan perbaikan alur kerja ke Manajemen','Uji coba metode baru dalam skala kecil terlebih dahulu','Jika terbukti efisien, terapkan ke dalam SOP standar','Update SOP dan sosialisasikan kepada seluruh tim produksi']},
+  'ops-maintenance':{div:'Operasional — Kepala Produksi',title:'Perawatan mesin (Preventive Maintenance)',purpose:'Memastikan ketersediaan mesin dan meminimalkan downtime di tengah produksi yang padat.',steps:['Susun kalender perawatan preventif untuk setiap mesin produksi','Awasi pelaksanaan pembersihan dan pelumasan mesin oleh operator sesuai jadwal','Panggil teknisi untuk servis berkala atau perbaikan kerusakan fungsi','Dokumentasikan setiap riwayat servis di buku catatan aset','Operator wajib isi Form Laporan Kerusakan jika mesin berperilaku aneh'],note:'Operator: sebelum menyalakan mesin setiap hari, lakukan pengecekan singkat kondisi fisik.'},
+
+  'sm-riset':{div:'Sales & Marketing — Kepala S&M',title:'Riset pasar & analisis tren',purpose:'Menjamin produk yang dikembangkan relevan dengan tren dan kebutuhan pasar terkini.',steps:['Pantau tren motif dan ilustrasi yang sedang happening di media sosial','Kumpulkan data kebutuhan konsumen: survei, feedback, dan analisis pesaing','Identifikasi produk best-seller sebagai bahan evaluasi RnD','Susun laporan tren sebagai input formal ke Kepala RnD','Validasi temuan riset dengan data digital (traffic, conversion rate, CPL)']},
+  'sm-kampanye':{div:'Sales & Marketing — Kepala S&M',title:'SOP Manajemen Sales & Marketing',purpose:'Mengarahkan seluruh kegiatan riset, promosi, dan penjualan untuk mencapai target omzet sekaligus memastikan sinkronisasi ke Operasional.',steps:['STRATEGI: Pimpin riset kebutuhan konsumen dan feed-back loop ke RnD','KAMPANYE: Tinjau content plan, awasi performa Meta/Google Ads dan SEO','SINKRONISASI ke PRODUKSI: Setelah closing, pastikan spesifikasi diteruskan ke Ops secara akurat','KAPASITAS: Koordinasi rutin dengan Supervisor Ops terkait kapasitas mesin sebelum ambil order besar','EVALUASI: Monitor KPI individu tim, susun laporan kinerja berkala ke Manajemen']},
+  'sm-konten':{div:'Marketing — Staff Marketing',title:'SOP Divisi Marketing — Konten & Etalase Digital',purpose:'Membangun brand awareness, mengakuisisi leads melalui etalase digital, dan menyediakan data riset pasar untuk RnD dan Sales.',steps:['Susun Content Calendar mingguan selaras dengan produk yang dipromosikan','Produksi materi visual (foto/video/artikel) yang mengkomunikasikan value produk','Upload konten ke medsos secara berkala, lakukan optimasi SEO website','Monitor respons audiens (like/comment/share) untuk evaluasi konten','Pantau komentar dan DM — respons profesional dalam 2 jam kerja']},
+  'sm-iklan':{div:'Marketing — Staff Marketing',title:'Iklan berbayar & kampanye',purpose:'Mendongkrak visibilitas produk dan mendatangkan leads baru secara terukur dengan ROI yang positif.',steps:['Jalankan iklan Meta Ads/Google Ads sesuai profil target pasar','Rancang promo tematik musiman (Hari Raya, Promo Akhir Tahun) dengan target visibilitas','Koordinasikan konsep stan dan materi promosi untuk pameran/event','Analisis ROAS setelah periode kampanye untuk evaluasi efektivitas','Laporkan hasil kampanye ke Kepala S&M']},
+  'sm-leads':{div:'Marketing → Sales',title:'Hand-off leads ke tim Sales',purpose:'Memastikan setiap leads yang dihasilkan marketing tidak hilang dan segera dieksekusi Sales.',steps:['Pastikan landing page dan form online terhubung ke database/CRM Sales','Verifikasi data prospek yang masuk secara harian','Alirkan data prospek real-time kepada Sales untuk segera dihubungi','Minta update status leads dari Sales (hot vs cold) untuk perbaiki strategi targeting']},
+  'sm-b2b':{div:'Sales — Staff Sales',title:'SOP Sales — Penawaran B2B & Business Development',purpose:'Mengkonversi prospek menjadi penjualan nyata dan menjaga hubungan kemitraan jangka panjang.',steps:['Pastikan katalog dan simulasi harga grosir selalu up-to-date','Lakukan riset profil perusahaan target sebelum menghubungi (HRD/Purchasing/Marketing)','Kirimkan proposal bisnis: spesifikasi produk, lead time, dan penawaran harga','Catat setiap sampel produk yang keluar dalam logbook dengan tanggal kembali','Lakukan follow-up dalam 2x24 jam setelah sampel diterima klien']},
+  'sm-spek':{div:'Sales — Staff Sales',title:'Klarifikasi spesifikasi pesanan',purpose:'Sebelum closing, wajib mengonfirmasi semua detail agar tidak ada kesalahan produksi.',steps:['Konfirmasi: Desain, Ukuran, Bahan, Warna, Jumlah, dan Deadline','Tanya: custom atau template yang sudah ada?','Konfirmasi ulang via chat/email agar ada bukti tertulis','Pastikan DP sudah lunas sebelum meneruskan form ke Admin Ops']},
+  'sm-closing':{div:'Sales → Admin Ops',title:'Closing & sinkronisasi ke Admin Ops',purpose:'Langkah paling kritis: data spesifikasi yang benar dan lengkap menentukan keberhasilan seluruh proses produksi.',steps:['Isi Form Spesifikasi Pesanan secara lengkap setelah terjadi kesepakatan','Kirim Form ke Admin Operations sebagai bahan pembuatan Work Order','DILARANG: memberikan instruksi produksi langsung ke tim Produksi atau Operator','Pantau status DP sebelum meneruskan form ke Admin Ops'],note:'Critical step: kesalahan data di sini = produk salah = kerugian perusahaan.'},
+  'sm-monitor':{div:'Sales — Staff Sales',title:'Monitor status order & update klien',purpose:'Menjaga kepuasan pelanggan dengan memberikan informasi terkini tentang status pesanan mereka.',steps:['Tanyakan update progress produksi ke Admin Ops setiap 1-2 hari','Informasikan status secara berkala kepada klien agar mereka merasa tenang','Jika ada potensi keterlambatan, informasikan ke klien LEBIH AWAL dengan solusi alternatif','Tangani komplain produk: dokumentasikan (foto/video), koordinasikan dengan QC/Ops']},
+  'sm-aftersales':{div:'Sales — Staff Sales',title:'After sales & repeat order',purpose:'Menjaga kepuasan pelanggan pasca-transaksi dan mendorong loyalitas serta pemesanan ulang.',steps:['Konfirmasi penerimaan barang dengan pelanggan','Minta feedback atau ulasan dari pelanggan','Catat data pelanggan untuk program loyalitas dan repeat order','Hubungi kembali klien B2B 3 bulan sekali untuk tawarkan produk baru atau promo khusus','Susun laporan mingguan: tren permintaan, alasan penolakan, masukan pelanggan']},
+  'sm-sync-ops':{div:'Sales & Marketing → Operasional',title:'Sinkronisasi ke Operasional',purpose:'Memastikan data spesifikasi dari Sales diteruskan dengan akurat ke Operasional untuk perencanaan produksi.',steps:['Kepala S&M memastikan semua data closing sudah diterima Admin Ops','Konfirmasi kapasitas produksi dengan Supervisor Ops sebelum commit ke klien','Koordinasikan deadline order dengan jadwal produksi yang tersedia','Update status order di sistem agar semua divisi bisa pantau']},
+  'sm-evaluasi':{div:'Sales & Marketing',title:'Evaluasi & riset pasar (loop)',purpose:'Menghasilkan data untuk perbaikan produk (RnD) dan efisiensi operasional secara berkelanjutan.',steps:['Rancang kuesioner untuk memvalidasi parameter pembelian dan sensitivitas harga','Susun laporan tren dan hasil riset','Serahkan laporan ke Kepala RnD sebagai dasar pengembangan produk baru','Analisis metrik digital: traffic, conversion rate, CPL','Laporan bulanan ke Manajemen, Sales, dan RnD']},
+
+  'rnd-brief':{div:'R&D — Kepala R&D',title:'Terima brief tren pasar dari Sales',purpose:'Memastikan setiap motif dan produk baru memiliki nilai jual tinggi berdasarkan data tren aktual dari tim Sales & Marketing.',steps:['Terima laporan tren pasar dari Kepala Sales & Marketing','Analisis data: motif/ilustrasi apa yang sedang viral, segmen pasar mana yang tumbuh','Identifikasi gap produk: apa yang belum ada di katalog tapi banyak diminta','Buat rangkuman untuk dijadikan dasar creative briefing ke Product Development']},
+  'rnd-creative':{div:'R&D — Kepala R&D',title:'Creative briefing ke Product Development',purpose:'Memberikan arahan kreatif yang jelas kepada tim Product Development agar desain yang dihasilkan relevan dan on-brand.',steps:['Sampaikan brief: target motif, gaya visual, segmen pasar, dan spesifikasi produk','Tentukan timeline iterasi dan kapan batas ACC Design','Jelaskan parameter kualitas cetak yang harus dipenuhi','Tetapkan target HPP awal sebagai batas atas biaya produksi baru']},
+  'rnd-desain':{div:'R&D — Product Development',title:'SOP Product Development — Desain & Eksplorasi',purpose:'Menciptakan identitas visual produk (DNA produk) yang autentik, versatile, dan siap produksi.',steps:['Terima data riset tren dari Marketing sebagai dasar pengembangan','Lakukan eksplorasi desain, termasuk kolaborasi dengan AI Generatif untuk brainstorming motif','Rancang konsep produk yang versatile (satuan maupun partai besar)','Eksekusi desain ilustrasi motif yang autentik dan eksklusif untuk PGE','Ajukan draf desain ke Kepala RnD untuk review pertama']},
+  'rnd-review':{div:'R&D — Product Development',title:'Review & iterasi desain',purpose:'Memastikan desain yang dibuat feasible (bisa diproduksi) sebelum masuk ke tahap teknis. Loop ini bisa terjadi beberapa kali.',steps:['Presentasikan draf desain ke Kepala RnD untuk ditinjau','Terima feedback: apakah dari sisi estetika, teknis produksi, atau kesesuaian pasar','Lakukan revisi secara cepat berdasarkan catatan review','Ajukan ulang sampai mendapatkan status ACC Design','Desain dilarang diserahkan ke Technical Specialist sebelum status ACC']},
+  'rnd-acc':{div:'R&D — Kepala R&D & Ops',title:'Decision: ACC Design?',purpose:'Titik keputusan kritis: apakah desain sudah layak estetis DAN bisa diproduksi oleh mesin yang ada.',steps:['Kepala RnD dan Kepala Produksi melakukan forum diskusi bersama','Pertanyaan kunci: "Apakah desain ini bisa dieksekusi oleh mesin yang kita miliki?"','ACC (YA): hasil didokumentasikan dalam berita acara, tim Ops mulai setup mesin','Revisi (TIDAK): Technical Specialist memberikan catatan teknis tertulis mengapa sulit diproduksi'],note:'ACC Design adalah satu-satunya pintu masuk ke tahap produksi massal.'},
+  'rnd-material':{div:'R&D — Technical & Blueprint Specialist',title:'Uji material & durability test',purpose:'Memastikan material aman dan produk memiliki standar kualitas (durability) yang tinggi sebelum diproduksi massal.',steps:['Uji fisik bahan baku baru terhadap mesin cetak/potong: catat reaksi material','Tes Luntur: cuci produk purwarupa beberapa kali, cek perubahan warna','Tes Gores & Kelupas: untuk media keras/tumbler','Tes Kekuatan Jahitan/Rakit: tarik uji kekuatan sambungan','Dokumentasikan di Formulir Uji Kelayakan Bahan','Jika gagal: material tidak layak, ganti dengan alternatif yang lebih sesuai']},
+  'rnd-hpp':{div:'R&D — Technical & Blueprint Specialist',title:'Optimasi HPP & formula biaya',purpose:'Memastikan profitabilitas produk terjaga melalui efisiensi material tanpa menurunkan kualitas.',steps:['Hitung konsumsi material per produk secara detail','Eksplorasi material alternatif atau metode kerja baru yang tidak menurunkan kualitas','Hitung perbandingan biaya: apakah metode baru lebih efisien?','Susun laporan struktur biaya (HPP) produk baru','Ajukan ke Kepala RnD untuk persetujuan profitabilitas sebelum lanjut ke tech pack'],note:'Target: HPP harus memberikan margin profit minimal sesuai ketentuan Manajemen.'},
+  'rnd-techpack':{div:'R&D — Technical & Blueprint Specialist',title:'SOP R&D QC & Standarisasi — Tech Pack',purpose:'Menyusun blueprint yang lengkap dan presisi agar tim Operasional bisa memproduksi tanpa salah tafsir.',steps:['Terima file mentah desain dari Product Development setelah status ACC','Evaluasi teknis: "Apakah desain ini efisien secara mesin?"','Susun Tech Pack: panduan ukuran presisi (cm/mm), kode warna (CMYK/Pantone)','Sertakan: jenis bahan, teknik jahit/rakit, instruksi khusus, dan toleransi cacat','Dapatkan tanda tangan pengesahan dari Kepala RnD','Upload ke platform kolaborasi (Notion/ClickUp) agar semua pihak bisa akses']},
+  'rnd-transfer':{div:'R&D → Operasional',title:'Rapat transfer teknologi ke Operasional',purpose:'Memastikan instruksi teknis (Tech Pack) dipahami dan bisa dijalankan dengan benar oleh tim Operasional.',steps:['Kepala RnD memimpin rapat serah terima dengan Supervisor Operations dan Finance','Jelaskan poin-poin krusial dalam blueprint agar tidak ada salah tafsir di lantai produksi','Bahas: estimasi HPP dan implikasinya terhadap harga jual (melibatkan Finance)','Dokumentasikan hasil rapat dalam berita acara sebagai acuan produksi']},
+  'rnd-supervisi':{div:'R&D — Technical Specialist',title:'Supervisi batch pertama',purpose:'Memastikan instruksi tech pack bisa dieksekusi dengan benar pada batch produksi pertama.',steps:['Hadir di lantai produksi saat batch pertama (trial run) dimulai','Amati operator: apakah tech pack mudah dipahami dan diikuti?','Cross-check hasil produksi batch pertama dengan standar blueprint','Jika ada deviasi: segera lakukan penyesuaian instruksi kerja di tempat','Dokumentasikan temuan dan update tech pack jika diperlukan']},
+  'rnd-katalog':{div:'R&D → Sales & Marketing',title:'Katalog visual — hand-over ke Sales',purpose:'Mendistribusikan aset desain ke Marketing untuk digunakan sebagai alat bantu penjualan.',steps:['Kumpulkan semua desain yang sudah ACC ke dalam katalog visual','Produksi foto dan video produk sampel untuk keperluan promosi digital','Serahkan aset visual berkualitas tinggi ke tim Marketing & Sales','Pastikan file yang diserahkan sudah bersih dan siap digunakan']},
+
+  'fin-kas':{div:'Finance — Staff Finance & Treasury',title:'SOP Finance & Treasury — Manajemen Arus Kas',purpose:'Menjaga kesehatan arus kas perusahaan dan memastikan setiap rupiah yang masuk-keluar tercatat akurat.',steps:['Terima laporan transaksi harian dari Admin Ops (penjualan) dan tim Sourcing (pengeluaran)','Lakukan rekonsiliasi: cocokkan saldo buku dengan mutasi bank/kas fisik setiap akhir hari','Laporkan status dana operasional setiap pagi ke Manajer','Susun laporan posisi kas harian yang transparan']},
+  'fin-piutang':{div:'Finance — Staff Finance & Treasury',title:'Piutang B2B & Utang Vendor',purpose:'Memastikan Term of Payment dipatuhi klien dan jadwal pembayaran vendor strategis.',steps:['PIUTANG: Masukkan setiap transaksi kredit klien B2B ke sistem monitoring piutang','Kirim invoice tepat setelah barang terkirim beserta bukti surat jalan dari Logistik','Hubungi klien 3-5 hari sebelum jatuh tempo sebagai friendly reminder','Eskalasi ke Sales jika jatuh tempo terlewati','VENDOR: Cocokkan invoice vendor dengan data barang masuk dari Gudang','Susun jadwal pembayaran berdasarkan prioritas jatuh tempo dan urgensi suplai']},
+  'fin-payroll':{div:'Finance — Staff Finance & Treasury',title:'Penggajian (Payroll & Incentive)',purpose:'Memastikan hak finansial karyawan (gaji, lembur, bonus) didistribusikan akurat dan tepat waktu.',steps:['Terima data kehadiran dan update status karyawan dari HRGA','Koordinasikan dengan Kepala S&M untuk data bonus/insentif tim Sales','Hitung gaji pokok, tunjangan, lembur, bonus, dan potongan pajak/BPJS','Ajukan draf payroll ke Manajer untuk verifikasi','Transfer gaji sesuai jadwal penggajian yang ditetapkan']},
+  'fin-hpp':{div:'Finance — Staff Accounting & Tax',title:'SOP Accounting — Kalkulasi HPP & Skema Harga',purpose:'Menghasilkan struktur biaya yang akurat sebagai dasar penentuan harga jual yang kompetitif namun menguntungkan.',steps:['Kumpulkan data biaya bahan baku (Gudang), biaya TK (HRGA), dan penyusutan mesin (Ops)','Hitung total biaya produksi per unit secara periodik','Berkolaborasi dengan Manajemen untuk tentukan markup yang sesuai','Pertimbangkan harga pasar dari Sales dan batas bawah harga grosir','Sahkan skema harga jual dalam sistem sebagai acuan Sales']},
+  'fin-anggaran':{div:'Finance — Staff Accounting & Tax',title:'Penganggaran & monitoring plafon',purpose:'Mengendalikan pengeluaran operasional agar tetap dalam plafon yang disetujui.',steps:['Kumpulkan usulan kebutuhan biaya dari semua divisi di awal periode','Catat setiap realisasi pengeluaran dan bandingkan dengan anggaran (budget vs actual)','Berikan warning tertulis ke Kepala Divisi jika pengeluaran hampir mencapai plafon','Gunakan data penjualan historis untuk prediksi arus kas dan kebutuhan modal mendatang']},
+  'fin-pajak':{div:'Finance — Staff Accounting & Tax',title:'Kepatuhan pajak — PPh & PPN',purpose:'Memenuhi kewajiban perpajakan perusahaan sesuai regulasi hukum Indonesia untuk menghindari denda.',steps:['Pastikan setiap transaksi yang mengandung unsur pajak teridentifikasi (PPN masukan/keluaran, PPh)','Hitung pajak bulanan dan tahunan secara akurat sesuai ketentuan','Lakukan penyetoran dan pelaporan via DJP online tepat waktu','Simpan bukti potong, faktur pajak, dan SPT dengan rapi untuk keperluan audit'],note:'Batas waktu pelaporan pajak tidak bisa mundur. Denda administrasi sangat merugikan.'},
+  'fin-audit':{div:'Finance — Audit Internal',title:'Audit internal & kontrol anggaran',purpose:'Memastikan tidak ada kebocoran dana dan anggaran digunakan sesuai rencana.',steps:['Pantau batas pengeluaran operasional per divisi','Lakukan cross-check antara nota fisik, laporan pengadaan, dan kas riil','Identifikasi pemborosan, anomali, atau selisih dana','Laporkan temuan signifikan kepada Manajer beserta rekomendasi tindakan korektif']},
+  'fin-laporan':{div:'Finance — Pelaporan',title:'Laporan keuangan — L/R, Neraca, Arus Kas',purpose:'Menyediakan laporan keuangan yang valid bagi manajemen untuk pengambilan keputusan strategis.',steps:['Lakukan closing pembukuan setiap akhir bulan','Susun Laporan Laba Rugi, Neraca, dan Arus Kas','Analisis kinerja: produk dengan profit tertinggi vs terendah','Identifikasi area operasional yang mengalami pemborosan (waste bahan baku tinggi)','Susun presentasi analisis data untuk Manajer dengan rekomendasi taktis']},
+  'fin-analisis':{div:'Finance',title:'Analisis kinerja & forecasting',purpose:'Memberikan rekomendasi strategis kepada Manajemen terkait arah kesehatan finansial perusahaan.',steps:['Sajikan data profitabilitas: produk/lini mana yang paling dan paling kurang menguntungkan','Buat prediksi tren pendapatan berdasarkan data historis','Susun budgeting untuk periode mendatang','Rekomendasikan: produk mana yang perlu dikembangkan atau dihentikan']},
+
+  'hrd-analisis':{div:'HRD — HR Specialist',title:'Analisis kebutuhan SDM & training',purpose:'Menjadi gerbang pertama dalam merespons kebutuhan sumber daya manusia dari kepala divisi lain.',steps:['Rapat dengan User (Kepala Divisi) untuk memetakan kompetensi spesifik yang dibutuhkan','Analisis beban kerja: apakah butuh tambahan headcount atau cukup peningkatan kapasitas existing?','Validasi pengajuan peningkatan keahlian dari divisi lain (training mesin baru, software baru)','Susun prioritas: rekrutmen baru atau training internal dulu?']},
+  'hrd-budaya':{div:'HRD — HR Specialist',title:'Budaya perusahaan & perumusan KPI',purpose:'Menjaga keharmonisan dan nilai inti perusahaan (Integritas, Teamwork, Customer-Oriented).',steps:['Adakan kegiatan rutin internalisasi nilai: briefing, gathering, dan sharing session','Pastikan setiap karyawan baru mendapat materi budaya perusahaan saat onboarding','Bantu setiap Kepala Divisi menyusun KPI individu yang selaras KPI Divisi','Mediasi konflik: terima laporan, investigasi netral, ambil keputusan adil']},
+  'hrd-rekrutmen':{div:'HRD — HR Specialist',title:'SOP Talent Acquisition & Rekrutmen',purpose:'Mendapatkan kandidat yang kompeten secara teknis dan memiliki attitude selaras budaya perusahaan.',steps:['Rapat dengan User untuk memetakan kompetensi spesifik yang dibutuhkan','Sourcing & Screening: publikasi lowongan, CV screening, psikotes, wawancara HR','Atur jadwal wawancara teknis antara kandidat dengan User (Kepala Divisi)','Background check dan penawaran kerja (Offering) kepada kandidat yang lulus','Pastikan integritas dan karakter kandidat cocok dengan nilai perusahaan untuk menekan turnover']},
+  'hrd-onboarding':{div:'HRD — HR Specialist',title:'Onboarding & internalisasi budaya',purpose:'Membekali karyawan baru agar siap bekerja sesuai standar dan memahami nilai perusahaan sejak hari pertama.',steps:['Hari 1: pengenalan visi misi, tour area kerja, sosialisasi SOP divisi','Minggu 1-2: program induksi lengkap (covering AOS System, job description, tools yang digunakan)','Internalisasikan nilai perusahaan: Integritas, Teamwork, Customer-Oriented','Assign buddy/mentor dari tim existing untuk mendampingi karyawan baru'],note:'First impression kritis: onboarding yang buruk meningkatkan early turnover.'},
+  'hrd-training':{div:'HRD — HR Specialist',title:'Training & Training Needs Analysis (TNA)',purpose:'Memastikan karyawan terus meningkatkan keahliannya sesuai kebutuhan perusahaan.',steps:['Identifikasi kesenjangan kompetensi setiap semester (TNA)','Contoh: Tim Sales butuh pelatihan negosiasi? Ops butuh training perawatan mesin baru?','Susun agenda pelatihan internal/eksternal','Laksanakan training dan lakukan evaluasi pasca-pelatihan','Ukur dampak training pada kinerja 1-3 bulan setelah dilaksanakan']},
+  'hrd-kpi':{div:'HRD — HR Specialist',title:'Evaluasi kinerja & KPI',purpose:'Memastikan setiap individu memiliki target terukur dan berkontribusi langsung pada target perusahaan.',steps:['Lakukan evaluasi kinerja setiap 3 atau 6 bulan','Berikan sesi feedback konstruktif antara User dan karyawan','Jika performa di bawah target: buat Performance Improvement Plan (PIP)','Jika performa melampaui target: rekomendasikan promosi atau kenaikan insentif']},
+  'hrd-pip':{div:'HRD',title:'Decision: Target tercapai?',purpose:'Titik evaluasi kinerja: menentukan apakah karyawan layak dipromosikan atau perlu program perbaikan.',steps:['Tercapai (YA): rekomendasikan promosi jabatan, kenaikan gaji, atau penghargaan','Tidak tercapai (TIDAK): buat PIP (Performance Improvement Plan) dengan target spesifik dan timeline','Evaluasi ulang setelah periode PIP (biasanya 1-3 bulan)','Jika PIP berhasil: lanjutkan. Jika tidak: pertimbangkan langkah HR lanjutan']},
+  'hrd-payroll':{div:'HRD — HR Admin, Payroll & Compliance',title:'SOP HR Admin, Payroll & Compliance',purpose:'Mengelola administrasi data kepegawaian secara sistematis dan memastikan akurasi hak finansial karyawan.',steps:['Susun struktur skala upah yang adil berdasarkan kontribusi dan tanggung jawab','Kelola administrasi BPJS Ketenagakerjaan & Kesehatan, hak cuti, dan fasilitas','Hitung gaji harian/bulanan beserta bonus sesuai data kehadiran dan performa','Distribusikan pembayaran tepat waktu untuk menjaga kepuasan ekosistem internal','Kelola database karyawan: data diri, rekam jejak performa, dan dokumen legal']},
+  'hrd-compliance':{div:'HRD — HR Admin',title:'Kepatuhan hukum ketenagakerjaan',purpose:'Melindungi perusahaan dari risiko hukum terkait ketenagakerjaan sesuai peraturan Indonesia.',steps:['Pantau seluruh kebijakan operasional SDM agar mematuhi UU Ketenagakerjaan Indonesia','Tinjau secara berkala kontrak kerja dan peraturan perusahaan','Buat, perbarui, dan arsipkan dokumen legal: Surat Kontrak Kerja, SK, SP, Paklaring','Pastikan pengelolaan PKWT/PKWTT sesuai ketentuan UU Cipta Kerja','Dokumentasikan seluruh surat-menyurat resmi dengan rapi'],note:'Ketidakpatuhan hukum ketenagakerjaan dapat mengakibatkan sanksi pidana/perdata.'}
+};
+
+let currentSopKey=null;
+function openDrawer(key){
+  currentSopKey=key;
+  const d=SOP[key];
+  if(!d)return;
+  document.getElementById('d-div').textContent=d.div;
+  document.getElementById('d-title').textContent=d.title;
+  document.getElementById('d-purpose').textContent=d.purpose;
+  const stepsEl=document.getElementById('d-steps');
+  stepsEl.innerHTML=d.steps.map((s,i)=>`<div class="step-item"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join('');
+  const noteEl=document.getElementById('d-note');
+  if(d.note){noteEl.textContent='⚠️  '+d.note;noteEl.style.display='block';}
+  else{noteEl.style.display='none';}
+  document.getElementById('detail-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('detail-drawer')?.scrollTo({top:0,behavior:'instant'});
+}
+
+function closeDrawer(e){
+  if(e.target===document.getElementById('detail-overlay'))closeDrawerBtn();
+}
+function closeDrawerBtn(){
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function filterSOP(q){
+  const cards=[...document.querySelectorAll('.sop-card')];
+  const lq=(q||'').trim().toLowerCase();
+  let shown=0;
+  cards.forEach(c=>{
+    const match=!lq || c.textContent.toLowerCase().includes(lq);
+    c.style.display=match?'':'none';
+    c.setAttribute('aria-hidden', match?'false':'true');
+    if(match)shown++;
+  });
+  updateSearchCount(shown,cards.length,lq);
+}
+
+
+function updateSearchCount(shown,total,query){
+  const el=document.getElementById('search-count');
+  if(!el)return;
+  el.textContent=query?`${shown}/${total}`:`${total} SOP`;
+}
+function focusSearch(){
+  const input=document.getElementById('search-input');
+  if(input){input.focus();input.select();}
+}
+async function copyCurrentSOP(event){
+  event?.stopPropagation?.();
+  const d=SOP[currentSopKey];
+  if(!d)return;
+  const text=[
+    d.title,
+    d.div,
+    '',
+    'Tujuan:',
+    d.purpose,
+    '',
+    'Langkah-langkah:',
+    ...d.steps.map((s,i)=>`${i+1}. ${s}`),
+    d.note?'':'',
+    d.note?`Catatan: ${d.note}`:''
+  ].filter(Boolean).join('\n');
+  try{
+    await navigator.clipboard.writeText(text);
+    const btn=document.querySelector('.drawer-copy');
+    if(btn){const old=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=old,1200);}
+  }catch(err){
+    window.prompt('Copy SOP text:', text);
+  }
+}
+function updateProgress(){
+  const bar=document.getElementById('scroll-progress');
+  if(bar){
+    const max=document.documentElement.scrollHeight-window.innerHeight;
+    const pct=max>0?(window.scrollY/max)*100:0;
+    bar.style.width=`${Math.min(100,Math.max(0,pct))}%`;
+  }
+  const topBtn=document.getElementById('floating-top');
+  if(topBtn){topBtn.classList.toggle('visible',window.scrollY>640);}
+}
+function initPGEEnhancements(){
+  const searchWrap=document.querySelector('.nav-search');
+  if(searchWrap && !document.getElementById('search-count')){
+    const count=document.createElement('span');
+    count.id='search-count';
+    count.className='search-count';
+    count.setAttribute('aria-live','polite');
+    searchWrap.appendChild(count);
+  }
+  if(!document.getElementById('floating-top')){
+    const top=document.createElement('button');
+    top.id='floating-top';
+    top.className='floating-top';
+    top.type='button';
+    top.setAttribute('aria-label','Back to top');
+    top.textContent='↑';
+    top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    document.body.appendChild(top);
+  }
+  document.querySelectorAll('.sop-card').forEach(card=>{
+    card.setAttribute('tabindex','0');
+    card.setAttribute('role','button');
+    card.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();card.click();}
+    });
+  });
+  document.querySelectorAll('g.fnode').forEach(node=>{
+    const onclick=node.getAttribute('onclick')||'';
+    const match=onclick.match(/openDrawer\('([^']+)'\)/);
+    if(!match)return;
+    const d=SOP[match[1]];
+    node.setAttribute('tabindex','0');
+    node.setAttribute('role','button');
+    node.setAttribute('aria-label',d?`Open ${d.title}`:'Open SOP detail');
+    node.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();openDrawer(match[1]);}
+    });
+  });
+  filterSOP(document.getElementById('search-input')?.value||'');
+  updateProgress();
+}
+
+function rgbaFromHex(hex, alpha){
+  const clean=(hex||'').replace('#','').trim();
+  if(clean.length!==6) return hex;
+  const r=parseInt(clean.slice(0,2),16), g=parseInt(clean.slice(2,4),16), b=parseInt(clean.slice(4,6),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+function laneIndexFromBounds(bounds, x){
+  for(let i=0;i<bounds.length;i++) if(x < bounds[i]) return i;
+  return Math.max(0,bounds.length-1);
+}
+const FLOW_ROLE_THEMES = {
+  ops:{
+    bounds:[145,325,500,675,890,1060],
+    lanes:[
+      {name:'Admin Ops', stroke:'#871719', text:'#6e1114', fill:'rgba(135,23,25,.10)', bg:'rgba(135,23,25,.055)'},
+      {name:'Perencanaan', stroke:'#aa4936', text:'#8f3c2c', fill:'rgba(170,73,54,.10)', bg:'rgba(170,73,54,.05)'},
+      {name:'Produksi', stroke:'#c06c2b', text:'#9d561f', fill:'rgba(192,108,43,.10)', bg:'rgba(192,108,43,.05)'},
+      {name:'Produksi Lanjut', stroke:'#cf8b36', text:'#9b6a1b', fill:'rgba(207,139,54,.11)', bg:'rgba(207,139,54,.055)'},
+      {name:'QC & Gudang', stroke:'#0e5d5b', text:'#0e5d5b', fill:'rgba(120,232,230,.18)', bg:'rgba(120,232,230,.08)'},
+      {name:'Logistik', stroke:'#2d8f8b', text:'#1e6f6c', fill:'rgba(120,232,230,.22)', bg:'rgba(120,232,230,.11)'}
+    ]
+  },
+  sm:{
+    bounds:[200,400,600,800,980],
+    lanes:[
+      {name:'Kepala S&M', stroke:'#871719', text:'#6e1114', fill:'rgba(135,23,25,.10)', bg:'rgba(135,23,25,.055)'},
+      {name:'Marketing', stroke:'#b24b62', text:'#8f3d50', fill:'rgba(178,75,98,.10)', bg:'rgba(178,75,98,.05)'},
+      {name:'Sales', stroke:'#c06c2b', text:'#9d561f', fill:'rgba(192,108,43,.10)', bg:'rgba(192,108,43,.05)'},
+      {name:'Pelayanan', stroke:'#cf8b36', text:'#9b6a1b', fill:'rgba(207,139,54,.11)', bg:'rgba(207,139,54,.055)'},
+      {name:'Ops', stroke:'#0e5d5b', text:'#0e5d5b', fill:'rgba(120,232,230,.18)', bg:'rgba(120,232,230,.08)'}
+    ]
+  },
+  rnd:{
+    bounds:[220,440,660,900],
+    lanes:[
+      {name:'Kepala R&D', stroke:'#871719', text:'#6e1114', fill:'rgba(135,23,25,.10)', bg:'rgba(135,23,25,.055)'},
+      {name:'Product Development', stroke:'#aa4936', text:'#8f3c2c', fill:'rgba(170,73,54,.10)', bg:'rgba(170,73,54,.05)'},
+      {name:'Technical Specialist', stroke:'#0e5d5b', text:'#0e5d5b', fill:'rgba(120,232,230,.18)', bg:'rgba(120,232,230,.08)'},
+      {name:'Ops / Sales', stroke:'#2d8f8b', text:'#1e6f6c', fill:'rgba(120,232,230,.22)', bg:'rgba(120,232,230,.11)'}
+    ]
+  },
+  fin:{
+    bounds:[220,440,640,860],
+    lanes:[
+      {name:'Finance & Treasury', stroke:'#871719', text:'#6e1114', fill:'rgba(135,23,25,.10)', bg:'rgba(135,23,25,.055)'},
+      {name:'Accounting & Tax', stroke:'#aa4936', text:'#8f3c2c', fill:'rgba(170,73,54,.10)', bg:'rgba(170,73,54,.05)'},
+      {name:'Audit & Kontrol', stroke:'#0e5d5b', text:'#0e5d5b', fill:'rgba(120,232,230,.18)', bg:'rgba(120,232,230,.08)'},
+      {name:'Pelaporan', stroke:'#2d8f8b', text:'#1e6f6c', fill:'rgba(120,232,230,.22)', bg:'rgba(120,232,230,.11)'}
+    ]
+  },
+  hrd:{
+    bounds:[225,450,675,900],
+    lanes:[
+      {name:'HR Specialist', stroke:'#871719', text:'#6e1114', fill:'rgba(135,23,25,.10)', bg:'rgba(135,23,25,.055)'},
+      {name:'Rekrutmen & Training', stroke:'#aa4936', text:'#8f3c2c', fill:'rgba(170,73,54,.10)', bg:'rgba(170,73,54,.05)'},
+      {name:'Manajemen Kinerja', stroke:'#c06c2b', text:'#9d561f', fill:'rgba(192,108,43,.10)', bg:'rgba(192,108,43,.05)'},
+      {name:'HR Admin & Compliance', stroke:'#0e5d5b', text:'#0e5d5b', fill:'rgba(120,232,230,.18)', bg:'rgba(120,232,230,.08)'}
+    ]
+  }
+};
+
+function colorLegend(section, config){
+  const legend = section.querySelector('.legend-row');
+  if(!legend) return;
+  const legs = [...legend.querySelectorAll('.leg')];
+  let laneCounter = 0;
+  legs.forEach(leg=>{
+    const text=(leg.textContent||'').toLowerCase();
+    const dot=leg.querySelector('.leg-dot');
+    const diamond=leg.querySelector('.leg-diamond');
+    const line=leg.querySelector('line');
+    leg.style.borderColor='rgba(135,23,25,.22)';
+    leg.style.background='rgba(255,250,246,.92)';
+    if(diamond || text.includes('decision')){
+      if(diamond){
+        diamond.style.background='rgba(120,232,230,.22)';
+        diamond.style.border='1.5px solid #0e5d5b';
+      }
+      return;
+    }
+    if(line || text.includes('rework')){
+      if(line){
+        line.setAttribute('stroke','#c94b52');
+        line.setAttribute('stroke-width','2');
+      }
+      return;
+    }
+    const lane=config.lanes[Math.min(laneCounter, config.lanes.length-1)];
+    laneCounter++;
+    if(dot){
+      dot.style.background=lane.stroke;
+      dot.style.border='1px solid rgba(255,255,255,.7)';
+      dot.style.boxShadow='0 0 0 1px rgba(0,0,0,.06)';
+    }
+    leg.style.color=lane.text;
+  });
+}
+
+function recolorFlowSection(sectionId){
+  const config=FLOW_ROLE_THEMES[sectionId];
+  const section=document.getElementById(sectionId);
+  if(!config || !section) return;
+  const svg=section.querySelector('.flow-card svg');
+  if(!svg) return;
+  const decision={stroke:'#0e5d5b', text:'#0e5d5b', fill:'rgba(120,232,230,.22)'};
+  const rework={stroke:'#c94b52', text:'#a93b42'};
+  const note={stroke:'#b07a35', text:'#8a5c1f', fill:'rgba(207,139,54,.08)'};
+  const neutral={stroke:'rgba(135,23,25,.55)', text:'#5e4342', fill:'rgba(255,250,246,.92)'};
+
+  [...svg.children].forEach(el=>{
+    if(el.tagName==='rect'){
+      const x=+(el.getAttribute('x')||0), y=+(el.getAttribute('y')||0), w=+(el.getAttribute('width')||0), h=+(el.getAttribute('height')||0);
+      if(h > 100 && (y===40 || y===50)){
+        const lane=config.lanes[laneIndexFromBounds(config.bounds, x + w/2)];
+        el.setAttribute('fill', lane.bg);
+      }else if((w<=2 || h<=2) && (y===40 || y===50 || x===0 || x===200 || x===220 || x===225 || x===145 || x===325 || x===500 || x===675 || x===890 || x===400 || x===600 || x===800 || x===440 || x===660 || x===640 || x===450 || x===675)){
+        el.setAttribute('fill', 'rgba(135,23,25,.12)');
+      }else if(y===0 && h <= 50){
+        el.setAttribute('fill', 'rgba(255,250,246,.96)');
+      }
+    }
+    if(el.tagName==='text'){
+      const x=+(el.getAttribute('x')||0), y=+(el.getAttribute('y')||0);
+      if(y <= 35){
+        const lane=config.lanes[laneIndexFromBounds(config.bounds, x)];
+        el.setAttribute('fill', lane.text);
+        el.setAttribute('font-weight','700');
+      }
+    }
+  });
+
+  svg.querySelectorAll('g.fnode').forEach(g=>{
+    const bbox = g.getBBox();
+    const centerX = bbox.x + bbox.width/2;
+    const lane=config.lanes[laneIndexFromBounds(config.bounds, centerX)];
+    const texts=[...g.querySelectorAll('text')];
+    const rect=g.querySelector('rect');
+    const ellipse=g.querySelector('ellipse');
+    const polygon=g.querySelector('polygon');
+    const isDashed=(rect && rect.getAttribute('stroke-dasharray')) || (polygon && polygon.getAttribute('stroke-dasharray'));
+    const firstText=(texts[0]?.textContent||'').toLowerCase();
+    const allText=(g.textContent||'').toLowerCase();
+    if(polygon){
+      polygon.setAttribute('fill', decision.fill);
+      polygon.setAttribute('stroke', decision.stroke);
+      polygon.setAttribute('stroke-width', '1.6');
+      texts.forEach(t=>t.setAttribute('fill', decision.text));
+      return;
+    }
+    if(ellipse){
+      const edge = allText.includes('mulai') || allText.includes('selesai');
+      ellipse.setAttribute('fill', neutral.fill);
+      ellipse.setAttribute('stroke', edge ? lane.stroke : neutral.stroke);
+      ellipse.setAttribute('stroke-width','1.6');
+      texts.forEach(t=>t.setAttribute('fill', edge ? lane.text : neutral.text));
+      return;
+    }
+    if(rect){
+      const palette = isDashed ? note : lane;
+      rect.setAttribute('fill', palette.fill || lane.fill);
+      rect.setAttribute('stroke', palette.stroke || lane.stroke);
+      rect.setAttribute('stroke-width', '1.6');
+      if(isDashed) rect.setAttribute('stroke-dasharray','5 4');
+      texts.forEach((t,i)=>{
+        t.setAttribute('fill', i===0 ? (palette.text || lane.text) : rgbaFromHex((palette.stroke || lane.stroke), .82));
+      });
+      return;
+    }
+  });
+
+  svg.querySelectorAll('line, path').forEach(el=>{
+    if(el.closest('defs')) return;
+    const dash=el.getAttribute('stroke-dasharray')||'';
+    const current=(el.getAttribute('stroke')||'').toLowerCase();
+    const bbox=el.getBBox();
+    const centerX=bbox.x + bbox.width/2;
+    const lane=config.lanes[laneIndexFromBounds(config.bounds, centerX)];
+    if(dash){
+      if(current.includes('e24b4a') || current.includes('226,75,74')){
+        el.setAttribute('stroke', rework.stroke);
+      }else if(current.includes('ef9f27') || current.includes('239,159,39')){
+        el.setAttribute('stroke', decision.stroke);
+      }else{
+        el.setAttribute('stroke', lane.stroke);
+      }
+    }else{
+      el.setAttribute('stroke', lane.stroke);
+    }
+    if(el.tagName==='line') el.setAttribute('stroke-width', '1.7');
+  });
+
+  // Re-apply direct text labels near decision / rework if they are direct children
+  [...svg.querySelectorAll('text')].forEach(t=>{
+    const tx=(t.textContent||'').toLowerCase().trim();
+    if(tx==='ya') t.setAttribute('fill', '#0e5d5b');
+    if(tx.includes('rework')) t.setAttribute('fill', '#c94b52');
+  });
+
+  colorLegend(section, config);
+}
+
+function applyFlowRolePalette(){
+  ['ops','sm','rnd','fin','hrd'].forEach(recolorFlowSection);
+}
+
+
+window.addEventListener('scroll',updateProgress,{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{applyFlowRolePalette();initPGEEnhancements();});
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeDrawerBtn();
+  if(e.key==='/' && document.activeElement?.tagName!=='INPUT' && document.activeElement?.tagName!=='TEXTAREA'){e.preventDefault();focusSearch();}
+});
+
+</script>
+</body>
+</html>
