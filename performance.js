@@ -1,9 +1,10 @@
 import { supabase, isDemoMode, requireRole, signOut, showToast, monthLabel, formatStatus } from './auth.js';
 
 const rolesUrl = './data/kpi_roles.json';
+const employeesUrl = './data/employees.json';
 const DEMO_PERIOD = { id: 'demo-jun-2026', month_start: '2026-06-01', status: 'open' };
-const DEMO_ASSIGNMENTS_KEY = 'pge_demo_role_assignments_v2';
-const DEMO_CARDS_KEY = 'pge_demo_cards_role_assignments_v2';
+const DEMO_ASSIGNMENTS_KEY = 'pge_demo_role_assignments_v4_multi_role';
+const DEMO_CARDS_KEY = 'pge_demo_cards_role_assignments_v4_multi_role';
 const DEMO_DEPARTMENTS = [
   'Operations',
   'Sales & Marketing',
@@ -59,6 +60,23 @@ async function getRoleMaster() {
   return roleMasterPromise;
 }
 
+let employeeMasterPromise;
+async function getEmployeeMaster() {
+  if (!employeeMasterPromise) {
+    employeeMasterPromise = fetch(employeesUrl).then(async response => {
+      if (!response.ok) throw new Error('Employee master tidak dapat dimuat. Pastikan data/employees.json tersedia.');
+      const payload = await response.json();
+      const employees = Array.isArray(payload) ? payload : payload.employees;
+      if (!Array.isArray(employees) || !employees.length) throw new Error('Employee master kosong atau formatnya tidak valid.');
+      return employees
+        .filter(employee => employee && employee.employee_id && employee.full_name && employee.active !== false)
+        .map(employee => ({ employee_id: String(employee.employee_id).trim(), full_name: String(employee.full_name).trim(), active: employee.active !== false }))
+        .sort((a, b) => a.full_name.localeCompare(b.full_name, 'id-ID'));
+    });
+  }
+  return employeeMasterPromise;
+}
+
 function getDemoAssignments() {
   try { return JSON.parse(localStorage.getItem(DEMO_ASSIGNMENTS_KEY) || '[]'); } catch { return []; }
 }
@@ -71,10 +89,11 @@ function resetDemoData() {
   localStorage.removeItem(DEMO_ASSIGNMENTS_KEY);
   localStorage.removeItem(DEMO_CARDS_KEY);
 }
-function findDemoCard(periodId, employeeId) {
-  return getDemoCards().find(card => card.period_id === periodId && card.employee_id === employeeId);
+function findDemoCard(periodId, assignmentId) {
+  return getDemoCards().find(card => card.period_id === periodId && card.employee_id === assignmentId);
 }
 function saveDemoCard(card) {
+  // employee_id stores the role-assignment ID in demo mode. This keeps one monthly card per employee-role assignment.
   const cards = getDemoCards().filter(existing => !(existing.period_id === card.period_id && existing.employee_id === card.employee_id));
   cards.push(card);
   setDemoCards(cards);
@@ -94,6 +113,8 @@ function makeDemoPerson(assignment, roleMaster, context = null) {
   return {
     id: assignment.id,
     employee_role_id: assignment.id,
+    employee_master_id: assignment.employee_master_id || '',
+    employee_no: assignment.employee_no || assignment.employee_master_id || '',
     full_name: assignment.full_name,
     department: assignment.department,
     team_leader_name: self ? 'Self reporting · Owner review' : (context?.profile?.full_name || assignment.team_leader_name || 'Team Leader'),
@@ -256,6 +277,8 @@ async function saveCard({ context, period, person, metrics, status }) {
       id: old.id || `demo-card-${period.id}-${person.id}`,
       period_id: period.id,
       employee_id: person.id,
+      employee_master_id: person.employee_master_id || person.assignment?.employee_master_id || '',
+      employee_no: person.employee_no || person.assignment?.employee_no || person.assignment?.employee_master_id || '',
       employee_name: person.full_name,
       department: person.role.department,
       role_id: person.role.id,
@@ -353,30 +376,40 @@ function configureTeamPage(context, people) {
   if (title) title.innerHTML = self ? 'Your role.<br><em>One monthly scorecard.</em>' : 'Your team.<br><em>One monthly scorecard.</em>';
   const intro = $('#workspace-intro');
   if (intro) intro.textContent = self
-    ? 'Tambahkan nama dan peran Anda terlebih dahulu. Setelah peran dipilih, sistem otomatis menampilkan KPI yang tepat untuk scorecard bulan berjalan.'
-    : 'Tambahkan setiap anggota tim dengan nama dan peran aktifnya. Nama serta peran wajib dipilih sebelum KPI card dibuat; template KPI otomatis mengikuti peran tersebut.';
+    ? 'Tambahkan nama dan peran Anda terlebih dahulu. Setelah peran dipilih, sistem otomatis menampilkan KPI yang tepat untuk scorecard bulan berjalan. Anda dapat menambah card lain bila memegang lebih dari satu role.'
+    : 'Tambahkan setiap anggota tim dengan nama dan peran aktifnya. Nama serta peran wajib dipilih sebelum KPI card dibuat; satu karyawan dapat memiliki beberapa card bila menjalankan lebih dari satu role.';
   const label = $('#assignment-label');
-  if (label) label.textContent = self ? 'Assigned role' : 'Assigned employees';
+  if (label) label.textContent = self ? 'Assigned role cards' : 'Assigned employee role cards';
   const note = $('#team-structure-note');
   if (note) {
-    note.innerHTML = `<strong>Role assignment first</strong>${people.length
-      ? `Saat ini ada <b>${people.length}</b> card aktif di <b>${escapeHTML(context.department)}</b>. Untuk Operator Produksi, fungsi kerja seperti cutting, print, jahit, atau finishing wajib dipilih agar KPI sama tetapi identitas perannya tetap berbeda.`
-      : `Belum ada nama yang ditetapkan untuk <b>${escapeHTML(context.department)}</b>. Tambahkan nama dan role di panel berikut untuk membuat KPI card.`}`;
+    note.innerHTML = `<strong>Employee master + multi-role</strong>${people.length
+      ? `Saat ini ada <b>${people.length}</b> role card aktif di <b>${escapeHTML(context.department)}</b>. Nama dipilih dari Employee Master PGE sehingga penulisan dan No ID tetap seragam. <b>Satu karyawan dapat memiliki beberapa KPI card</b> bila memegang role berbeda. Untuk Operator Produksi, fungsi kerja seperti cutting, print, jahit, atau finishing wajib dipilih agar KPI sama tetapi identitas perannya tetap berbeda.`
+      : `Belum ada role card untuk <b>${escapeHTML(context.department)}</b>. Pilih nama dari Employee Master PGE dan role aktif di panel berikut untuk membuat KPI card.`}`;
   }
 }
 
-function assignmentBuilderMarkup(context, roleMaster, people) {
+function assignmentBuilderMarkup(context, roleMaster, people, employeeMaster) {
   const departmentRoles = roleMaster.filter(role => role.department === context.department);
   const self = context.workspaceType === 'self';
+  const assignmentCountByEmployee = getDemoAssignments().reduce((map, assignment) => {
+    const employeeId = String(assignment.employee_master_id || '');
+    if (employeeId) map.set(employeeId, (map.get(employeeId) || 0) + 1);
+    return map;
+  }, new Map());
+  const employeeOptions = employeeMaster.map(employee => {
+    const count = assignmentCountByEmployee.get(employee.employee_id) || 0;
+    const assignmentLabel = count ? ` · ${count} KPI card aktif` : '';
+    return `<option value="${escapeHTML(employee.employee_id)}">${escapeHTML(employee.full_name)} · ID ${escapeHTML(employee.employee_id)}${assignmentLabel}</option>`;
+  }).join('');
   return `<section class="assignment-builder" aria-labelledby="assignment-builder-title">
-    <div class="assignment-builder-head"><div><div class="kicker">Step 1 · role assignment</div><h2 id="assignment-builder-title">${self ? 'Set your current role.' : 'Add name, assign role, create KPI card.'}</h2><p>${self ? 'Masukkan nama Anda dan pilih peran aktif. KPI card akan memakai template peran tersebut.' : 'Gunakan satu baris untuk satu orang. Banyak operator boleh memakai template KPI yang sama, tetapi wajib dibedakan melalui nama dan fungsi/operator station.'}</p></div><div class="assignment-count"><strong>${people.length}</strong><span>active role cards</span></div></div>
+    <div class="assignment-builder-head"><div><div class="kicker">Step 1 · employee + role assignment</div><h2 id="assignment-builder-title">${self ? 'Select your name. Set your active role card.' : 'Select name, assign role, create KPI card.'}</h2><p>${self ? 'Pilih nama Anda dari Employee Master PGE lalu tetapkan role aktif untuk KPI card ini. Anda dapat menambah KPI card lain bila memegang lebih dari satu role.' : 'Nama wajib dipilih dari Employee Master PGE agar penulisan, No ID, dan laporan bulanan seragam. Satu karyawan boleh memiliki beberapa KPI card untuk role berbeda. Duplikasi hanya diblok bila nama + role + fungsi operator sama persis.'}</p></div><div class="assignment-count"><strong>${people.length}</strong><span>active role cards</span></div></div>
     <form class="assignment-form" id="assignment-form" novalidate>
-      <div class="field assignment-name"><label for="assignment-name">Nama karyawan <b class="required">*</b></label><input id="assignment-name" name="employee_name" autocomplete="name" required placeholder="Contoh: Siti Rahma"></div>
+      <div class="field assignment-name"><label for="assignment-employee">Nama karyawan · Employee Master <b class="required">*</b></label><select id="assignment-employee" name="employee_id" required><option value="">Pilih nama resmi…</option>${employeeOptions}</select><small class="field-note">${employeeMaster.length} nama aktif · No ID tampil otomatis pada setiap KPI card dan report.</small></div>
       <div class="field assignment-role"><label for="assignment-role">Current role / KPI template <b class="required">*</b></label><select id="assignment-role" name="role_id" required><option value="">Pilih role aktif…</option>${departmentRoles.map(role => `<option value="${escapeHTML(role.id)}">${escapeHTML(role.role)}</option>`).join('')}</select></div>
       <div class="field station-field hidden" id="station-field"><label for="assignment-station">Fungsi operator saat ini <b class="required">*</b></label><select id="assignment-station" name="station"><option value="">Pilih fungsi operator…</option>${OPERATOR_STATIONS.map(station => `<option value="${escapeHTML(station)}">${escapeHTML(station)}</option>`).join('')}</select></div>
       <div class="assignment-action"><button type="submit" class="primary-btn">Add KPI card →</button></div>
     </form>
-    <div class="assignment-help"><span><b>* Wajib diisi.</b> Role menentukan template KPI. Untuk Operator Produksi, fungsi kerja menentukan label card—bukan bobot KPI—sehingga beberapa operator tetap dapat memakai KPI yang sama secara jelas.</span>${people.length ? '<button type="button" class="table-action" id="clear-department-assignments">Clear this department</button>' : ''}</div>
+    <div class="assignment-help"><span><b>* Wajib diisi.</b> Nama tidak dapat diketik bebas. Role menentukan template KPI. Satu orang dapat memiliki beberapa card jika menjalankan beberapa role. Untuk Operator Produksi, fungsi kerja menentukan label card—bukan bobot KPI—sehingga KPI sama tetap tercatat terpisah per fungsi/operator station.</span>${people.length ? '<button type="button" class="table-action" id="clear-department-assignments">Clear this department</button>' : ''}</div>
   </section>`;
 }
 
@@ -390,7 +423,7 @@ export async function initTeamDashboard() {
   if (!context) return;
   attachNav(context);
   $('#portal-user').textContent = context.profile.full_name + (isDemoMode ? ' · Demo' : '');
-  const [roleMaster, periods] = await Promise.all([getRoleMaster(), getPeriods()]);
+  const [roleMaster, employeeMaster, periods] = await Promise.all([getRoleMaster(), getEmployeeMaster(), getPeriods()]);
   const periodSelect = $('#period-select');
   periodSelect.innerHTML = periods.map(period => `<option value="${period.id}">${escapeHTML(monthLabel(period.month_start))} · ${escapeHTML(period.status)}</option>`).join('');
   let activePeriod = periods[0] || DEMO_PERIOD;
@@ -403,8 +436,9 @@ export async function initTeamDashboard() {
       outlet.innerHTML = `<section class="assignment-builder"><div class="assignment-builder-head"><div><div class="kicker">Role assignment</div><h2>Live role assignment is managed by HR/Admin.</h2><p>Setelah Supabase aktif, Team Leader hanya melihat anggota yang sudah ditetapkan HR/Admin. Form pengaturan nama dan peran demo tidak ditampilkan di mode produksi.</p></div></div></section>`;
       return;
     }
-    outlet.innerHTML = assignmentBuilderMarkup(context, roleMaster, people);
+    outlet.innerHTML = assignmentBuilderMarkup(context, roleMaster, people, employeeMaster);
     const form = $('#assignment-form', outlet);
+    const employeeSelect = $('#assignment-employee', outlet);
     const roleSelect = $('#assignment-role', outlet);
     const stationField = $('#station-field', outlet);
     const stationSelect = $('#assignment-station', outlet);
@@ -418,12 +452,12 @@ export async function initTeamDashboard() {
     syncStation();
     form.addEventListener('submit', async event => {
       event.preventDefault();
-      const name = $('#assignment-name', form).value.trim();
+      const employee = employeeMaster.find(item => item.employee_id === employeeSelect.value);
       const roleId = roleSelect.value;
       const station = stationSelect.value;
       const role = roleTemplate(roleId, roleMaster);
-      if (!name || !role) {
-        showToast('Nama karyawan dan current role wajib diisi.');
+      if (!employee || !role) {
+        showToast('Pilih nama resmi dari Employee Master dan current role. Keduanya wajib diisi.');
         return;
       }
       if (roleId === 'ops-operator' && !station) {
@@ -431,16 +465,23 @@ export async function initTeamDashboard() {
         stationSelect.focus();
         return;
       }
-      const duplicates = getDemoAssignments().filter(assignment => assignment.team_key === context.teamKey && canonical(assignment.full_name) === canonical(name));
-      if (duplicates.length) {
-        showToast('Nama tersebut sudah memiliki role card di departemen ini. Gunakan nama yang berbeda atau hapus card lama terlebih dahulu.');
+      const duplicate = getDemoAssignments().find(assignment =>
+        String(assignment.employee_master_id || '') === employee.employee_id &&
+        assignment.team_key === context.teamKey &&
+        assignment.role_id === roleId &&
+        canonical(assignment.station || '') === canonical(roleId === 'ops-operator' ? station : '')
+      );
+      if (duplicate) {
+        showToast(`${employee.full_name} sudah memiliki KPI card dengan role dan fungsi yang sama. Pilih role atau fungsi operator lain, atau hapus card yang lama.`);
         return;
       }
       const assignment = {
-        id: uid('demo-person'),
+        id: uid('demo-role'),
+        employee_master_id: employee.employee_id,
+        employee_no: employee.employee_id,
         team_key: context.teamKey,
         department: context.department,
-        full_name: name,
+        full_name: employee.full_name,
         role_id: roleId,
         station: roleId === 'ops-operator' ? station : '',
         team_leader_name: context.workspaceType === 'self' ? 'Self reporting · Owner review' : context.profile.full_name,
@@ -448,7 +489,7 @@ export async function initTeamDashboard() {
       };
       setDemoAssignments([...getDemoAssignments(), assignment]);
       form.reset();
-      showToast(`${name} berhasil ditambahkan dengan role ${displayRole(assignment, role)}.`);
+      showToast(`${employee.full_name} · ID ${employee.employee_id} berhasil ditambahkan sebagai KPI card ${displayRole(assignment, role)}.`);
       await render();
     });
     $('#clear-department-assignments', outlet)?.addEventListener('click', async () => {
@@ -471,9 +512,10 @@ export async function initTeamDashboard() {
       const card = statusByEmployee.get(isDemoMode ? person.id : person.employee_role_id) || {};
       const score = card.calculated_score == null ? '—' : `${Number(card.calculated_score).toFixed(2)}%`;
       const station = person.assignment?.station ? `<div class="card-station">${escapeHTML(person.assignment.station)}</div>` : '';
+      const employeeId = person.employee_no ? `<div class="card-employee-id">Employee ID · ${escapeHTML(person.employee_no)}</div>` : '';
       const remove = isDemoMode ? `<button class="card-remove" type="button" data-remove-assignment="${escapeHTML(person.id)}" aria-label="Hapus role card ${escapeHTML(person.full_name)}">Remove</button>` : '';
-      return `<article class="team-card"><div class="card-topline"><div class="card-dept">${escapeHTML(person.role.department)}</div>${remove}</div><h3>${escapeHTML(person.full_name)}</h3><div class="card-role">${escapeHTML(person.role.role)}</div>${station}<div class="card-footer"><div>${statusPill(card.status || 'draft')}<br><span class="muted">Score: ${score}</span></div><button class="table-action" data-open-card="${escapeHTML(person.employee_role_id || person.id)}">Open Card</button></div></article>`;
-    }).join('') || `<div class="empty"><strong>Belum ada card.</strong><br>Isi <em>Nama karyawan</em> dan pilih <em>Current role</em> di panel Role Assignment di atas. Setelah ditambahkan, KPI card akan menyesuaikan template KPI role tersebut.</div>`;
+      return `<article class="team-card"><div class="card-topline"><div class="card-dept">${escapeHTML(person.role.department)}</div>${remove}</div><h3>${escapeHTML(person.full_name)}</h3>${employeeId}<div class="card-role">${escapeHTML(person.role.role)}</div>${station}<div class="card-footer"><div>${statusPill(card.status || 'draft')}<br><span class="muted">Score: ${score}</span></div><button class="table-action" data-open-card="${escapeHTML(person.employee_role_id || person.id)}">Open Card</button></div></article>`;
+    }).join('') || `<div class="empty"><strong>Belum ada card.</strong><br>Pilih <em>Nama karyawan</em> dari Employee Master dan tetapkan <em>Current role</em> di panel Role Assignment di atas. Setelah ditambahkan, KPI card akan menyesuaikan template KPI role tersebut.</div>`;
     const total = people.length;
     const submitted = cards.filter(card => ['submitted', 'approved', 'locked'].includes(card.status)).length;
     const returned = cards.filter(card => card.status === 'returned').length;
@@ -486,7 +528,7 @@ export async function initTeamDashboard() {
     $$('[data-remove-assignment]').forEach(button => button.addEventListener('click', async () => {
       const person = people.find(item => item.id === button.dataset.removeAssignment);
       if (!person) return;
-      if (!confirm(`Hapus ${person.full_name} dari role ${person.role.role}? Semua data card demo untuk orang ini juga akan dihapus.`)) return;
+      if (!confirm(`Hapus ${person.full_name} dari role ${person.role.role}? Hanya KPI card untuk role ini yang akan dihapus. KPI card lain milik orang yang sama tetap tersimpan.`)) return;
       removeDemoAssignment(person.id);
       showToast('Role card demo dihapus.');
       await render();
@@ -504,7 +546,7 @@ export async function initTeamDashboard() {
     $('#card-modal-kicker').textContent = `${person.role.department} · ${person.role.code || ''} · ${monthLabel(activePeriod.month_start)}`;
     $('#card-modal-title').textContent = `${person.full_name} — ${person.role.role}`;
     const readOnly = existing.status === 'locked';
-    $('#card-modal-body').innerHTML = `<div class="assignment-summary"><div><span>Employee</span><strong>${escapeHTML(person.full_name)}</strong></div><div><span>Current role</span><strong>${escapeHTML(person.role.role)}</strong></div>${person.assignment?.station ? `<div><span>Operator function</span><strong>${escapeHTML(person.assignment.station)}</strong></div>` : ''}</div><div class="score-banner"><div><span>Estimated weighted score</span><strong id="live-score">0.00%</strong></div><div class="right"><span>Reviewer</span><br>${escapeHTML(person.role.reviewer || 'HR')}</div></div><div class="notice"><strong>Input rule</strong>Masukkan capaian (%) berdasarkan bukti monitoring. Pada fase awal ini, Team Leader memilih nilai capaian 0–120%; bobot aktif dan total skor dihitung otomatis. Setelah formula per KPI disahkan, field ini dapat dihitung langsung dari angka aktual.</div>${metrics.map((metric, index) => metricForm(metric, index, byMetric.get(metricKey(metric, index)) || {})).join('')}`;
+    $('#card-modal-body').innerHTML = `<div class="assignment-summary"><div><span>Employee</span><strong>${escapeHTML(person.full_name)}</strong></div><div><span>Employee ID</span><strong>${escapeHTML(person.employee_no || '—')}</strong></div><div><span>Current role</span><strong>${escapeHTML(person.role.role)}</strong></div>${person.assignment?.station ? `<div><span>Operator function</span><strong>${escapeHTML(person.assignment.station)}</strong></div>` : ''}</div><div class="score-banner"><div><span>Estimated weighted score</span><strong id="live-score">0.00%</strong></div><div class="right"><span>Reviewer</span><br>${escapeHTML(person.role.reviewer || 'HR')}</div></div><div class="notice"><strong>Input rule</strong>Masukkan capaian (%) berdasarkan bukti monitoring. Pada fase awal ini, Team Leader memilih nilai capaian 0–120%; bobot aktif dan total skor dihitung otomatis. Setelah formula per KPI disahkan, field ini dapat dihitung langsung dari angka aktual.</div>${metrics.map((metric, index) => metricForm(metric, index, byMetric.get(metricKey(metric, index)) || {})).join('')}`;
     $('#card-modal-actions').innerHTML = readOnly
       ? `<div class="helper">Card ini sudah <b>Locked</b> dan tidak dapat diubah.</div><div class="action-group"><button type="button" class="secondary-btn" data-close-card>Close</button></div>`
       : `<div class="helper">Status saat ini: ${statusPill(existing.status || 'draft')} · Bukti URL wajib sebelum submit ke HR. Card yang sudah locked tidak dapat diedit.</div><div class="action-group"><button type="button" class="secondary-btn" data-save-draft>Save Draft</button><button type="button" class="primary-btn" data-submit-card>Submit for HR Review</button></div>`;
@@ -692,6 +734,7 @@ async function exportXlsx(periodId, periodLabel) {
       Period: periodLabel,
       Department: card.department_name || card.department,
       Employee: card.employee_name,
+      'Employee ID': card.employee_no || card.employee_master_id || '',
       Role: card.role_title,
       'Operator Function': card.station || '',
       Team_Leader: card.team_leader_name,
