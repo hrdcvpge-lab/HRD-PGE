@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PGE Aligning Organizations System Hub">
+  <title>PGE AOS — System Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --wine:#871719;
+      --wine-deep:#591012;
+      --wine-soft:#fbf1ef;
+      --cream:#fffaf6;
+      --ink:#211716;
+      --muted:#756865;
+      --line:#eadbd7;
+      --teal:#0e5d5b;
+      --gold:#be8121;
+      --shadow:0 18px 48px rgba(80,24,23,.11);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:"Plus Jakarta Sans",Arial,sans-serif}
+    a{text-decoration:none;color:inherit}
+    .nav{
+      position:sticky;top:0;z-index:5;background:rgba(255,250,246,.92);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);padding:14px 5vw;display:flex;align-items:center;justify-content:space-between;gap:18px
+    }
+    .brand{display:flex;align-items:center;gap:11px}
+    .brand-mark{
+      width:34px;height:34px;border-radius:10px;background:var(--wine);color:#fff;display:grid;place-items:center;
+      font-size:11px;font-weight:800;letter-spacing:-.04em
+    }
+    .brand strong{display:block;font-size:14px;letter-spacing:.02em}
+    .brand span{display:block;font:11px "DM Mono",monospace;color:var(--muted);margin-top:2px}
+    .nav a:last-child{font-size:13px;font-weight:700;color:var(--wine);padding:9px 12px;border:1px solid #d9b9b3;border-radius:8px}
+    .hero{
+      min-height:calc(100vh - 63px);padding:92px 5vw 56px;display:grid;align-content:center;position:relative;overflow:hidden;
+      background:linear-gradient(120deg,#fffaf6 0%,#fffaf6 56%,#f8ece9 100%);
+    }
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+    .hero:before{width:580px;height:580px;right:-210px;top:-210px;background:radial-gradient(circle,rgba(135,23,25,.15),transparent 67%)}
+    .hero:after{width:380px;height:380px;left:-180px;bottom:-180px;background:radial-gradient(circle,rgba(14,93,91,.12),transparent 68%)}
+    .hero-inner{position:relative;z-index:1;max-width:950px}
+    .eyebrow{font:12px "DM Mono",monospace;color:var(--wine);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+    h1{font:800 clamp(3.1rem,7vw,6.4rem)/.94 "Playfair Display",Georgia,serif;letter-spacing:-.055em;margin:18px 0 22px;max-width:840px}
+    h1 em{font-style:normal;color:var(--wine)}
+    .hero p{font-size:clamp(1rem,1.7vw,1.2rem);line-height:1.75;color:#5f4f4b;max-width:700px;margin:0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:9px;padding:0 18px;font-size:14px;font-weight:800}
+    .btn-primary{background:var(--wine);color:#fff;box-shadow:0 10px 22px rgba(135,23,25,.2)}
+    .btn-secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}
+    main{max-width:1180px;margin:0 auto;padding:76px 5vw 88px}
+    .section-label{font:12px "DM Mono",monospace;color:var(--wine);letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+    h2{font:800 clamp(2rem,4.5vw,3.7rem)/1.02 "Playfair Display",Georgia,serif;letter-spacing:-.045em;margin:13px 0 14px}
+    .section-copy{color:var(--muted);max-width:720px;line-height:1.7;margin:0 0 28px}
+    .modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .module{
+      min-height:345px;border:1px solid var(--line);background:#fff;border-radius:18px;padding:28px;display:flex;flex-direction:column;
+      transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;box-shadow:0 4px 18px rgba(67,32,28,.04)
+    }
+    .module:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#d9aaa3}
+    .module-icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:25px;margin-bottom:26px}
+    .module-sop .module-icon{background:#f8e6e2}.module-kpi .module-icon{background:#e8f2ef}
+    .module small{font:11px "DM Mono",monospace;color:var(--wine);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .module h3{font:800 2rem/1.05 "Playfair Display",Georgia,serif;letter-spacing:-.04em;margin:9px 0 12px}
+    .module p{color:var(--muted);line-height:1.7;font-size:14px;margin:0}
+    .chips{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 24px}
+    .chips span{font-size:11px;padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:#615350;background:#fffaf9}
+    .module .open{margin-top:auto;color:var(--wine);font-size:14px;font-weight:800;display:flex;align-items:center;gap:7px}
+    .guide{margin-top:66px;border:1px solid var(--line);background:var(--wine-soft);border-radius:16px;padding:28px}
+    .guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:22px}
+    .guide-item{padding:18px;border-radius:12px;background:#fff;border:1px solid rgba(135,23,25,.11)}
+    .guide-no{font:700 12px "DM Mono",monospace;color:var(--wine)}
+    .guide-item strong{display:block;margin:9px 0 6px;font-size:15px}
+    .guide-item p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
+    .download{margin-top:56px;padding:25px 28px;border-radius:16px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .download h3{margin:0;font:800 1.55rem/1 "Playfair Display",Georgia,serif;letter-spacing:-.03em}
+    .download p{margin:8px 0 0;font-size:13px;line-height:1.6;color:rgba(255,255,255,.78)}
+    .download a{background:#fff;color:var(--teal);font-size:13px;font-weight:800;padding:12px 14px;border-radius:8px;white-space:nowrap}
+    footer{padding:22px 5vw 30px;border-top:1px solid var(--line);font:11px "DM Mono",monospace;color:#8a7a76;display:flex;justify-content:space-between;gap:16px}
+    @media(max-width:760px){
+      .nav{padding:12px 18px}.nav a:last-child{display:none}
+      .hero{min-height:auto;padding:74px 22px 58px}h1{font-size:3.15rem}
+      main{padding:54px 20px 62px}.modules,.guide-grid{grid-template-columns:1fr}
+      .module{min-height:275px}.download{align-items:flex-start;flex-direction:column}.download a{width:100%;text-align:center}
+      footer{padding:20px;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="index.html" aria-label="PGE AOS System Hub">
+      <div class="brand-mark">PGE</div>
+      <div><strong>AOS System Hub</strong><span>Aligning Organizations System</span></div>
+    </a>
+    <a href="#modules">Open Modules ↓</a>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">CV Pusat Grosir Eceran</div>
+      <h1>One system.<br><em>Clear ownership.</em></h1>
+      <p>Gunakan hub ini untuk membuka alur SOP dan Work Instruction per divisi, lalu memonitor target kerja melalui KPI dan Report Cards berbasis peran.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="sop.html">Open SOP & Work Instructions →</a>
+        <a class="btn btn-secondary" href="kpi.html">Open KPI & Report Cards →</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="modules">
+    <div class="section-label">PGE AOS Modules</div>
+    <h2>Pilih modul kerja Anda.</h2>
+    <p class="section-copy">Kedua modul menggunakan struktur peran yang sama. SOP menjelaskan alur dan cara kerja; KPI Report Cards membantu pencatatan hasil, bukti, akar masalah, dan tindak lanjut.</p>
+
+    <div class="modules">
+      <a class="module module-sop" href="sop.html">
+        <div class="module-icon">◫</div>
+        <small>Module 01</small>
+        <h3>SOP & Work Instructions</h3>
+        <p>Alur end-to-end untuk Operations, Sales & Marketing, R&D, Finance, dan HRD GA. Klik tahapan proses untuk membuka SOP, lalu pilih Related WI untuk langkah kerja yang lebih detail.</p>
+        <div class="chips">
+          <span>Workflow</span><span>Role Ownership</span><span>Related WI</span><span>Step-by-step</span>
+        </div>
+        <div class="open">Open SOP Module <span>→</span></div>
+      </a>
+
+      <a class="module module-kpi" href="kpi.html">
+        <div class="module-icon">▦</div>
+        <small>Module 02</small>
+        <h3>KPI & Report Cards</h3>
+        <p>Pilih departemen dan peran untuk melihat KPI yang relevan. Gunakan Report Card untuk mencatat target, realisasi, bukti pendukung, root cause, action plan, dan review.</p>
+        <div class="chips">
+          <span>Role KPI</span><span>Score</span><span>Evidence</span><span>Action Plan</span>
+        </div>
+        <div class="open">Open KPI Module <span>→</span></div>
+      </a>
+    </div>
+
+    <section class="guide">
+      <div class="section-label">Cara menggunakan sistem</div>
+      <h2 style="font-size:clamp(1.75rem,3.2vw,2.8rem);margin-bottom:0">Dari proses ke pengukuran.</h2>
+      <div class="guide-grid">
+        <div class="guide-item">
+          <div class="guide-no">01</div>
+          <strong>Buka SOP</strong>
+          <p>Temukan departemen, role, dan tahapan kerja yang sesuai dengan tanggung jawab Anda.</p>
+        </div>
+        <div class="guide-item">
+          <div class="guide-no">02</div>
+          <strong>Buka Related WI</strong>
+          <p>Gunakan Work Instruction saat Anda membutuhkan langkah kerja, output, atau aturan hand-off yang lebih rinci.</p>
+        </div>
+        <div class="guide-item">
+          <div class="guide-no">03</div>
+          <strong>Catat hasil di Report Card</strong>
+          <p>Bandingkan target dan realisasi, unggah/masukkan bukti, lalu tulis akar masalah dan tindak lanjut.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="download">
+      <div>
+        <h3>Official KPI Report Card Template</h3>
+        <p>Gunakan template Excel sebagai arsip dan laporan resmi setelah data Report Card ditinjau.</p>
+      </div>
+      <a href="PGE_KPI_Report_Cards_Template.xlsx" download>↓ Download Excel Template</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>© CV Pusat Grosir Eceran — PGE AOS</span>
+    <span>System Hub · SOP · KPI Report Cards</span>
+  </footer>
+</body>
+</html>

@@ -1,15 +1,42 @@
-PGE AOS — MODULAR GITHUB PAGES PACKAGE (UPDATED SOP)
+PGE AOS — GITHUB REPLACEMENT PACKAGE
+=========================================
 
-This package contains:
-- index.html  : AOS System Hub
-- sop.html    : New approved SOP module (replaces the prior SOP page)
-- kpi.html    : Role-Based KPI information module
+FILES TO UPLOAD TO THE ROOT OF YOUR GITHUB REPOSITORY
+------------------------------------------------------
+1. index.html
+   Main PGE AOS System Hub. It links to both modules.
 
-Upload all three files to the SAME GitHub Pages publishing folder.
-For most repositories: main branch / root folder.
+2. sop.html
+   SOP, visual workflow, and Related Work Instructions for:
+   - Operations
+   - Sales & Marketing
+   - Research & Development
+   - Finance, Accounting & Tax
+   - HRD GA
 
-Important:
-1. The homepage must stay named index.html.
-2. SOP module is now sop.html.
-3. The new SOP page includes visible links in its hero area to System Hub and KPI Module.
-4. All file names are lowercase and must remain exactly as shown.
+3. kpi.html
+   KPI and Role-Based Report Cards module.
+
+4. PGE_KPI_Report_Cards_Template.xlsx
+   Official Excel template. It must stay in the same folder as index.html,
+   sop.html, and kpi.html because the KPI page uses this exact file name.
+
+GITHUB UPLOAD STEPS
+-------------------
+1. Unzip this package on your computer.
+2. Open your GitHub repository.
+3. Upload the four files above into the repository root.
+4. Replace the existing index.html, sop.html, and kpi.html when GitHub asks.
+5. Commit the changes.
+6. Open your GitHub Pages link.
+
+EXPECTED PAGE LINKS
+-------------------
+index.html  -> Main System Hub
+sop.html    -> SOP & Work Instructions
+kpi.html    -> KPI & Report Cards
+
+IMPORTANT
+---------
+Do not rename PGE_KPI_Report_Cards_Template.xlsx.
+The download button in kpi.html uses that exact file name.
