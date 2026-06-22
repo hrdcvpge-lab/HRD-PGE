@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "source": "Team PGE.xlsx",
+  "description": "Official PGE employee master for demo role assignment. Employee name is selected from this master to prevent spelling variants and duplicate KPI cards.",
+  "employees": [
+    {
+      "employee_id": "210703",
+      "full_name": "Anisyatul Hasanah",
+      "active": true
+    },
+    {
+      "employee_id": "191101",
+      "full_name": "Ary Indriyani",
+      "active": true
+    },
+    {
+      "employee_id": "220501",
+      "full_name": "Assadiyah Husniyah",
+      "active": true
+    },
+    {
+      "employee_id": "210502",
+      "full_name": "Chantya Serly Akhlidya",
+      "active": true
+    },
+    {
+      "employee_id": "240804",
+      "full_name": "Dewi Kusumaningrum",
+      "active": true
+    },
+    {
+      "employee_id": "240502",
+      "full_name": "Dhea Amalia Fadhillah",
+      "active": true
+    },
+    {
+      "employee_id": "231104",
+      "full_name": "Imelda Sarita Sri Suniati",
+      "active": true
+    },
+    {
+      "employee_id": "220502",
+      "full_name": "Katharina Andini Eliza Pranawati",
+      "active": true
+    },
+    {
+      "employee_id": "230101",
+      "full_name": "Linda Novianti",
+      "active": true
+    },
+    {
+      "employee_id": "251105",
+      "full_name": "Olivia Ayu Ramadhani",
+      "active": true
+    },
+    {
+      "employee_id": "240501",
+      "full_name": "Parni",
+      "active": true
+    },
+    {
+      "employee_id": "231003",
+      "full_name": "Riska Amelia",
+      "active": true
+    },
+    {
+      "employee_id": "251104",
+      "full_name": "Riska Iga Mawarni",
+      "active": true
+    },
+    {
+      "employee_id": "200401",
+      "full_name": "Rusmiyati",
+      "active": true
+    },
+    {
+      "employee_id": "251107",
+      "full_name": "Sholekah Nur Khoiroh",
+      "active": true
+    },
+    {
+      "employee_id": "201202",
+      "full_name": "Sukini",
+      "active": true
+    },
+    {
+      "employee_id": "230602",
+      "full_name": "Tety Dya Pangastuti",
+      "active": true
+    },
+    {
+      "employee_id": "241205",
+      "full_name": "Titania Susilowati Fauziyah",
+      "active": true
+    },
+    {
+      "employee_id": "210201",
+      "full_name": "Wahyu Albino",
+      "active": true
+    },
+    {
+      "employee_id": "251206",
+      "full_name": "Yohana Aprilia Putri",
+      "active": true
+    },
+    {
+      "employee_id": "250201",
+      "full_name": "Jumiati",
+      "active": true
+    },
+    {
+      "employee_id": "260401",
+      "full_name": "Ilham Rizky Nugroho",
+      "active": true
+    },
+    {
+      "employee_id": "260502",
+      "full_name": "Pandu Yogatama",
+      "active": true
+    },
+    {
+      "employee_id": "260603",
+      "full_name": "Aloysius Gonzaga Pri Sambodo Nugroho",
+      "active": true
+    }
+  ]
+}
