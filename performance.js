@@ -401,15 +401,38 @@ function assignmentBuilderMarkup(context, roleMaster, people, employeeMaster) {
     const assignmentLabel = count ? ` · ${count} KPI card aktif` : '';
     return `<option value="${escapeHTML(employee.employee_id)}">${escapeHTML(employee.full_name)} · ID ${escapeHTML(employee.employee_id)}${assignmentLabel}</option>`;
   }).join('');
-  return `<section class="assignment-builder" aria-labelledby="assignment-builder-title">
-    <div class="assignment-builder-head"><div><div class="kicker">Step 1 · employee + role assignment</div><h2 id="assignment-builder-title">${self ? 'Select your name. Set your active role card.' : 'Select name, assign role, create KPI card.'}</h2><p>${self ? 'Pilih nama Anda dari Employee Master PGE lalu tetapkan role aktif untuk KPI card ini. Anda dapat menambah KPI card lain bila memegang lebih dari satu role.' : 'Nama wajib dipilih dari Employee Master PGE agar penulisan, No ID, dan laporan bulanan seragam. Satu karyawan boleh memiliki beberapa KPI card untuk role berbeda. Duplikasi hanya diblok bila nama + role + fungsi operator sama persis.'}</p></div><div class="assignment-count"><strong>${people.length}</strong><span>active role cards</span></div></div>
+  return `<section class="assignment-builder assignment-builder-clean" aria-labelledby="assignment-builder-title">
+    <div class="assignment-builder-head">
+      <div class="assignment-title-block">
+        <div class="kicker">01 · Employee & role assignment</div>
+        <h2 id="assignment-builder-title">${self ? 'Set your KPI role card.' : 'Create a KPI card.'}</h2>
+        <p>${self ? 'Pilih nama Anda dari Employee Master PGE, lalu tentukan role yang sedang dijalankan untuk periode ini.' : 'Pilih nama resmi dari Employee Master PGE, tentukan role aktif, lalu buat KPI card. Satu orang dapat memiliki beberapa card untuk role atau fungsi kerja yang berbeda.'}</p>
+      </div>
+      <div class="assignment-count" aria-label="${people.length} active KPI cards">
+        <span>Active KPI cards</span>
+        <strong>${people.length}</strong>
+      </div>
+    </div>
     <form class="assignment-form" id="assignment-form" novalidate>
-      <div class="field assignment-name"><label for="assignment-employee">Nama karyawan · Employee Master <b class="required">*</b></label><select id="assignment-employee" name="employee_id" required><option value="">Pilih nama resmi…</option>${employeeOptions}</select><small class="field-note">${employeeMaster.length} nama aktif · No ID tampil otomatis pada setiap KPI card dan report.</small></div>
-      <div class="field assignment-role"><label for="assignment-role">Current role / KPI template <b class="required">*</b></label><select id="assignment-role" name="role_id" required><option value="">Pilih role aktif…</option>${departmentRoles.map(role => `<option value="${escapeHTML(role.id)}">${escapeHTML(role.role)}</option>`).join('')}</select></div>
-      <div class="field station-field hidden" id="station-field"><label for="assignment-station">Fungsi operator saat ini <b class="required">*</b></label><select id="assignment-station" name="station"><option value="">Pilih fungsi operator…</option>${OPERATOR_STATIONS.map(station => `<option value="${escapeHTML(station)}">${escapeHTML(station)}</option>`).join('')}</select></div>
-      <div class="assignment-action"><button type="submit" class="primary-btn">Add KPI card →</button></div>
+      <div class="field assignment-name">
+        <label for="assignment-employee">Employee name <b class="required">*</b></label>
+        <select id="assignment-employee" name="employee_id" required><option value="">Select official name…</option>${employeeOptions}</select>
+        <small class="field-note">${employeeMaster.length} approved names · Employee ID follows every KPI card and monthly report.</small>
+      </div>
+      <div class="field assignment-role">
+        <label for="assignment-role">Current role / KPI template <b class="required">*</b></label>
+        <select id="assignment-role" name="role_id" required><option value="">Select active role…</option>${departmentRoles.map(role => `<option value="${escapeHTML(role.id)}">${escapeHTML(role.role)}</option>`).join('')}</select>
+      </div>
+      <div class="field station-field hidden" id="station-field">
+        <label for="assignment-station">Operator function <b class="required">*</b></label>
+        <select id="assignment-station" name="station"><option value="">Select operator function…</option>${OPERATOR_STATIONS.map(station => `<option value="${escapeHTML(station)}">${escapeHTML(station)}</option>`).join('')}</select>
+      </div>
+      <div class="assignment-action"><button type="submit" class="primary-btn"><span>Create KPI card</span><span aria-hidden="true">→</span></button></div>
     </form>
-    <div class="assignment-help"><span><b>* Wajib diisi.</b> Nama tidak dapat diketik bebas. Role menentukan template KPI. Satu orang dapat memiliki beberapa card jika menjalankan beberapa role. Untuk Operator Produksi, fungsi kerja menentukan label card—bukan bobot KPI—sehingga KPI sama tetap tercatat terpisah per fungsi/operator station.</span>${people.length ? '<button type="button" class="table-action" id="clear-department-assignments">Clear this department</button>' : ''}</div>
+    <div class="assignment-help">
+      <div class="assignment-help-copy"><b>Required fields.</b> Names cannot be typed manually. The role determines the KPI template. For Operator Produksi, the function distinguishes the card label while the approved KPI weight remains the same.</div>
+      ${people.length ? '<button type="button" class="table-action assignment-reset" id="clear-department-assignments">Reset department cards</button>' : ''}
+    </div>
   </section>`;
 }
 
@@ -445,6 +468,7 @@ export async function initTeamDashboard() {
     const syncStation = () => {
       const isOperator = roleSelect.value === 'ops-operator';
       stationField.classList.toggle('hidden', !isOperator);
+      form.classList.toggle('has-station', isOperator);
       stationSelect.required = isOperator;
       if (!isOperator) stationSelect.value = '';
     };

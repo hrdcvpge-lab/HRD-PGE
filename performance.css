@@ -9,9 +9,111 @@
 /* Complete all-department demo access */
 .demo-note{margin:9px 0 0;color:var(--muted);font-size:.88rem;line-height:1.4}.demo-access-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.demo-role{min-height:66px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;padding:10px 11px;text-align:left}.demo-role b{font-size:10px}.demo-role small{font:600 9px "JetBrains Mono",monospace;letter-spacing:.04em;color:inherit;opacity:.72}.demo-scenario{margin-top:16px;padding:12px;border:1px solid var(--line);background:rgba(120,232,230,.10);display:grid;gap:7px}.demo-scenario strong{font:700 10px "JetBrains Mono",monospace;color:var(--aqua-dark);letter-spacing:.06em;text-transform:uppercase}.demo-scenario span{font-size:.86rem;line-height:1.35;color:var(--muted)}.demo-scenario .table-action{justify-self:start}.toolbar-right .danger-btn{min-height:44px}@media(max-width:620px){.demo-access-grid{grid-template-columns:1fr}.toolbar-right .danger-btn{width:100%}}
 
-/* Role assignment setup — demo/staging only */
-.assignment-builder{margin:22px 0 30px;border:2px solid var(--wine);background:rgba(255,252,249,.93);position:relative;overflow:hidden}.assignment-builder:before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent,transparent 1px,rgba(135,23,25,.13) 1px,rgba(135,23,25,.13) 2px);background-size:5px 100%;opacity:.05}.assignment-builder>*{position:relative;z-index:1}.assignment-builder-head{display:flex;justify-content:space-between;gap:24px;padding:22px 22px 18px;border-bottom:2px solid var(--wine);background:linear-gradient(135deg,rgba(135,23,25,.06),rgba(120,232,230,.09))}.assignment-builder h2{margin:8px 0 8px;font:600 clamp(1.9rem,3.5vw,3.3rem)/.94 "Playfair Display",Georgia,serif;letter-spacing:-.05em}.assignment-builder p{max-width:740px;margin:0;color:var(--muted);font-size:1rem;line-height:1.45}.assignment-count{min-width:122px;padding:10px 14px;align-self:flex-start;background:var(--wine);color:#fff;text-align:center}.assignment-count strong{display:block;font:600 2.3rem/1 "Playfair Display",Georgia,serif}.assignment-count span{display:block;margin-top:5px;font:700 9px/1.35 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase}.assignment-form{display:grid;grid-template-columns:1.15fr 1.35fr 1.25fr auto;gap:12px;align-items:end;padding:18px 22px}.assignment-form .field{min-width:0}.assignment-action{display:flex;align-items:end}.assignment-action .primary-btn{width:100%;white-space:nowrap}.assignment-help{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:13px 22px;border-top:1px solid var(--line);background:rgba(120,232,230,.10);font-size:.88rem;line-height:1.42;color:var(--muted)}.assignment-help b{color:var(--wine)}.required{color:var(--danger);font:700 12px "JetBrains Mono",monospace}.card-topline{display:flex;justify-content:space-between;gap:12px;align-items:start}.card-remove{border:0;border-bottom:1px solid var(--danger);background:transparent;color:var(--danger);padding:0;font:700 9px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase}.card-remove:hover{background:var(--danger);color:#fff;padding:4px 5px}.card-station{display:inline-flex;align-self:flex-start;margin-top:10px;padding:5px 7px;border:1px solid var(--aqua-dark);background:rgba(120,232,230,.16);color:var(--aqua-dark);font:700 9px "JetBrains Mono",monospace;letter-spacing:.05em;text-transform:uppercase}.assignment-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 16px}.assignment-summary>div{padding:11px 12px;border:1px solid var(--line);background:rgba(255,252,249,.86)}.assignment-summary span{display:block;margin-bottom:5px;color:var(--wine);font:700 9px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase}.assignment-summary strong{display:block;font-size:.94rem;line-height:1.25}@media(max-width:980px){.assignment-form{grid-template-columns:1fr 1fr}.assignment-action{grid-column:1/-1}.assignment-action .primary-btn{width:auto}.assignment-summary{grid-template-columns:1fr 1fr}}@media(max-width:620px){.assignment-builder-head,.assignment-help{flex-direction:column;align-items:stretch}.assignment-count{align-self:stretch;text-align:left}.assignment-form{grid-template-columns:1fr;padding:16px}.assignment-action{grid-column:auto}.assignment-action .primary-btn{width:100%}.assignment-help{padding:14px 16px}.assignment-summary{grid-template-columns:1fr}.assignment-builder-head{padding:18px 16px}.assignment-builder p{font-size:.94rem}}
-
+/* Clean role assignment — clear hierarchy, aligned inputs, no oversized control block */
+.assignment-builder{
+  margin:24px 0 30px;
+  border:1px solid var(--line-dark);
+  background:rgba(255,252,249,.94);
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(72,9,11,.045);
+}
+.assignment-builder:before{content:none}
+.assignment-builder>*{position:relative;z-index:1}
+.assignment-builder-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:28px;
+  align-items:start;
+  padding:24px 26px 22px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg,rgba(135,23,25,.04),rgba(120,232,230,.055));
+}
+.assignment-title-block{max-width:850px}
+.assignment-builder h2{
+  margin:7px 0 8px;
+  color:var(--wine-dark);
+  font:600 clamp(2.05rem,3.5vw,3.35rem)/.98 "Playfair Display",Georgia,serif;
+  letter-spacing:-.055em;
+}
+.assignment-builder p{max-width:760px;margin:0;color:var(--muted);font-size:1rem;line-height:1.46}
+.assignment-count{
+  width:126px;
+  min-height:94px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  padding:14px 16px;
+  border:1px solid var(--wine);
+  background:#fffdfb;
+  color:var(--wine);
+  text-align:left;
+}
+.assignment-count span{order:1;font:700 9px/1.3 "JetBrains Mono",monospace;letter-spacing:.09em;text-transform:uppercase}
+.assignment-count strong{order:2;font:600 2.55rem/.88 "Playfair Display",Georgia,serif;color:var(--wine-dark)}
+.assignment-form{
+  display:grid;
+  grid-template-columns:minmax(250px,1.12fr) minmax(250px,1.12fr) minmax(190px,.76fr);
+  gap:16px;
+  align-items:end;
+  padding:20px 26px 17px;
+  background:rgba(255,255,255,.36);
+}
+.assignment-form .field{min-width:0;gap:7px}
+.assignment-form .field label{min-height:14px}
+.assignment-form select{width:100%;min-height:48px;padding:0 12px;border:1px solid rgba(135,23,25,.52);background:#fffdfb}
+.assignment-form .field-note{min-height:25px;padding-right:10px;color:var(--muted);font-size:8.5px;line-height:1.35}
+.assignment-action{display:flex;align-items:end;height:48px}
+.assignment-action .primary-btn{width:100%;min-height:48px;padding:0 17px;justify-content:space-between;white-space:nowrap}
+.assignment-form.has-station{grid-template-columns:repeat(3,minmax(0,1fr))}
+.assignment-form.has-station .assignment-action{grid-column:1/-1;height:auto;justify-content:flex-end;margin-top:0}
+.assignment-form.has-station .assignment-action .primary-btn{width:min(260px,100%)}
+.assignment-help{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:14px 26px;
+  border-top:1px solid var(--line);
+  background:rgba(120,232,230,.075);
+  color:var(--muted);
+  font-size:.89rem;
+  line-height:1.42;
+}
+.assignment-help-copy{max-width:930px}
+.assignment-help b{color:var(--wine)}
+.assignment-reset{flex:0 0 auto;border-color:rgba(135,23,25,.45);color:var(--wine);background:transparent}
+.assignment-reset:hover{background:var(--wine);color:#fff}
+.required{color:var(--danger);font:700 12px "JetBrains Mono",monospace}
+.card-topline{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.card-remove{border:0;border-bottom:1px solid var(--danger);background:transparent;color:var(--danger);padding:0;font:700 9px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+.card-remove:hover{background:var(--danger);color:#fff;padding:4px 5px}
+.card-station{display:inline-flex;align-self:flex-start;margin-top:10px;padding:5px 7px;border:1px solid var(--aqua-dark);background:rgba(120,232,230,.16);color:var(--aqua-dark);font:700 9px "JetBrains Mono",monospace;letter-spacing:.05em;text-transform:uppercase}
+.assignment-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 16px}
+.assignment-summary>div{padding:11px 12px;border:1px solid var(--line);background:rgba(255,252,249,.86)}
+.assignment-summary span{display:block;margin-bottom:5px;color:var(--wine);font:700 9px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.assignment-summary strong{display:block;font-size:.94rem;line-height:1.25}
+@media(max-width:980px){
+  .assignment-form{grid-template-columns:1fr 1fr}
+  .assignment-action{grid-column:1/-1;height:auto;justify-content:flex-end}
+  .assignment-action .primary-btn{width:min(260px,100%)}
+  .assignment-form.has-station{grid-template-columns:1fr 1fr}
+  .assignment-summary{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .assignment-builder-head{grid-template-columns:1fr;padding:19px 16px 18px;gap:16px}
+  .assignment-count{width:100%;min-height:auto;display:grid;grid-template-columns:1fr auto;align-items:center}
+  .assignment-count span{order:1}.assignment-count strong{order:2}
+  .assignment-builder h2{font-size:2.2rem}
+  .assignment-builder p{font-size:.95rem}
+  .assignment-form,.assignment-form.has-station{grid-template-columns:1fr;padding:16px}
+  .assignment-action,.assignment-form.has-station .assignment-action{grid-column:auto;justify-content:stretch}
+  .assignment-action .primary-btn,.assignment-form.has-station .assignment-action .primary-btn{width:100%}
+  .assignment-help{flex-direction:column;align-items:stretch;padding:14px 16px}
+  .assignment-reset{width:100%}
+  .assignment-summary{grid-template-columns:1fr}
+}
 
 /* Employee Master validation — official name and No ID travel with each KPI card. */
 .field-note{display:block;color:var(--muted);font:600 9px/1.35 "JetBrains Mono",monospace;letter-spacing:.03em}
