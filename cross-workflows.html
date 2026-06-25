@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="PGE AOS cross-division workflow library: Order-to-Delivery, New Product-to-Market, Purchase-to-Pay, and Hire-to-Productive Employee.">
-<title>PGE AOS — Cross-Division Workflows</title>
+<meta name="description" content="PGE AOS workflow lintas fungsi dengan tampilan satu alur aktif dan RACI per proses.">
+<title>PGE AOS — Workflow Lintas Fungsi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
@@ -84,11 +84,26 @@ footer{max-width:1320px;margin:auto;padding:22px 28px 42px;display:flex;justify-
 .raci-side-control b{display:block;color:var(--wine);font:700 10px "JetBrains Mono",monospace;letter-spacing:.075em;text-transform:uppercase}.raci-side-control p{margin:6px 0 0;color:var(--ink);font-size:.94rem;line-height:1.42}
 @media(max-width:600px){.raci-side-header{padding:18px 17px 16px}.raci-side-body{padding:17px 16px 26px}.raci-stage-summary{grid-template-columns:1fr}.raci-stage-summary>div{border-right:0}.raci-stage-summary>div:nth-last-child(-n+2){border-bottom:1px solid var(--line)}.raci-stage-summary>div:last-child{border-bottom:0}.raci-side-title{font-size:1.72rem}.raci-side-drawer{width:100vw}}
 
+
+/* ACTIVE WORKFLOW VIEW — satu workflow tampil sesuai kartu yang dipilih */
+.library-card{width:100%;appearance:none;border-left:0;border-top:0;border-bottom:0;cursor:pointer;text-align:left;font-family:inherit;color:inherit}
+.library-card.is-active{background:var(--wine);color:#fff;box-shadow:inset 0 -7px 0 var(--aqua)}
+.library-card.is-active .library-code,.library-card.is-active .library-meta,.library-card.is-active p{color:#fff}
+.library-card.is-active .library-arrow{background:var(--aqua);color:var(--aqua-dark)}
+.library-card.is-active:after{content:'AKTIF';position:absolute;top:14px;right:14px;padding:5px 7px;background:var(--aqua);color:var(--aqua-dark);font:700 8px "JetBrains Mono",monospace;letter-spacing:.08em}
+.library-card{position:relative}
+.active-workflow-state{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:26px 0 0;padding:13px 16px;border:2px solid var(--wine);background:rgba(120,232,230,.11)}
+.active-workflow-state>div{display:flex;align-items:baseline;gap:10px;min-width:0}.active-workflow-state b{display:block;color:var(--wine);font:700 9px "JetBrains Mono",monospace;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}.active-workflow-state strong{display:block;font:600 1.15rem/1 "Playfair Display",Georgia,serif;letter-spacing:-.025em}.active-workflow-state p{margin:0;color:var(--muted);font-size:.91rem;line-height:1.35;text-align:right}
+.workflow-switch-hint{padding:11px 15px;border:1px solid var(--line);border-top:0;background:rgba(255,250,246,.92);color:var(--muted);font:700 9px/1.4 "JetBrains Mono",monospace;letter-spacing:.055em;text-transform:uppercase}
+.workflow-list-single{min-height:360px}
+@media(max-width:860px){.library-grid{grid-template-columns:1fr 1fr}.library-card:nth-child(2){border-right:0}.library-card:nth-child(-n+2){border-bottom:1px solid var(--line)}.active-workflow-state{align-items:flex-start;flex-direction:column}.active-workflow-state p{text-align:left}}
+@media(max-width:560px){.library-grid{grid-template-columns:1fr}.library-card,.library-card:nth-child(2){border-right:0;border-bottom:1px solid var(--line)}.library-card:last-child{border-bottom:0}.active-workflow-state{margin-top:18px}.workflow-switch-hint{font-size:8px}}
+
 </style>
 </head>
 <body>
 <div id="progress" aria-hidden="true"></div>
-<a class="skip" href="#workflow-list">Lewati ke workflow lintas fungsi</a>
+<a class="skip" href="#workflow-library">Lewati ke pilihan workflow</a>
 <header>
   <nav class="nav" aria-label="Navigasi utama">
     <a class="brand" href="index.html" aria-label="PGE AOS System Hub"><span class="mark">PGE</span><span><span class="brand-title">AOS / Cross Workflows</span><span class="brand-sub">Cross-Division Control Library</span></span></a>
@@ -106,12 +121,12 @@ footer{max-width:1320px;margin:auto;padding:22px 28px 42px;display:flex;justify-
     <div class="kicker">PGE cross-division workflow library · Draft Pilot</div>
     <h1 id="page-title">One handoff.<br><em>No blind spot.</em></h1>
     <p>Empat workflow lintas fungsi yang menunjukkan siapa memulai, siapa menerima, bukti apa yang harus tersedia, kapan proses boleh lanjut, dan kapan risiko harus dieskalasi.</p>
-    <div class="hero-actions" aria-label="Aksi cepat"><a class="hero-btn" href="#workflow-list">Explore workflows →</a><button class="hero-btn secondary" type="button" id="expand-all">Open all controls</button><a class="hero-btn secondary" href="sop.html">Open role SOPs</a></div>
+    <div class="hero-actions" aria-label="Aksi cepat"><a class="hero-btn" href="#workflow-library">Pilih workflow →</a><button class="hero-btn secondary" type="button" id="expand-all">Buka semua detail alur aktif</button><a class="hero-btn secondary" href="sop.html">Buka SOP per jabatan</a></div>
     <div class="hero-stats" aria-label="Ringkasan workflow"><div class="hero-stat"><b>4</b><span>Cross workflows</span></div><div class="hero-stat"><b>34</b><span>Control stages</span></div><div class="hero-stat"><b>5</b><span>Core divisions</span></div><div class="hero-stat"><b>1</b><span>Shared evidence trail</span></div></div>
   </section>
 
-  <section class="section" aria-labelledby="library-title">
-    <div class="section-head"><div><div class="section-label">Workflow library</div><h2 id="library-title">The work does not stop at one department.</h2></div><p>Setiap kartu merangkum alur utama, hand-off, kontrol, bukti, metrik, dan pengecualian penting. Klik untuk langsung ke workflow terkait.</p></div>
+  <section class="section" id="workflow-library" aria-labelledby="library-title">
+    <div class="section-head"><div><div class="section-label">Pilih workflow</div><h2 id="library-title">Buka satu alur. Fokus sampai selesai.</h2></div><p>Hanya workflow yang sedang dipilih akan ditampilkan di bawah. Pilih kartu lain kapan saja untuk berpindah alur tanpa membuat halaman terlalu panjang.</p></div>
     <div class="library-grid" id="library-grid"></div>
   </section>
 
@@ -132,13 +147,13 @@ const esc = (value='') => String(value).replace(/[&<>"]/g, char => ({'&':'&amp;'
 const roleClass = tone => `role-${tone}`;
 
 function workflowCard(w){
-  return `<a class="library-card" href="#${w.id}">
-    <div class="library-code">${esc(w.code)} · Draft Pilot</div>
-    <h3>${esc(w.short)}</h3>
+  return `<button type="button" class="library-card" data-workflow-card="${esc(w.id)}" aria-controls="workflow-list" aria-pressed="false">
+    <span class="library-code">${esc(w.code)}</span>
+    <h3>${esc(w.title)}</h3>
     <p>${esc(w.subtitle)}</p>
-    <div class="library-meta">${esc(w.owners)}<br>${esc(w.steps.length)} core stages</div>
+    <span class="library-meta">${esc(w.owners)}<br>${esc(w.steps.length)} tahapan utama</span>
     <span class="library-arrow" aria-hidden="true">→</span>
-  </a>`;
+  </button>`;
 }
 
 function contextCard(label, value){ return `<article class="context-card"><b>${esc(label)}</b><p>${esc(value)}</p></article>`; }
@@ -185,22 +200,55 @@ function raciDrawerMarkup(){
 }
 function workflowSection(w){
   return `<section class="workflow" id="${esc(w.id)}" aria-labelledby="${esc(w.id)}-title">
-    <div class="workflow-top"><div><div class="workflow-code">${esc(w.code)} · Cross-division workflow</div><h2 id="${esc(w.id)}-title">${esc(w.title)}</h2><p class="workflow-sub">${esc(w.subtitle)}</p></div>
+    <div class="active-workflow-state" aria-label="Workflow aktif"><div><b>Workflow aktif</b><strong>${esc(w.code)} · ${esc(w.title)}</strong></div><p>Hanya alur ini yang ditampilkan. Pilih kartu atau tab lain untuk berpindah.</p></div>
+    <div class="workflow-top"><div><div class="workflow-code">${esc(w.code)} · Cross-division workflow</div><h2 id="${esc(w.id)}-title" tabindex="-1">${esc(w.title)}</h2><p class="workflow-sub">${esc(w.subtitle)}</p></div>
     <aside class="doc-badge"><b>Pemilik proses</b><span>${esc(w.owners)}</span><a href="${esc(w.source)}" target="_blank" rel="noopener">Buka dokumen WI ↗</a></aside></div>
     <div class="context-grid">${contextCard('Pemicu',w.trigger)}${contextCard('Output akhir',w.outcome)}${contextCard('Batas wajib proses',w.boundary)}</div>
-    <div class="process-wrap"><div class="process-head"><div><h3>Alur utama dan hand-off</h3><p>Baca dari atas ke bawah. Klik satu proses untuk membuka pembagian peran RACI di panel kanan. Kolom kanan menunjukkan bukti yang harus selesai sebelum proses diteruskan.</p></div><span class="role-note">Klik proses = lihat peran</span></div><div class="process-list">${w.steps.map((step,index)=>stepCard(w,step,index)).join('')}</div></div>
+    <div class="process-wrap"><div class="process-head"><div><h3>Alur utama dan hand-off</h3><p>Baca dari atas ke bawah. Klik satu proses untuk membuka RACI di panel kanan. Kolom kanan menunjukkan hasil yang wajib selesai sebelum proses diteruskan.</p></div><span class="role-note">Klik proses = lihat peran</span></div><div class="process-list">${w.steps.map((step,index)=>stepCard(w,step,index)).join('')}</div></div>
     <div class="workflow-details"><div class="detail-stack"><details class="detail" open><summary>Gerbang kontrol / kondisi berhenti</summary><div class="detail-content"><div class="gate-list">${gates(w)}</div></div></details><details class="detail"><summary>Hand-off penting dan syarat lanjut</summary><div class="detail-content"><div class="handoff-list">${handoffs(w)}</div></div></details></div><div class="detail-stack"><details class="detail" open><summary>Indikator yang dipantau</summary><div class="detail-content">${metrics(w)}</div></details><details class="detail"><summary>Dokumen / bukti wajib</summary><div class="detail-content">${records(w)}</div></details><aside class="escalation"><b>Eskalasi dan pengecualian</b><p>${esc(w.escalation)}</p></aside></div></div>
-    <div class="workflow-bottom"><p><strong>Important:</strong> Klik setiap proses untuk melihat peran RACI di panel samping. Dokumen WI tetap menjadi referensi resmi untuk prosedur lengkap, batas persetujuan, instruksi per jabatan, dan arsip formal.</p><a class="source-link" href="${esc(w.source)}" target="_blank" rel="noopener">Download ${esc(w.code)} ↗</a></div>
+    <div class="workflow-bottom"><p><strong>Catatan:</strong> Klik setiap proses untuk melihat peran RACI di panel samping. Dokumen WI tetap menjadi referensi resmi untuk prosedur lengkap, batas persetujuan, instruksi per jabatan, dan arsip formal.</p><a class="source-link" href="${esc(w.source)}" target="_blank" rel="noopener">Download ${esc(w.code)} ↗</a></div>
   </section>`;
 }
 
 const library=document.getElementById('library-grid');
 const list=document.getElementById('workflow-list');
 const switcher=document.getElementById('workflow-switcher');
-library.innerHTML=WORKFLOWS.map(workflowCard).join('');
-list.innerHTML=WORKFLOWS.map(workflowSection).join('');
-switcher.innerHTML=WORKFLOWS.map((w,i)=>`<button class="flow-jump ${i===0?'active':''}" data-target="${w.id}" type="button">${esc(w.code.replace('WI-CROSS-',''))} · ${esc(w.short)}</button>`).join('');
+list.classList.add('workflow-list-single');
 
+function safeWorkflowId(value){ return WORKFLOWS.some(w=>w.id===value) ? value : WORKFLOWS[0].id; }
+function getHashWorkflow(){ return safeWorkflowId((window.location.hash||'').replace('#','')); }
+let activeWorkflowId=getHashWorkflow();
+
+library.innerHTML=WORKFLOWS.map(workflowCard).join('');
+switcher.innerHTML=WORKFLOWS.map(w=>`<button class="flow-jump" data-target="${w.id}" type="button" aria-pressed="false">${esc(w.code.replace('WI-CROSS-',''))} · ${esc(w.short)}</button>`).join('');
+switcher.insertAdjacentHTML('afterend','<div class="workflow-switch-hint">Pilih tab atau kartu di atas. Halaman hanya menampilkan satu workflow aktif agar lebih mudah dibaca.</div>');
+
+function updateSelectionUI(){
+  document.querySelectorAll('[data-workflow-card]').forEach(card=>{
+    const active=card.dataset.workflowCard===activeWorkflowId;
+    card.classList.toggle('is-active',active);
+    card.setAttribute('aria-pressed',String(active));
+  });
+  document.querySelectorAll('.flow-jump').forEach(btn=>{
+    const active=btn.dataset.target===activeWorkflowId;
+    btn.classList.toggle('active',active);
+    btn.setAttribute('aria-pressed',String(active));
+  });
+}
+
+function renderActiveWorkflow(id,{scroll=false,focus=false,updateHash=true}={}){
+  const nextId=safeWorkflowId(id);
+  const workflow=WORKFLOWS.find(w=>w.id===nextId);
+  closeRaciDrawer();
+  activeWorkflowId=nextId;
+  list.innerHTML=workflowSection(workflow);
+  updateSelectionUI();
+  if(updateHash && window.location.hash!==`#${nextId}`){ history.replaceState(null,'',`#${nextId}`); }
+  if(scroll){ requestAnimationFrame(()=>list.scrollIntoView({behavior:'smooth',block:'start'})); }
+  if(focus){ requestAnimationFrame(()=>document.getElementById(`${nextId}-title`)?.focus({preventScroll:true})); }
+}
+
+// RACI drawer is kept next to the active workflow only.
 document.body.insertAdjacentHTML('beforeend',raciDrawerMarkup());
 const raciOverlay=document.getElementById('raci-side-overlay');
 const raciDrawer=document.getElementById('raci-side-drawer');
@@ -234,14 +282,19 @@ function openRaciDrawer(control){
   requestAnimationFrame(()=>raciDrawer.focus());
 }
 function closeRaciDrawer(){
-  if(!raciOverlay.classList.contains('is-open'))return;
+  if(!raciOverlay?.classList.contains('is-open'))return;
   raciOverlay.classList.remove('is-open');
   raciOverlay.setAttribute('aria-hidden','true');
   document.body.style.overflow='';
   document.querySelectorAll('[data-raci-workflow][data-raci-step]').forEach(item=>item.classList.remove('is-selected'));
   lastRaciPemicu?.focus?.();
 }
+
 document.addEventListener('click',event=>{
+  const card=event.target.closest('[data-workflow-card]');
+  if(card){ renderActiveWorkflow(card.dataset.workflowCard,{scroll:true,focus:true}); return; }
+  const tab=event.target.closest('.flow-jump');
+  if(tab){ renderActiveWorkflow(tab.dataset.target,{scroll:true,focus:true}); return; }
   const control=event.target.closest('[data-raci-workflow][data-raci-step]');
   if(control){openRaciDrawer(control);return;}
   if(event.target.closest('[data-raci-close]')){closeRaciDrawer();return;}
@@ -253,22 +306,19 @@ document.addEventListener('keydown',event=>{
   if(control&&(event.key==='Enter'||event.key===' ')){event.preventDefault();openRaciDrawer(control);}
 });
 
-switcher.addEventListener('click',e=>{
-  const btn=e.target.closest('.flow-jump'); if(!btn)return;
-  document.getElementById(btn.dataset.target)?.scrollIntoView({behavior:'smooth',block:'start'});
-});
-
 document.getElementById('expand-all').addEventListener('click',e=>{
-  const all=[...document.querySelectorAll('.workflow details')]; const willOpen=all.some(d=>!d.open); all.forEach(d=>d.open=willOpen); e.currentTarget.textContent=willOpen?'Close all controls':'Open all controls';
+  const all=[...list.querySelectorAll('details')];
+  const willOpen=all.some(d=>!d.open);
+  all.forEach(d=>d.open=willOpen);
+  e.currentTarget.textContent=willOpen?'Tutup semua detail alur aktif':'Buka semua detail alur aktif';
 });
 
-const jumps=[...document.querySelectorAll('.flow-jump')];
-const observer=new IntersectionObserver(entries=>{
-  const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-  if(!visible)return;
-  jumps.forEach(btn=>btn.classList.toggle('active',btn.dataset.target===visible.target.id));
-},{rootMargin:'-30% 0px -60% 0px',threshold:[0,.1,.25]});
-WORKFLOWS.forEach(w=>observer.observe(document.getElementById(w.id)));
+window.addEventListener('hashchange',()=>{
+  const fromHash=getHashWorkflow();
+  if(fromHash!==activeWorkflowId)renderActiveWorkflow(fromHash,{scroll:false,focus:false,updateHash:false});
+});
+
+renderActiveWorkflow(activeWorkflowId,{scroll:false,focus:false,updateHash:false});
 
 window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress').style.width=(max>0?(window.scrollY/max)*100:0)+'%';},{passive:true});
 </script>
