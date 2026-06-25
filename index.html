@@ -33,8 +33,8 @@ main{max-width:1280px;margin:auto;padding:0 28px 70px}
 .kicker{font:700 11px "JetBrains Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);display:flex;gap:10px;align-items:center}.kicker:before{content:"";width:10px;height:10px;background:var(--aqua);border:1px solid var(--aqua-dark)}
 .hero h1{position:relative;z-index:1;margin:18px 0 12px;font:600 clamp(3.6rem,10vw,8.7rem)/.82 "Playfair Display",Georgia,serif;letter-spacing:-.075em;max-width:940px}.hero h1 em{font-weight:500;color:var(--wine);white-space:nowrap}.hero p{position:relative;z-index:1;max-width:650px;margin:26px 0 0;font-size:clamp(1.08rem,1.8vw,1.35rem);line-height:1.55;color:var(--muted)}
 .rule{display:flex;align-items:center;gap:14px;margin-top:40px}.rule b{width:38px;height:38px;background:var(--wine);display:block}.rule span{height:4px;background:var(--wine);display:block;flex:1;max-width:540px}
-.module-grid{display:grid;grid-template-columns:1fr 1fr;border-top:4px solid var(--wine);border-bottom:4px solid var(--wine)}
-.module{min-height:430px;padding:38px;position:relative;display:flex;flex-direction:column;border-right:1px solid var(--line);transition:100ms linear}.module:last-child{border-right:0}.module:hover{background:var(--wine);color:#fff}.module:hover .module-kicker,.module:hover .module-note,.module:hover .module-meta{color:#fff}.module:hover .module-index{border-color:#fff;color:#fff}.module:hover .arrow{background:#fff;color:var(--wine)}
+.module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:4px solid var(--wine);border-bottom:4px solid var(--wine)}
+.module{min-height:390px;padding:38px;position:relative;display:flex;flex-direction:column;border-right:1px solid var(--line);transition:100ms linear}.module:last-child{border-right:0}.module:hover{background:var(--wine);color:#fff}.module:hover .module-kicker,.module:hover .module-note,.module:hover .module-meta{color:#fff}.module:hover .module-index{border-color:#fff;color:#fff}.module:hover .arrow{background:#fff;color:var(--wine)}
 .module-index{width:42px;height:42px;border:2px solid var(--wine);display:grid;place-items:center;font:700 12px "JetBrains Mono",monospace;color:var(--wine);margin-bottom:36px}.module-kicker{font:700 11px "JetBrains Mono",monospace;color:var(--wine);letter-spacing:.13em;text-transform:uppercase}.module h2{margin:12px 0 16px;font:600 clamp(2.5rem,4.6vw,4.8rem)/.9 "Playfair Display",Georgia,serif;letter-spacing:-.06em}.module p{max-width:440px;color:var(--muted);font-size:1.12rem;line-height:1.55;margin:0}.module-footer{margin-top:auto;display:flex;align-items:end;justify-content:space-between;gap:18px}.module-meta{font:700 10px/1.6 "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}.arrow{width:58px;height:58px;display:grid;place-items:center;background:var(--wine);color:#fff;font:500 2rem "Playfair Display",serif;transition:100ms linear}
 .matrix{padding:52px 0;border-bottom:4px solid var(--wine)}.section-label{font:700 11px "JetBrains Mono",monospace;color:var(--wine);letter-spacing:.16em;text-transform:uppercase;margin-bottom:13px}.matrix h2{margin:0 0 28px;font:600 clamp(2.2rem,4vw,4rem)/.93 "Playfair Display",serif;letter-spacing:-.05em;max-width:860px}.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}.stat{padding:22px 24px;border-right:1px solid var(--line)}.stat:last-child{border-right:0}.stat-n{display:block;font:600 2.7rem/1 "Playfair Display",serif;color:var(--wine)}.stat-l{display:block;margin-top:7px;font:700 10px/1.45 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .flow{padding:52px 0 12px;display:grid;grid-template-columns:minmax(260px,.8fr) 2fr;gap:42px}.flow h2{margin:0;font:600 clamp(2.2rem,4vw,4rem)/.93 "Playfair Display",serif;letter-spacing:-.05em}.flow p{color:var(--muted);font-size:1.1rem;line-height:1.55}.flow-map{border-top:2px solid var(--wine);border-bottom:2px solid var(--wine);display:grid;grid-template-columns:repeat(5,1fr)}.flow-step{padding:18px 14px;min-height:132px;border-right:1px solid var(--line);position:relative}.flow-step:last-child{border-right:0}.flow-step:not(:last-child):after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);z-index:1;background:var(--cream);color:var(--wine);font:500 22px "Playfair Display",serif}.flow-step b{font:700 10px "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--wine);text-transform:uppercase}.flow-step span{display:block;margin-top:10px;font:600 1.2rem/1.08 "Playfair Display",serif}
@@ -53,6 +53,7 @@ footer{max-width:1280px;margin:0 auto;padding:22px 28px 42px;display:flex;justif
     </a>
     <div class="nav-links">
       <a class="nav-link active" href="index.html">Hub</a>
+      <a class="nav-link" href="cross-workflows.html">Cross Flows</a>
       <a class="nav-link" href="sop.html">SOP</a>
       <a class="nav-link" href="kpi.html">KPI</a>
       <a class="nav-link" href="login.html">Portal</a>
@@ -75,8 +76,15 @@ footer{max-width:1280px;margin:0 auto;padding:22px 28px 42px;display:flex;justif
       <p>Alur kerja lintas divisi, tanggung jawab tiap titik proses, dan detail prosedur yang menjadi acuan operasional.</p>
       <div class="module-footer"><span class="module-meta">Open SOP module<br>Process · WI · handover</span><span class="arrow">→</span></div>
     </a>
-    <a class="module" href="kpi.html">
+    <a class="module" href="cross-workflows.html">
       <div class="module-index">02</div>
+      <div class="module-kicker">Cross-division control</div>
+      <h2>Cross<br>Division<br>Workflows</h2>
+      <p>Alur lintas fungsi yang menjelaskan hand-off, control gate, bukti proses, exception, dan Definition of Done dari awal sampai akhir.</p>
+      <div class="module-footer"><span class="module-meta">Open Cross Flow Library<br>Handover · control · evidence</span><span class="arrow">→</span></div>
+    </a>
+    <a class="module" href="kpi.html">
+      <div class="module-index">03</div>
       <div class="module-kicker">Role-based monitoring</div>
       <h2>Key<br>Performance<br>Indicators</h2>
       <p>Penjelasan KPI per peran: pemilik KPI, bobot aktif, target, bukti monitoring, referensi WI, serta cara membaca skor.</p>
@@ -90,13 +98,13 @@ footer{max-width:1280px;margin:0 auto;padding:22px 28px 42px;display:flex;justif
   </section>
 
   <section class="matrix" aria-labelledby="matrix-title">
-    <div class="section-label">KPI module at a glance</div>
-    <h2 id="matrix-title">Setiap peran memahami kontribusinya sebelum hasil akhir dievaluasi.</h2>
+    <div class="section-label">AOS at a glance</div>
+    <h2 id="matrix-title">Role SOP, cross-functional hand-off, and KPI must point to the same operating reality.</h2>
     <div class="stats">
       <div class="stat"><span class="stat-n">5</span><span class="stat-l">Divisi</span></div>
-      <div class="stat"><span class="stat-n">16</span><span class="stat-l">Role scorecards</span></div>
+      <div class="stat"><span class="stat-n">4</span><span class="stat-l">Cross workflows</span></div>
+      <div class="stat"><span class="stat-n">18</span><span class="stat-l">Role SOPs</span></div>
       <div class="stat"><span class="stat-n">58</span><span class="stat-l">KPI aktif</span></div>
-      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Bobot aktif per peran</span></div>
     </div>
   </section>
 
